@@ -14,11 +14,15 @@
 .site-title{
     display: inline-flex;
     color: white;
-    padding-right: 50px;
+    padding-right: 20px;
     justify-content: flex-end;
     padding-top: 5px;
     font-family: 'Handlee', cursive;
     font-size: x-large;
+}
+
+.businessman{
+    margin-left: 15px;
 }
 
 .page-title{
@@ -27,6 +31,7 @@
     font-size: xx-large;
     justify-content: space-around;
     padding-top: 5px;
+    font-family: 'Merriweather', serif;
 }
 
 .burger-menu {

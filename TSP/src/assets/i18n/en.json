@@ -26,7 +26,7 @@
             "title": "Presentation of the notion of Hamiltonian cycle and introduction to the traveling salesman problem"
             , "cycle": "A Hamiltonian cycle in a complete graph G is a cyclic permutation (1,π(1), …, π^(n-1)(1)) on the set of nodes {1,...,n} in the graph: 1 →π(1) → ⋯ → π^(n-1)(1) → 1. "
             , "minimum-cycle": "A minimal Hamiltonian cycle is a Hamiltonian cycle π such that the total length of the cycle is minimal:"
-            , "cycle-length": "d(π) = sum d({i,π(i)}) cu i = {1, ..., n}"
+            , "cycle-length": "d(π) = sum d({i,π(i)}) with i = {1, ..., n}"
             , "analogy-reference": "\t So the TSP problem is as follows:"
             , "analogy-definition": "given a complete undirected graph, determine the minimal Hamiltonian cycle."
             , "general-tsp": "This form of the problem is called the symmetric traveling salesman problem, abbreviated sTSP, or general TSP."
