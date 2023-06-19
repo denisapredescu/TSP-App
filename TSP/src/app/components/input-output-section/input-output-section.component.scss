@@ -145,14 +145,37 @@ mat-header-cell, mat-cell {
     justify-content: space-around;
 }
 
+.first {
+    grid-area: first;
+}
+
+.second {
+    grid-area: second;
+}
+
+.third {
+    grid-area: third;
+}
+
+.steps-christofides-graphs {
+    display: grid;
+    grid-template-areas:             
+        "first first second second"            
+        ". third third .";
+    margin-top: 20px;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-around;
+}
+
 .step {
-    width: 300px;
+    width: 500px;
     margin: 10px;
 }
 
 .christofides-graph {
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 500px;
     margin: auto;
     padding: 0;
 }

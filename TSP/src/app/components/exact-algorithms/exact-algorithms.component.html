@@ -11,7 +11,11 @@
     <p>{{ 'exact-algorithms.dynamic-programming.text' | translate }}</p>
 
     <div class="theorem">
-        <p class="highlight">{{ 'general.definition' | translate }}</p>
+        <div class="icon-title-container"> 
+            <img src="./assets/images/search.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.definition' | translate }}</p>
+        </div>
+        
         <p >{{ 'exact-algorithms.dynamic-programming.definition' | translate }}</p>
     </div>
     
@@ -21,7 +25,9 @@
     
         <p>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.text' | translate }}<p>
     
-        <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.formula' | translate }}</p>
+        <div class="formula-container">
+            <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.formula' | translate }}</p>
+        </div>
     </div>
 
     <div>
@@ -31,7 +37,9 @@
     
         <img src="./assets/images/dynamic-programming-final-step.png" class="display-image">
     
-        <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.final-step.formula' | translate }}</p>
+        <div class="formula-container">
+            <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.final-step.formula' | translate }}</p>
+        </div>
     </div>
     
     <div>
@@ -58,7 +66,9 @@
                 {{ 'exact-algorithms.dynamic-programming.recursion.first-step.text' | translate }}
             </p>
 
-            <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.first-step.formula' | translate }}</p>
+            <div class="formula-container">
+                <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.first-step.formula' | translate }}</p>
+             </div>
         </li>
 
         <li>
@@ -66,8 +76,9 @@
                 <label class="italic-text">{{ 'exact-algorithms.dynamic-programming.recursion.middle-step.step' | translate }}:</label>
                 {{ 'exact-algorithms.dynamic-programming.recursion.middle-step.text' | translate }}
             </p>
-
-            <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.middle-step.formula' | translate }}</p>
+            <div class="formula-container">
+                <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.middle-step.formula' | translate }}</p>
+            </div>
         </li>
     </ul>
 
@@ -78,8 +89,9 @@
             {{ 'exact-algorithms.dynamic-programming.recursion.final-step.text2' | translate }}
         </p>
 
-        <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.final-step.formula' | translate }}</p>
-  
+        <div class="formula-container">
+            <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.final-step.formula' | translate }}</p>
+        </div>
     </div>
  
     <div class="pseudocode">
@@ -122,7 +134,7 @@
     
     <div id="image-with-text">
         <img src="./assets/images/bb-1.png" class="display-image">
-        <span> 
+        <span class="italic-text"> 
             {{ 'exact-algorithms.branch-and-bound.image-text.image-1-text-1' | translate }} 
             <a (click)="goToATSP()">{{ 'exact-algorithms.branch-and-bound.image-text.image-1-text-2' | translate }}</a>
         </span>
@@ -140,7 +152,7 @@
         </ul>
     </div>
 
-    <div>
+    <div style="margin-top:20px;">
         <div style="display: flex"> 
             <img src="./assets/images/steps.png" class="icon-theorem">
             <p class="steps">{{ 'exact-algorithms.branch-and-bound.strategy.title' | translate }}</p>
@@ -162,7 +174,7 @@
 
     <div id="image-with-text">
         <img src="./assets/images/bb-2.png" class="display-image">
-        <span>{{ 'exact-algorithms.branch-and-bound.image-text.image-2-text-1' | translate }}</span>
+        <span class="italic-text">{{ 'exact-algorithms.branch-and-bound.image-text.image-2-text-1' | translate }}</span>
     </div>
 
     <p>{{ 'exact-algorithms.branch-and-bound.pseudocode.text' | translate }}</p>
@@ -181,13 +193,17 @@
             </li>
             <li> 
                 {{ 'exact-algorithms.branch-and-bound.construction.steps.3' | translate }}
-                <p class="formula"> {{ 'exact-algorithms.branch-and-bound.construction.steps.3-formula' | translate }}</p>
+                <div class="formula-container">
+                    <p class="formula" style="background-color:#cbb281"> {{ 'exact-algorithms.branch-and-bound.construction.steps.3-formula' | translate }}</p>      
+                </div>
             </li>
         </ul>
     </div>
-    <p>{{ 'exact-algorithms.branch-and-bound.construction.solution.text' | translate }} </p>
-    <p class="formula">{{ 'exact-algorithms.branch-and-bound.construction.solution.formula' | translate }} </p>
-
+    
+    <div class="formula-container">
+        <p class="formula">{{ 'exact-algorithms.branch-and-bound.construction.solution.text' | translate }}  {{ 'exact-algorithms.branch-and-bound.construction.solution.formula' | translate }} </p>
+    </div>
+    
     <app-example-component [example]="'branch-and-bound'"></app-example-component>
     <app-code-section [currentSubsection]=branchAndBound></app-code-section>
     <app-input-output-section [currentSubsection]=branchAndBound></app-input-output-section>

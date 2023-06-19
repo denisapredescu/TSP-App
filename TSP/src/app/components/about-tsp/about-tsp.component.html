@@ -7,7 +7,7 @@
     </div>
     
     <div class="title">
-        <h3>{{ 'about-tsp.title' | translate }}</h3>
+        <h2>{{ 'about-tsp.title' | translate }}</h2>
     </div>
 
     <p>{{ 'about-tsp.problem-explication' | translate }}</p>
@@ -19,12 +19,16 @@
     </div>
 
     <div>
-        <h5>{{ 'about-tsp.hamiltonain-cycle.title' | translate }}</h5>
+        <p class="steps">{{ 'about-tsp.hamiltonain-cycle.title' | translate }}</p>
         <ul>
             <li>{{ 'about-tsp.hamiltonain-cycle.cycle' | translate }}</li>
             <li>{{ 'about-tsp.hamiltonain-cycle.minimum-cycle' | translate }}</li>
         </ul>
-        <p class="formula">{{ 'about-tsp.hamiltonain-cycle.cycle-length' | translate }}</p>
+
+        <div class="formula-container">
+            <p class="formula">{{ 'about-tsp.hamiltonain-cycle.cycle-length' | translate }}</p>
+        </div>
+        
         <p>{{ 'about-tsp.hamiltonain-cycle.analogy-reference' | translate }}
             <label  class="italic-text">{{ 'about-tsp.hamiltonain-cycle.analogy-definition' | translate }}</label>
             {{ 'about-tsp.hamiltonain-cycle.general-tsp' | translate }}
@@ -35,12 +39,13 @@
     </div>
 
     <div>
-        <h5>{{ 'about-tsp.general-tsp.title' | translate }}</h5>
+        <p class="steps">{{ 'about-tsp.general-tsp.title' | translate }}</p>
+      
         <p>{{ 'about-tsp.general-tsp.definition-symmetric-matrix' | translate }}</p>
 
         <div class="example">
             <div class="img-stsp">
-                <img src="./assets/images/stsp.png" alt="Display stsp graph example" />
+                <img src="./assets/images/stsp.png" alt="Display stsp graph example" class="style-image" />
             </div>
 
             <div class="example-info">
@@ -68,11 +73,15 @@
     </div>
 
     <div class="title">
-        <h3>{{ 'about-tsp.np-completeness.title' | translate }}</h3>
+        <h2>{{ 'about-tsp.np-completeness.title' | translate }}</h2>
     </div>
   
     <div class="theorem">
-        <p class="highlight">{{ 'general.definitions' | translate }} </p>
+        <div class="icon-title-container"> 
+            <img src="./assets/images/search.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.definitions' | translate }} </p>
+        </div>
+
         <p>
             {{ 'about-tsp.np-completeness.definition-1.part-1' | translate }}
             <label class="italic-text">{{ 'about-tsp.np-completeness.definition-1.part-2' | translate }}</label>
@@ -95,13 +104,21 @@
     </div>
 
     <div>
-        <h5>{{ 'about-tsp.np-completeness.tsp-is-np.title' | translate }}</h5>
+        <div style="display:flex;" >
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <h5>{{ 'about-tsp.np-completeness.tsp-is-np.title' | translate }}</h5>
+        </div>
+       
         <p>{{ 'about-tsp.np-completeness.tsp-is-np.demonstration' | translate }}:</p>
         <p>{{ 'about-tsp.np-completeness.tsp-is-np.text' | translate }}</p>
     </div>
 
     <div>
-        <h5>{{ 'about-tsp.np-completeness.tsp-is-np-complete.title' | translate }}</h5>
+        <div style="display:flex;" >
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <h5>{{ 'about-tsp.np-completeness.tsp-is-np-complete.title' | translate }}</h5>
+        </div>
+
         <p>{{ 'about-tsp.np-completeness.tsp-is-np-complete.demonstration' | translate }}:</p>
         <p>{{ 'about-tsp.np-completeness.tsp-is-np-complete.text' | translate }}</p>
     </div>

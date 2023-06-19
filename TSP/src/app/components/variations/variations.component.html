@@ -13,8 +13,8 @@
     </div>
     
     <div>
-        <p class="highlight">{{ 'variations.asymmetric.comutation-atsp-stsp.title' | translate }}</p>
-        <p>{{ 'variations.asymmetric.comutation-atsp-stsp.text' | translate }}</p>
+        <!-- <p class="highlight">{{ 'variations.asymmetric.comutation-atsp-stsp.title' | translate }}</p> -->
+        <p class="italic-text">{{ 'variations.asymmetric.comutation-atsp-stsp.text' | translate }}</p>
     </div>
     
     <h4>{{ 'variations.asymmetric.subtitle-transformation' | translate }}</h4>
@@ -25,7 +25,7 @@
         <img src="./assets/images/steps.png" class="icon-theorem">
         <p class="steps">{{ 'variations.asymmetric.transformation.step-0' | translate }}</p>
     </div>
-    <ol> 
+    <ul> 
         <li>
             {{ 'variations.asymmetric.transformation.step-1' | translate }}
         </li>
@@ -36,7 +36,7 @@
             {{ 'variations.asymmetric.transformation.step-3' | translate }}
 
             <div style="width: 100%; display: grid; justify-content: center;">
-                <table class="table-matrix-stsp">
+                <table class="table-transformation-stsp">
                     <tr> 
                         <th> </th>
                         <th> 0 </th>
@@ -57,10 +57,13 @@
         </li>
         <li>
             {{ 'variations.asymmetric.transformation.step-4' | translate }}
-            <p class="formula">{{ 'variations.asymmetric.solution-formula' | translate }}</p>
+
+            <div class="formula-container">
+                <p class="formula">{{ 'variations.asymmetric.solution-formula' | translate }}</p>
+            </div>
         </li>
 
-    </ol>
+    </ul>
 
     
     <h4>{{ 'variations.asymmetric.subtitle-exemplu' | translate }}</h4>
@@ -70,38 +73,14 @@
             <app-image-slider [images]="aTSP"></app-image-slider>
         </div>
 
-        <div class="table-variations" >
-            <table mat-table [dataSource]="matrix_aTSP" class="mat-elevation-z8">
-
-                <ng-container matColumnDef="position">
-                    <th mat-header-cell *matHeaderCellDef>  </th>
-                    <td mat-cell *matCellDef="let element" style="font-weight:500"> {{element.position}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="0">
-                    <th  mat-header-cell *matHeaderCellDef> 0 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.first}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="1">
-                    <th mat-header-cell *matHeaderCellDef> 1 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.second}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="2">
-                    <th mat-header-cell *matHeaderCellDef> 2 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.third}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="3">
-                    <th mat-header-cell *matHeaderCellDef> 3 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fourth}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="columns_aTSP"></tr>
-                <tr mat-row 
-                    [style.border]="'3px solid rgb(226, 225, 225)'"  
-                    *matRowDef="let row; columns: columns_aTSP;">
+        <div style="width: 100%; display: grid; justify-content: center; margin:auto;">
+            <table class="table-matrix-stsp">
+                <tr> 
+                    <th *ngFor="let header of [' ', 0, 1, 2, 3]">{{ header }}</th>
+                </tr>
+                <tr *ngFor="let row of matrix_aTSP; let columnIndex = index">
+                    <th>{{columnIndex}}</th>
+                    <td *ngFor="let i of [0,1,2,3]">{{row[i]}}</td>
                 </tr>
             </table>
         </div>
@@ -148,9 +127,13 @@
                         {{ 'variations.max.steps.' + i | translate }}
 
                         <div *ngIf="i === 4">
-                            <p class="formula">
-                                {{ 'variations.max.steps.formula' | translate }}
-                            </p>
+
+                            <div class="formula-container">
+                                <p class="formula">
+                                    {{ 'variations.max.steps.formula' | translate }}
+                                </p>
+                            </div>
+                            
                         </div>
                     </li>
                 </ul>
@@ -167,7 +150,11 @@
     <div class="text-image-side">
         <div class="text-half-size" style="padding-top: 30px !important"> 
             <p>{{ 'variations.metric.header' | translate }}</p>
-            <p class="formula">{{ 'variations.metric.formula' | translate }}</p>
+            
+            <div class="formula-container">
+                <p class="formula">{{ 'variations.metric.formula' | translate }}</p>
+            </div>
+            
             <p>{{ 'variations.metric.connectin-with-christofides.text' | translate }} 
                 <a type="link" (click)="goToChristofides()">{{ 'variations.metric.connectin-with-christofides.linkText' | translate }}</a>.
             </p>
@@ -179,10 +166,13 @@
         </div>
     </div>
 
-    <div>
+    <div style="margin-top:50px">
         <h4 style="margin-top:0px">{{ 'variations.metric.euclidian-tsp.title' | translate }}</h4>
 
         <p>{{ 'variations.metric.euclidian-tsp.text' | translate }}</p>
-        <p class="formula">{{ 'variations.metric.euclidian-tsp.formula' | translate }}</p>
+
+        <div class="formula-container">
+            <p class="formula">{{ 'variations.metric.euclidian-tsp.formula' | translate }}</p>
+        </div>
     </div>
 </div>

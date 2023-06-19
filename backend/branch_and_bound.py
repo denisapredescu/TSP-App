@@ -18,11 +18,11 @@ class Branch_and_Bound:
                     neighbors[i].append(j)
         return neighbors
        
-    def matrix_reduction(self, Di, i, j, startNode):
+    def matrix_reduction(self, Di, i, j):
         Dj = Di.copy()
         Dj[i, :] = np.inf          # the line i becomes infinite
         Dj[:, j] = np.inf          # the column j becomes infinite
-        Dj[j, startNode] = np.inf  # the distance from j to the start node becomes infinite
+        Dj[j, self.startNode] = np.inf  # the distance from j to the start node becomes infinite
         cost = self.f(Dj)          # the reduction is calculated
     
         return cost, Dj
@@ -61,18 +61,18 @@ class Branch_and_Bound:
                         
                 while len(neighborsDistance) != 0:
                     fj, nodej, pathj, Dj = heapq.heappop(neighborsDistance) 
-                    self.dfs(nodej, fj, pathj, Dj)
+                    self.search(nodej, fj, pathj, Dj)
         
         self.visited[node] = 0 
             
             
     def TSP(self, startNode = 0):
-        self.start = startNode
+        self.startNode = startNode
         
         Dstart = self.D.copy()
         f_startNode = self.f(Dstart)
         
-        self.dfs(startNode, f_startNode, [startNode], Dstart)
+        self.search(startNode, f_startNode, [startNode], Dstart)
 
         if self.lim == np.inf:
             return "No solution"

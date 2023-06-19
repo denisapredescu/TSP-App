@@ -253,6 +253,17 @@ export class ExampleComponentComponent {
         ]
       ]
     }
+    , {
+      id: "img-4",
+      fromNode: 3,
+      fromMatrix:  [], 
+      fromF: 33,
+      node: [0, 1, 2, 3, 0],
+      reduction: [],
+      distances: [],
+      f: [33], 
+      matrix: []
+    }
   ];
 
   farthest_insertion = [

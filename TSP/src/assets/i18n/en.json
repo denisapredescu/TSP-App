@@ -155,8 +155,7 @@
                 "subproblem": {
                     "title": "How is the subproblem determined?"
                     , "text": "\t For TSP a subproblem corresponds to the beginning part of the path. It is considered that the journey starts from city 1 and arrives at city j after several cities have been visited. At each step, to extend the beginning of the road, it is necessary to know the city j because it is desired to find the cities to visit after passing through j. To know that the TSP rule of visiting each city only once is obeyed, one also needs to know the identity of the nodes visited in the partial path in order not to go through them again, therefore:"
-                    , "formula": "a subproblem corresponds to a shape pair (node subset, road start)."
-                    
+                    , "formula": "a subproblem corresponds to a shape pair (node subset, road start)"
                 } 
                 , "final-step": {
                     "title": "The last step"
@@ -326,7 +325,7 @@
                 "header": "Chistofides Enhancement:"
                 , "prim": "Starting creation of minimum cost spanning tree"
                 , "odd-nodes": "Being a tree, it is certain that it has odd nodes (at least because it has leaves), but the sum of all node degrees remains an even number. From this statement, it is concluded that there exists in the tree a even number of odd cardinal nodes. Determine these nodes"
-                , "matching": "Determining the perfect matching of minimum cost (minimum perfect matching) by applying the algorithm for determining a perfect coupling: choosing some edges that glue the nodes of odd degree two by two. The edges chosen by this algorithm applied over the set O are mark with M."
+                , "matching": "Determining the perfect matching of minimum cost (minimum perfect matching) by applying the algorithm for determining a perfect matching: choosing some edges that glue the nodes of odd degree two by two. The edges chosen by this algorithm applied over the set O are mark with M."
                 , "adding-nodes": "Adding new best-match edges to the tree"
                 , "determine-cycle": "Determine the Eulerian cycle (passing through all edges) - DFS can no longer be used because the edges are no longer duplicated"
                 , "shortcuts": "The technique of using shortcuts is applied "
@@ -346,17 +345,17 @@
                     , "text": "\t Given the result of the Prim function, a list is created inserting the nodes that were marked with odd degree in the vector"
                 }
                 , "matching": {
-                    "title": "Determining Perfect Coupling"
+                    "title": "Determining Perfect Matching"
                     , "version-greedy": {
-                        "title": "Perfect coupling on nodes in O, determining the set M of edges using the greedy strategy"
+                        "title": "Perfect matching on nodes in O, determining the set M of edges using the greedy strategy"
                         , "steps": "\t The greedy strategy is simplistic. A node u is extracted from the list of odd degree nodes and it is checked which is the closest node j with which it can be connected among the unconnected nodes in the list. This node j set as a pair of node u (pair_u). The selection process is repeated until there are no more nodes of odd degree." 
-                        , "approximation": "\t The approximation factor of 3/2 is related to using the perfect minimum cost coupling, so by replacing that method with a coupling based on a greedy choice, the approximation factor can no longer be guaranteed. However, in order to provide a coupling with the lowest possible weight, the greedy algorithm is repeated a greater number of times, at the end keeping the variant for which the coupling has the smallest length."
+                        , "approximation": "\t The approximation factor of 3/2 is related to using the perfect minimum cost matching, so by replacing that method with a matching based on a greedy choice, the approximation factor can no longer be guaranteed. However, in order to provide a matching with the lowest possible weight, the greedy algorithm is repeated a greater number of times, at the end keeping the variant for which the matching has the smallest length."
                        , "pseudocode": "Input parameters: odd_degree_nodes tree obtained with Prim's algorithm, number of iterations set \n copy ← copy of odd_degree nodes vector \n minimum_solution ← ∞ \n edges ← empty list \n selected_edges ← list void \n for i ← 0, repeats - 1 execute \n\t match ← False \n\t while match = False execute \n\t\t match ← True \n\t\t shuffle nodes in odd_degree nodes \n\t\t solution ← 0 \n\t\t while there are nodes in odd_degree nodes execute \n\t\t\t u ← extract a node from odd_degree nodes \n\t\t\t min_length ← ∞ \n\t \t\t for each remaining node v odd_degree nodes execute \n\t\t\t\t if u ≠ v and d(u, v) < minimum_length and u and v were not already neighbors in the tree then \n\t\t\t\t\t minimum_length ← d(u, v) \n\t\t\t\t\t u_pair ← v \n\t\t\t\t\t if a pair of u is found then \n\t\t\t\t\t\t add edge (u, u_pair) to edge list\n\t\t\t\t\t\t solution ← solution + min_length \n\t\t\t\t\t\t the pair_u node is also removed from the list of odd_degree_nodes \n\t\t\t\t\t otherwise \n\t\t\t\t\t\t matching ← False // the last nodes are already neighbors in the tree, they cannot pair again \n\t if solution < minimum_solution then \n\t\t minimum_solution ← solution \n\t\t selected_edges ← edges \n return selected_edges"
-                        , "explications": "\t In order not to determine the same coupling at each iteration of the method, the list of nodes of odd degree is shuffled (line 9 of the pseudocode), i.e. we want to change the position of the nodes at each attempt to determine the minimum perfect coupling. \n\t Even if there is an even number of nodes over which a perfect coupling is desired, there may be nodes for which coupling is impossible because those nodes are already connected by an edge in the minimum cost partial tree.Noted in pseudocode a variable 'coupling' which is of boolean type. It starts from the assumption that a perfect coupling can be created (the variable 'coupling' takes the value True) and keeps track of whether the determined coupling is perfect or not. If it cannot be found among uncoupled nodes one pair for the current node, 'couple' becomes False Don't accept the set of edges found and start the search again, statement made in the first repeating structure 'how long...execute'. If instead the coupling is perfect, exit the repetitive structure and check if the sum of the edges of the determined coupling is minimal. This method is repeated times after which the list of edges (selected_edges) for which the sum of edges was minimal is returned."
+                        , "explications": "\t In order not to determine the same matching at each iteration of the method, the list of nodes of odd degree is shuffled (line 9 of the pseudocode), i.e. we want to change the position of the nodes at each attempt to determine the minimum perfect matching. \n\t Even if there is an even number of nodes over which a perfect matching is desired, there may be nodes for which matching is impossible because those nodes are already connected by an edge in the minimum cost partial tree.Noted in pseudocode a variable 'match' which is of boolean type. It starts from the assumption that a perfect matching can be created (the variable 'match' takes the value True) and keeps track of whether the determined match is perfect or not. If it cannot be found among uncoupled nodes one pair for the current node, 'couple' becomes False Don't accept the set of edges found and start the search again, statement made in the first repeating structure 'how long...execute'. If instead the matching is perfect, exit the repetitive structure and check if the sum of the edges of the determined matching is minimal. This method is repeated times after which the list of edges (selected_edges) for which the sum of edges was minimal is returned."
                     }
                     , "version-min-perfect-matching": {
                         "title": "The variant that determines the matching edges by the minimum-cost perfect matching algorithm (the approximation factor is 3/2)"
-                        , "description": "\t The method that creates the minimum cost perfect coupling is a complex one based on Karp's Blossom algorithm. To determine the edges of the minimum cost perfect coupling there is a predefined function max_weight_matching from the NetworkX library which by giving se the negated distances between nodes of odd degree, returns an array of node pairs."
+                        , "description": "\t The method that creates the minimum cost perfect matching is a complex one based on Karp's Blossom algorithm. To determine the edges of the minimum cost perfect matching there is a predefined function max_weight_matching from the NetworkX library which by giving se the negated distances between nodes of odd degree, returns an array of node pairs."
                         ,"reference": "For more details, it is recommended to access the book"
                         , "book": "Combinatorial optimization written by Korte and Vygen"
                     }
@@ -625,22 +624,14 @@
             , "euclidean-distances": {
                 "title":"The instance corresponds to points in the 2D plane. It turns into a symmetric matrix for which the distance between any 2 nodes is the distance between those points in the plane. Finally, the matrix is complete"
                 ,"0": {
-                    "error": "The given graph is not complete!"
-                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a complete graph. So if the input is entered for one of these types of algorithms, it is checked if a weight is specified between any two nodes"
-                } 
-                ,"1": {
-                    "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
-                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a graph that respects the triangle inequality (solves TSP in the metric case). So if the input is input for one of these types of algorithms, it is required that the distances from the matrix created to respect the triangle inequality"
-                }  
-                ,"2": {
                     "error": "The number of nodes is different than specified!"
                     ,"explication": "Appears for inputs where the number of triplets is not the same as the number of edges specified."
                 }
-                , "3": {
+                , "1": {
                     "error": "Already set the coordonates for node {0}!"
                     , "explication": "Indexes of the entered nodes are not unique (the value in the first position of the triplets is repeated at least 2 times)"
                 }
-                , "4": {
+                , "2": {
                     "error": "Can not have the same coordonates for 2 different nodes!"
                     , "explication": "Two (or more) different nodes with the same coordinates were inserted (the combination of the second and third values in the triplets is repeated at least 2 times)"
                 }
@@ -715,8 +706,8 @@
         "exact-algorithms": "Exact algorithms",
         "dynamic-programming": "Dynamic Programming",
         "branch-and-bound": "Branch and bound",
-        "approximation-algorithms": "Approximation alg",
-        "chistofides-algorithm": "Christofides' alg",
+        "approximation-algorithms": "Approximation alg.",
+        "chistofides-algorithm": "Christofides' alg.",
         "heuristic-algorithms": "Heuristic algorithms",
         "farthest-insertion": "Farthest Insertion",
         "nearest-insertion": "Nearest Insertion",
@@ -764,6 +755,14 @@
         , "minimum": "minimum"
         , "go-to-start-node": "Return to start node"
         , "edge-distance": "Edge distance"
+        , "bb-nodes-matrix": "Reduced matrix corresponding to the node"
+        , "bb-reduction-cost": "Cost reduction"
+        , "bb-f-start-node": "f root "
+        , "bb-start-node": "Parent node"
+        , "bb-start-text": "In the first step the distance matrix is reduced and the cost of the reduction is set as the f-value of the root"
+        , "bb-remove-subtrees": "On return subtrees are removed because they have the limit greater than "
+        , "distances-matrix": "Distance matrix"
+        , "start-matrix": "Parent matrix"
 
         , "example-eulerian-cycle": "Step-by-step example solving the problem of determining the Hamiltonian cycle based on determining the Eulerian cycle"
         , "example-branch-and-bound": "Example solution using the discussed strategy"

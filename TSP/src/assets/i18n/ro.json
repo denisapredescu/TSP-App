@@ -157,7 +157,7 @@
                 "subproblem": {
                     "title": "Cum se stabilește subproblema?"
                     , "text": "\t Pentru TSP o subproblemă corespunde părții de început a drumului. Se consideră că se pornește parcurgerea din orașul 1 și se ajunge în orașul j după ce au fost vizitate câteva orașe. La fiecare pas, pentru a extinde începutul de drum, este necesar să se cunoască orașul j pentru că se dorește găsirea orașelor care de vizitat după ce s-a trecut prin j. Pentru a ști că se respectă regula TSP de a vizita fiecare oraș o singură dată, trebuie să se cunoască și identitatea nodurilor vizitate în drumul parțial pentru a nu le parcurge din nou, de aceea:"
-                    , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, început de drum)."
+                    , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, început de drum)"
                     
                 } 
                 , "final-step": {
@@ -627,22 +627,14 @@
                 , "euclidean-distances": {
                     "title":"Instanța corespunde unor puncte din planul 2D. Se transformă într-o matrice simetrică pentru care distanța dintre oricare 2 noduri reprezintă distanța dintre acele puncte în plan. La final, matricea este completă"
                     ,"0": {
-                        "error": "The given graph is not complete!"
-                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf complet. Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se verifică dacă este specificată o pondere între oricare două noduri"
-                    } 
-                    ,"1": {
-                        "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
-                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf care respecte inegalitatea triunghiului (rezolvă TSP în cazul metric). Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se cere ca distanțele din matricea creată să respecte inegalitatea triunghiulu"
-                    }  
-                    ,"2": {
                         "error": "The number of nodes is different than specified!"
                         ,"explication": "Apare în cazul inputurilor în care numărul de triplete nu este același ca numărul de muchii specificate."
                     }
-                    , "3": {
+                    , "1": {
                         "error": "Already set the coordonates for node {0}!"
                         , "explication": "Indexele nodurilor introduse nu sunt unice (se repetă de cel puțin 2 ori valoarea din prima poziție din triplete)"
                     }
-                    , "4": {
+                    , "2": {
                         "error": "Can not have the same coordonates for 2 different nodes!"
                         , "explication": "Au fost inserare două (sau mai multe) noduri diferite cu aceleași coordonate (se repetă de cel puțin 2 ori combinația dintre a doua și a treia valoare din triplete)"
                     }
@@ -767,6 +759,14 @@
         , "minimum": "minimă"
         , "go-to-start-node": "Întoarcere la nodul de start"
         , "edge-distance": "Distanța muchiei"
+        , "bb-nodes-matrix": "Matrice redusă corespunzătoare nodului"
+        , "bb-reduction-cost": "Cost reducere"
+        , "bb-f-start-node": "f rădăcină "
+        , "bb-start-node": "Nod părinte"
+        , "bb-start-text": "La primul pas se reduce matricea de distanțe și costul reducerii se setează ca valoarea f a rădăcinii"
+        , "bb-remove-subtrees": "La întoarcere sunt eliminați subarborii pentru că au limita mai mare decât "
+        , "distances-matrix": "Matrice de distanțe"
+        , "start-matrix": "Matrice părinte"
 
         , "example-eulerian-cycle": "Exemplu pas cu pas în care se rezolvă problema determinării ciclului hamiltonian pe baza determinării ciclului eulerian"
         , "example-branch-and-bound": "Exemplu de rezolvare folosind strategia discutată"

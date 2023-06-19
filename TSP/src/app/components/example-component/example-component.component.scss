@@ -163,6 +163,18 @@
     text-decoration: underline;
 }
 
+
+.hierholzer-title-container{
+    display: grid;
+    justify-content: start;
+    margin-bottom: 10px;
+    color: #214a4e;
+    text-decoration: underline;
+    padding-left:100px; 
+    padding-right:100px; 
+    text-align: center;
+}
+
 .icon-text{
     display: inline-flex;
 }
@@ -204,6 +216,24 @@
 .bb-carousel-and-buttons{
     display: grid;
     grid-template-rows: 330px 100px;
+}
+
+.bb-final-slide {
+    display: grid;
+    justify-content: center;
+}
+
+.bb-final-button-container {
+    display: grid;
+    grid-template-columns: 450px 150px;
+    margin: -30px 50px 0px 80px;
+
+}
+
+.bb-final-text {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
 }
 
 .bb-parent-matrix{

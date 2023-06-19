@@ -11,16 +11,17 @@
             [wrap]="false"
             >
             
-            <ng-template ngbSlide *ngFor="let currentInfo of infos; index as i" [id]="currentInfo.id">  
+            <ng-template ngbSlide *ngFor="let currentInfo of infos; index as i" [id]="currentInfo.id"> 
+                <div class="hierholzer-title-container">
+                    <h3> {{ title }} </h3>
+                </div>
+
                 <div class="image-info-side">
                     <div class="example-images">
                         <img src="./assets/images/hamiltonian_cycle/hamiltonian_cycle_{{i+1}}.png" alt="the {{i}} photo in example">
                     </div>
 
                     <div class="info-side">
-                        <div class="title-container">
-                            <h3> {{ title }} </h3>
-                        </div>
 
                         <div class="top-text-info">
                             <div class="icon-text">
@@ -88,7 +89,7 @@
                     </div>
 
                     <div class="bb-example-content">
-                        <div class="bb-top-half">
+                        <div class="bb-top-half" *ngIf="i != 4">
                             <div class="bb-carousel-and-buttons">
                                 <div class="bb-example-images">
                                     <img src="./assets/images/branch_and_bound/s_{{i+1}}.png" alt="the {{i}} photo in example" height="350px">
@@ -99,8 +100,8 @@
                                         <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
                                         <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
 
-                                        <button *ngIf="carousel.activeId === 'img-3'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
-                                        <button *ngIf="carousel.activeId != 'img-3'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                        <button *ngIf="carousel.activeId === 'img-4'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                        <button *ngIf="carousel.activeId != 'img-4'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
                                     </div>
 
                                     <div class="reset-container" stylr="margin-right:200px">
@@ -114,19 +115,19 @@
                                 <div *ngIf="i != 0" class="text-blue">
                                     <div style="display: flex;">
                                         <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
-                                        <p style="margin-top: 5px;"> Nod părinte: {{state.fromNode}} </p>
+                                        <p style="margin-top: 5px;"> {{'carousel.bb-start-node' | translate}}: {{state.fromNode}} </p>
                                     </div>
                                     <div>
-                                        <p style="margin-top: 5px;"> f părinte: {{state.fromF}} </p>
+                                        <p style="margin-top: 5px;"> {{'carousel.bb-f-start-node' | translate}}: {{state.fromF}} </p>
                                     </div>
-                                    <p style="margin-top: 5px;"> Matrice părinte: </p>                                    
+                                    <p style="margin-top: 5px;"> {{'carousel.start-matrix' | translate}} : </p>                                    
                                 </div>
                                 
                                 <div *ngIf="i === 0" class="text-blue">
                                     <div style="width: 80%;">
-                                        <p>La primul pas se reduce matricea de distanțe și costul reducerii se setează ca valoarea f a rădăcinii</p>
+                                        <p>{{'carousel.bb-start-text' | translate}}</p>
                                     </div>
-                                    <p style="margin-top: 5px;"> Matrice de distanțe: </p>
+                                    <p style="margin-top: 5px;"> {{'carousel.distances-matrix' | translate}}: </p>
                                 </div>
 
                                 <table class="bb-parent-table">
@@ -143,7 +144,7 @@
                             </div>
                         </div>
 
-                        <div class="bb-children-list">
+                        <div class="bb-children-list"  *ngIf="i != 4">
                             <div  *ngFor="let child of state.node; index as j">
                                 <div class="text-blue" style="display: inline-flex">
                                     <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
@@ -151,7 +152,7 @@
                                 </div>
 
         
-                                <p class="text-blue" style="margin-top: 5px;"> Matrice redusă corespunzătoare nodului {{child}}: </p>
+                                <p class="text-blue" style="margin-top: 5px;"> {{'carousel.bb-nodes-matrix' | translate}} {{child}}: </p>
                                 
                                 <table class="bb-child-table">
                                     <tr>
@@ -168,7 +169,7 @@
                                 </table>
 
                                 <div class="text-blue">
-                                    <p style="margin-top: 5px;"> Cost reducere: {{state.reduction[j]}} </p>
+                                    <p style="margin-top: 5px;">{{'carousel.bb-reduction-cost' | translate}} : {{state.reduction[j]}} </p>
                                 </div>
 
                                 <div class="text-blue" *ngIf="i != 0">
@@ -176,10 +177,47 @@
                                 </div>
 
                                 <div class="text-blue" *ngIf="i === 0">
-                                    <p style="margin-top: 5px;"> f rădăcină = {{state.f[j]}}</p>
+                                    <p style="margin-top: 5px;"> {{'carousel.bb-f-start-node' | translate}} = {{state.f[j]}}</p>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="bb-final-slide" *ngIf="i === 4">
+                            <div>
+                                <img src="./assets/images/branch_and_bound/s_{{i+1}}.png" alt="the {{i}} photo in example" height="400px">
+                            </div>
+
+                            <div class="bb-final-button-container">
+                                <div class="prev-next-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                    <button *ngIf="carousel.activeId === 'img-4'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-4'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                </div>
+
+                                <div class="reset-container" stylr="margin-right:200px">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                </div>
+                            </div>
+
+                            <div class="text-blue bb-final-text">
+                                <p style="margin-top: 5px;"> {{'carousel.bb-remove-subtrees' | translate}} {{state.f[0]}}</p>  
+
+                                <div style="display: flex;">
+                                    <img src="./assets/images/circle_solution.png" height="30px">
+                                    <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{'carousel.solution' | translate}} : {{state.f[0]}} </p>
+                                </div>
+
+                                <div style="display: flex;">
+                                    <img src="./assets/images/circle.png" height="30px">
+                                    <p class="text-blue"  style="margin-top: 2px; margin-left: 15px;">{{'carousel.cicle' | translate}} : {{state.node}} </p>
+                                </div> 
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </ng-template>

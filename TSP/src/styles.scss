@@ -1,10 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital@1&family=Merriweather:ital,wght@0,900;1,300;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital@1&family=Handlee&family=Merriweather:ital,wght@0,900;1,300;1,700&display=swap');
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size:18px; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size:18px; }
 
 
 .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption{
@@ -38,13 +37,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size:1
     width: 7px;
 }
 
-// .formula {
-//     font-size:large;
-//     font-style: italic;
-//     font-weight: 450;
-//     margin: 15px;
-//     text-align: center;
-// }
 
 .formula {
     font-size:large;
@@ -53,6 +45,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size:1
     text-align: center;
     font-family: 'Noto Sans Math', sans-serif;
     font-weight: 600;
+
+    padding: 10px; // sau 15 incearca
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #d373ff8f;
+    width: fit-content; // daca arata naspa da-i width = in pixeli
+    border-radius: 10px;
 }
 
 .pseudocode {
@@ -69,59 +68,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size:1
     font-family: Consolas,monaco,monospace; 
 }
 
-// .theorem {
-//     background-color: #abd0d8;
-//     border-radius: 5px;
-//     padding: 10px;
-//     margin-top: 10px;
-//     margin-bottom: 10px;
-// }
-
 .theorem {
     background-color: #cbb281;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     font-family: 'Merriweather', serif;
-    font-weight: bolder;
+    font-weight: lighter;
     font-size: 17px;
 }
 
 .highlight {
-    // font-size: 22px;
     font-size: 20px;
-    // font-style: italic;
-    font-weight:500;
     margin-bottom: 0;
     margin-top: 5px;
 }
 
-// .italic-text {
-//     font-style: italic;
-//     font-weight: 500;
-// }
+.italic-text {
+    font-style: italic;
+}
   
 h3 {
-    // margin-left: 33px;
     margin-top: 30px;
     margin-bottom: 20px;
     font-family: 'Abril Fatface', cursive;
 }
 
 h4{
-    // margin-left: 33px;
     margin-top: 30px;
     margin-bottom: 20px;
-    // font-style: italic;
     font-family: 'Abril Fatface', cursive;
-    // text-decoration: underline;
 }
 
 h5 {
-   font-style: italic;
-   margin-left: 33px;
+    font-style: italic;
+    margin-top: 6px;
 }
 
 .section-box {
@@ -132,7 +115,6 @@ h5 {
     display: grid;
     justify-content: center;
     margin-bottom: 20px;
-    // font-style: italic;
     font-family: 'Abril Fatface', cursive;
 }
 
@@ -237,10 +219,8 @@ a {
 }
 
 .steps {
-    // font-weight: bolder;
     font-size: 19px;
     margin-bottom: 0;
-    // font-family: "Cormorant Garamond", serif;
     font-family: 'Merriweather', serif;
     font-weight: bold;
     text-decoration: underline;
@@ -250,4 +230,21 @@ a {
 .header {
     font-family: 'Fraunces', serif;
     font-weight: bold;
+}
+
+.icon-title-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 15px;
+}
+
+.formula-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    margin-bottom: 0;
 }

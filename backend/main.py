@@ -116,7 +116,7 @@ def runCodeDynamicProgramming():
 
     try:
         input = Input(inputData, inputType)
-        matrix = input.createMatrix(inputType)
+        matrix = input.createMatrix()
             
         programare_dinamica = runner_pd.Programare_dinamica(input.n, matrix)
         solutie = programare_dinamica.TSP(0)
@@ -137,7 +137,7 @@ def runCodeBranchAndBound():
     
     try:
         input = Input(inputData, inputType)
-        matrix = input.createMatrix(inputType)     
+        matrix = input.createMatrix()     
         branch_and_bound = runner_bb.Branch_and_Bound(input.n, matrix)
         response = branch_and_bound.TSP(0)
         

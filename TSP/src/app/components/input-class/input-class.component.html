@@ -5,10 +5,13 @@
     <app-code-section [currentSubsection]=inputClass></app-code-section>
 
     <div class="errors">
-        <h5>{{'input-class.rules-title' | translate}}</h5>
+        <div class="title">
+            <h3>{{'input-class.rules-title' | translate}}</h3>
+        </div>
+        
         <ul>
             <li>  
-                <label class="highlight">{{'input-class.rules.general.title' | translate}}</label>
+                <label class="steps">{{'input-class.rules.general.title' | translate}}</label>
                 <ul>
                    
                     <li *ngFor="let i of [0, 1, 2]">
@@ -19,7 +22,7 @@
             </li>
 
             <li> 
-                <label class="highlight">{{'input-class.rules.oriented-graph.title' | translate}}</label>
+                <label class="steps">{{'input-class.rules.oriented-graph.title' | translate}}</label>
                 <ul>
                    
                     <li *ngFor="let i of [0, 1]">
@@ -30,7 +33,7 @@
             </li>
 
             <li>
-                <label class="highlight"> {{'input-class.rules.neoriented-graph.title' | translate}} </label>
+                <label class="steps"> {{'input-class.rules.neoriented-graph.title' | translate}} </label>
                 <ul>
                     
                     <li *ngFor="let i of [0, 1,2,3]">
@@ -41,10 +44,10 @@
             </li>
 
             <li>  
-                <label class="highlight">{{'input-class.rules.euclidean-distances.title' | translate}}</label>
+                <label class="steps">{{'input-class.rules.euclidean-distances.title' | translate}}</label>
                 <ul>
                   
-                    <li *ngFor="let i of [0, 1, 2 ,3, 4]">
+                    <li *ngFor="let i of [0, 1, 2]">
                         <strong>{{'input-class.rules.euclidean-distances.' + i + '.error'| translate}}</strong>:
                         {{'input-class.rules.euclidean-distances.' + i + '.explication'| translate}}
                     </li>

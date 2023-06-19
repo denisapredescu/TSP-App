@@ -35,11 +35,18 @@ export class VariationsComponent {
   ];
 
   columns_aTSP: string[] = ['position', '0', '1', '2', '3'];
+  // matrix_aTSP = [
+  //   {position: 0, first: "∞", second: 1, third: 4, fourth: 1},
+  //   {position: 1, first: 1, second: "∞", third: 6, fourth: 2},
+  //   {position: 2, first: 2, second: 1, third: "∞", fourth: 5},
+  //   {position: 3, first: 3, second: 5, third: 4, fourth: "∞"},
+  // ];
+
   matrix_aTSP = [
-    {position: 0, first: "∞", second: 1, third: 4, fourth: 1},
-    {position: 1, first: 1, second: "∞", third: 6, fourth: 2},
-    {position: 2, first: 2, second: 1, third: "∞", fourth: 5},
-    {position: 3, first: 3, second: 5, third: 4, fourth: "∞"},
+    [ "∞",  1,  4,  1],
+    [1,  "∞", 6, 2],
+    [2,  1, "∞",  5],
+    [3, 5, 4, "∞"]
   ];
 
   
