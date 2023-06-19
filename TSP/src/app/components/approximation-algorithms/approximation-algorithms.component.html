@@ -1,0 +1,247 @@
+<div id="up" (mouseover)="getSection('')" class="section-box header">
+    <p>{{ 'approximations-algorithms.header' | translate }}</p>
+    <p>{{ 'approximations-algorithms.definition-alpha-factor' | translate }}</p>
+</div>
+
+<div id="double-tree-algorithm" (mouseover)="getSection('double-tree-algorithm')" class="section-box">
+    <div class="title">
+        <h2>{{ 'approximations-algorithms.double-tree-algorithm.title' | translate }}</h2>
+    </div>
+
+    <p>{{ 'approximations-algorithms.double-tree-algorithm.header' | translate }}</p>
+    <div>
+        <h5>{{ 'approximations-algorithms.double-tree-algorithm.eulerian.0' | translate }}</h5>
+        <ul>
+            <li *ngFor="let i of [1,2, 3]"> 
+                {{ 'approximations-algorithms.double-tree-algorithm.eulerian.' + i | translate }}
+            </li>
+        </ul> 
+    </div>
+     
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'approximations-algorithms.double-tree-algorithm.theorem-subset-hamiltonian-cycle' | translate }}</p>
+    </div>
+
+    <div class="text-image-side">
+        <div class="text-half-size">
+            <ol>  
+                <div style="display: flex"> 
+                    <img src="./assets/images/steps.png" class="icon-theorem">
+                    <p class="steps">{{ 'approximations-algorithms.double-tree-algorithm.steps.header' | translate }}</p>
+                </div>
+                <li>{{ 'approximations-algorithms.double-tree-algorithm.steps.prim' | translate }} </li>
+                <div class="theorem">
+                    <div style="display: flex"> 
+                        <img src="./assets/images/theorem.png" class="icon-theorem">
+                        <p class="highlight">{{ 'general.theorem' | translate }}</p>
+                    </div>
+                    <p>{{ 'approximations-algorithms.double-tree-algorithm.steps.prim-approximation-theorem' | translate }}</p>
+                </div>
+
+                <li>  {{ 'approximations-algorithms.double-tree-algorithm.steps.dfs.text' | translate }}
+                    <ol>
+                            <li>{{ 'approximations-algorithms.double-tree-algorithm.steps.dfs.1' | translate }}</li>
+                            <li>
+                            <ul> 
+                                    <li>{{ 'approximations-algorithms.double-tree-algorithm.steps.dfs.2.1' | translate }}</li>
+                                    <li>{{ 'approximations-algorithms.double-tree-algorithm.steps.dfs.2.2' | translate }}</li>
+                            </ul> 
+                            </li>
+                    </ol>
+                </li>
+    
+                <li>{{ 'approximations-algorithms.double-tree-algorithm.steps.shortcuts' | translate }}</li>
+            </ol>
+
+            <div class="theorem">
+                <div style="display: flex"> 
+                    <img src="./assets/images/theorem.png" class="icon-theorem">
+                    <p class="highlight">{{ 'general.theorem' | translate }}</p>
+                </div>
+                <p>{{ 'approximations-algorithms.double-tree-algorithm.steps.approximation' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="img-half-size all-trees-container">
+            <img src="./assets/images/double_tree/all_trees.png" alt="Tree steps" class="display-images">
+        </div>
+    </div>
+
+    <div>
+        <h4>{{ 'general.algorithm' | translate }}</h4>
+
+        <h5>{{ 'approximations-algorithms.double-tree-algorithm.algorithm.prim.title' | translate }}</h5>
+        <ul>
+            <li *ngFor="let i of [0,1,2,3]"> 
+                {{ 'approximations-algorithms.double-tree-algorithm.algorithm.prim.' + i | translate }}
+            </li>
+        </ul> 
+        <div class="pseudocode">
+            {{ 'approximations-algorithms.double-tree-algorithm.algorithm.prim.pseudocode' | translate }}
+        </div>
+
+        <h5>{{ 'approximations-algorithms.double-tree-algorithm.algorithm.dfs.title' | translate }}</h5>
+        <div class="text-slider-side">
+            
+            <div class="text-half-size">
+                <div class="pseudocode">
+                    {{ 'approximations-algorithms.double-tree-algorithm.algorithm.dfs.pseudocode' | translate }}
+                </div>
+            </div>
+
+            <div class="carousaell-dfs">
+                <app-image-slider [images]="dfs_images" [popup]="false" [isVerticle]="true"></app-image-slider>
+            </div>
+        
+        </div>
+
+        <h5>{{ 'approximations-algorithms.double-tree-algorithm.algorithm.value-solution.title' | translate }}</h5>
+        <div class="pseudocode">
+            {{ 'approximations-algorithms.double-tree-algorithm.algorithm.value-solution.pseudocode' | translate }}
+        </div>
+
+        <p>{{ 'approximations-algorithms.double-tree-algorithm.algorithm.bind' | translate }}</p>
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'approximations-algorithms.double-tree-algorithm.complexity.theorem' | translate }}</p>
+        <ul>
+            <li *ngFor="let i of [0,1,2]"> 
+                {{ 'approximations-algorithms.double-tree-algorithm.complexity.functions-complexity.' + i | translate }}
+            </li>
+        </ul> 
+    </div>
+
+    <app-code-section [currentSubsection]=doubleTreeAlgorithm></app-code-section>
+    <app-input-output-section [currentSubsection]=doubleTreeAlgorithm></app-input-output-section>
+</div>
+
+
+<div id="chistofides-algorithm" (mouseover)="getSection('chistofides-algorithm')" class="section-box">
+    <div class="title">
+        <h2>{{ 'approximations-algorithms.christofides-algorithm.title' | translate }}</h2>
+    </div>
+
+    <ol><p class="steps">{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.header' | translate }}</p>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.prim' | translate }}</li>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.odd-nodes' | translate }}</li>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.matching' | translate }}</li>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.adding-nodes' | translate }}</li>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.determine-cycle' | translate }}</li>
+        <li>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.shortcuts' | translate }}</li>
+    </ol>
+
+    <p>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.approximation' | translate }}</p>
+   
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'approximations-algorithms.christofides-algorithm.steps-christofides.christofides-approximation-theorem.0' | translate }}</p>
+        <div class="formula">
+            {{ 'approximations-algorithms.christofides-algorithm.steps-christofides.christofides-approximation-theorem.1' | translate }} 
+        </div>
+    </div>
+
+    <div class="display-image-gallery">
+        <img src="../../../assets/images/christofides/christofides-all-steps.png" alt="Christofides algorithm ilustrated steps" class="display-images">
+    </div>
+
+    <div>
+        <h4>{{ 'general.algorithm' | translate }}</h4>
+
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.prim.title' | translate }}</h5>
+        <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.prim.text' | translate }}</p>
+        
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.odd-nodes.title' | translate }}</h5>
+        <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.odd-nodes.text' | translate }}</p>
+
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.title' | translate }}</h5>
+        <ol>
+            <li>
+                <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-greedy.title' | translate }}</h5>
+                <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-greedy.steps' | translate }}</p>
+                <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-greedy.approximation' | translate }}</p>
+            </li>
+            <div class="pseudocode">
+                {{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-greedy.pseudocode' | translate }}
+            </div>
+
+            <div style="display: flex"> 
+                <img src="./assets/images/explication.png" class="icons-h4">
+                <h4>{{ 'general.explications' | translate }}</h4> 
+            </div>
+            <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-greedy.explications' | translate }}</p>
+            <li>
+                <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.title' | translate }}</h5>
+                <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.description' | translate }}</p>
+            
+                <!-- <div style="display:flex;">
+                    <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.reference' | translate }} </p>
+                    <a href="https://sci-hub.ru/10.1007/978-3-540-71844-4">{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.book' | translate }}</a>
+                </div> -->
+
+                <div style="display:flex;">
+                    <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.reference' | translate }} </p>
+                    <a (click)="goToNewTab()">{{ 'approximations-algorithms.christofides-algorithm.algorithm.matching.version-min-perfect-matching.book' | translate }}</a>
+                </div>
+            </li>
+            
+        </ol>
+
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.add-edges.title' | translate }}</h5>
+        <div class="pseudocode">
+            {{ 'approximations-algorithms.christofides-algorithm.algorithm.add-edges.pseudocode' | translate }}
+        </div>
+
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.hamiltonian-cycle.title' | translate }}</h5>
+        <ul> {{ 'approximations-algorithms.christofides-algorithm.algorithm.hamiltonian-cycle.steps-eulerian-cycle.header' | translate }}
+            <li *ngFor="let i of [0,1,2]"> 
+                {{ 'approximations-algorithms.christofides-algorithm.algorithm.hamiltonian-cycle.steps-eulerian-cycle.' + i | translate }}
+            </li>
+        </ul> 
+        <p>{{ 'approximations-algorithms.christofides-algorithm.algorithm.hamiltonian-cycle.add-hamiltonian-step' | translate }}</p>
+        
+        <div class="pseudocode">
+            {{ 'approximations-algorithms.christofides-algorithm.algorithm.hamiltonian-cycle.pseudocode' | translate }}
+        </div>
+
+        <h5>{{ 'approximations-algorithms.christofides-algorithm.algorithm.value-solution.title' | translate }}: {{ 'approximations-algorithms.christofides-algorithm.algorithm.value-solution.text' | translate }} </h5>
+    </div>
+
+    <app-example-component [example]="'hamiltonian-cycle-from-hierholzer'"></app-example-component>
+
+    <app-code-section [currentSubsection]=christofidesAlgorithm></app-code-section>
+    <app-input-output-section [currentSubsection]=christofidesAlgorithm></app-input-output-section>
+
+    <div class="url_youtube">
+        <div>
+            <h5>{{ 'approximations-algorithms.christofides-algorithm.recommand-yt' | translate }}</h5>
+        </div>
+       
+        <div>
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/zM5MW5NKZJg" 
+                title="R9. Approximation Algorithms: Traveling Salesman Problem" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+  

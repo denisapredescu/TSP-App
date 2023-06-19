@@ -1,0 +1,40 @@
+div {
+    color: #000;
+    white-space: pre-wrap;
+}
+
+#up {
+    padding-top: 40px;
+}
+
+.opt-3-picture-container{
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    justify-content: space-around;
+    grid-gap: 40px;
+
+    img{
+        object-fit: contain;
+        height: 250px;
+        margin: auto;
+    }
+}
+
+
+.opt-2-picture-container{
+    display: grid;
+    grid-template-rows: 30% 70%;
+    justify-content: space-around;
+    grid-gap: 40px;
+    margin: 40px;
+    
+    img{
+        object-fit: contain;
+        height: 250px;
+        margin: auto;
+    }
+}
+
+.pseudocode {
+    color:#f6f6f2;
+}

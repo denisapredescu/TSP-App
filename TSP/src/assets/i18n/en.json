@@ -1,0 +1,781 @@
+{
+    "general": {
+        "title": "The problem of the traveling salesman"
+        , "theorem": "Theorem"
+        , "complexity": "Complexity"
+        , "explications": "Code explanations"
+        , "definition": "Definition"
+        , "definitions": "Definitions"
+        , "example": "Example"
+        , "algorithm": "Algorithm"
+        , "step-by-step-example": "Step by step example"
+        , "languages": {
+            "ro": "Romanian"
+            , "en": "English"
+        }
+        , "construction": "Construction"
+    } , 
+    "about-tsp": {
+        "header-name-problem": "\t The traveling salesman problem (abbreviated as TSP)"
+        ,"header": " is one of the most well-known computational optimization problems, a problem of interest due to the fact that it is encountered in practice in various forms. It has a long history of attempts to solve it, finding the most efficient algorithm possible even though we will see that it is quite possible not to be able to create an algorithm that gives a solution in polynomial time, having shown that the problem is NP-complete. "        
+        ,"title": "Problem presentation"
+        , "problem-explication": "\t TSP involves finding the optimal route by which the travel agent can visit n cities, passing through each one only once and finally returning to the city from which he left. It can be considered as the optimal route the minimum distance or the minimum cost of the road (the problem does not change)."
+        , "definition-graph": "\t Let G = (V,E) be an undirected graph for which V is the set of nodes (cities), E is the set of edges between nodes (roads between cities) and each edge has its own length provided the weight is non-negative. A weighted undirected graph can be viewed as complete by creating dummy edges between non-adjacent nodes of infinite length." 
+        , "definition-matrix": "\t Any weighted graph can be stored using the distance matrix D of size (n x n) where for each i and j we have d(i, j) = edge length(i, j). The distance from a node to itself is defined to be zero (d(i, i) = 0 for any i ∈ V). In the algorithms described in the following chapters, we will prefer to consider d(i, i) = ∞ to eliminate the need to test that the current vertices are distinct."
+        , "hamiltonain-cycle": {
+            "title": "Presentation of the notion of Hamiltonian cycle and introduction to the traveling salesman problem"
+            , "cycle": "A Hamiltonian cycle in a complete graph G is a cyclic permutation (1,π(1), …, π^(n-1)(1)) on the set of nodes {1,...,n} in the graph: 1 →π(1) → ⋯ → π^(n-1)(1) → 1. "
+            , "minimum-cycle": "A minimal Hamiltonian cycle is a Hamiltonian cycle π such that the total length of the cycle is minimal:"
+            , "cycle-length": "d(π) = sum d({i,π(i)}) cu i = {1, ..., n}"
+            , "analogy-reference": "\t So the TSP problem is as follows:"
+            , "analogy-definition": "given a complete undirected graph, determine the minimal Hamiltonian cycle."
+            , "general-tsp": "This form of the problem is called the symmetric traveling salesman problem, abbreviated sTSP, or general TSP."
+            , "connectin-with-variations": {
+                "text": "\t Other variations of the problem are found in "
+                , "linkText": "Variations section"
+            }
+        }
+        , "general-tsp":{
+            "title": "General TSP"
+            , "definition-symmetric-matrix": "\t The graph being undirected, d(i, j) = d(j, i) for any i, j ∈ V, and the matrix is symmetric (equal to its transpose). In analogy to real life, the problem can be seen as follows: nodes are destinations and edges are streets with the specification that there are no one-way streets (the distance is equal regardless of the direction of travel). The shortest path is wanted ."
+            , "matrix": "The corresponding matrix of the graph"
+            , "solution": "The optimal solution is 8 obtained by the path 0 -> 1 -> 2 -> 3 -> 0."
+        } , "np-completeness": {
+            "title": "NP-completeness of the TSP problem"
+            , "definition-1": {
+                "part-1": "\t A problem is called "
+                , "part-2": "decision problem "
+                , "part-3": "if it requires a logical, true/false answer."
+            }
+            , "definition-2": {
+                "part-1": "\t An issue is part of "
+                , "part-2": " problem class P "
+                , "part-3": " if there is an algorithm that provides a solution in polynomial time. "
+                , "part-4": "NP Class "
+                , "part-5": "is the class of problems which, if a solution is determined, can be checked in polynomial time if the solution is correct."
+            }
+            , "definition-3": {
+                "part-1": "\t A problem is called "
+                , "part-2": "NP-complete "
+                , "part-3": "if it is part of class NP and every other problem in NP reduces to it."
+            }
+            ,"tsp-is-np": {
+                "title": "Theorem: TSP is part of the class of NP problems."
+                , "demonstration": "Demonstration"
+                , "text": "\t TSP is an optimization problem (among all possible Hamiltonian cycles between n cities, the Hamiltonian cycle of minimum length is desired), but it can be reduced to a decision problem for which, given a parameter 𝑀 with 𝑀 ∈ 𝑅+, it is desired to decide whether a permutation of nodes can be determined such that 𝑑(𝜋) ≤ 𝑀.The problem in its normal form is at least as hard as the decision problem associated with it. \n\t Further, in addition to the answer true or false, it is required to provide a Hamiltonian cycle, for which it can be checked in 𝑂(𝑛) if the path determined by the nodes has a length less than or equal to 𝑀. So, the decision problem also provides a solution for which the correctness of the given answer can be checked in polynomial time (if 𝑑(𝜋) ≤ 𝑀). \n\t Therefore, the TSP in the form of a decision problem is NP, so the TSP is the a bit NP."
+            }
+            ,"tsp-is-np-complete": {
+                "title": "Theorem: TSP is part of the class of NP-complete problems."
+                , "demonstration": "Demonstration"
+                , "text": "\t Next we consider the CH problem of determining a Hamiltonian cycle which is known to be NP-complete and is proved starting from the NP-completeness of the traveler's problem. We assume that there is a polynomial algorithm that solves the TSP. \n\t Let G = (V, E) be an undirected graph to which we associate a complete graph G' with weights: d(i, j) = 1 if edge (i, j) ∈ E, otherwise d(i, j) = 2. \n\t Let 𝜋 be the TSP solution for the obtained weighted graph.\n\t\n\t There is a Hamiltonian cycle in G if and only if in the graph G' 𝑑(𝜋)=𝑛 because, from the definition of TSP- , 𝜋 is the cyclic permutation of minimum length. \n\t Indeed, if 𝑑(𝜋)=𝑛, the cycle 𝜋 does not contain any edge of weight 2, so 𝜋 is also found in the initial graph G (G ⊆ G' ) and is also a solution for CH in G.\n\t Reciprocally, if G has the Hamiltonian cycle 𝜋 this cycle would have cost n in G' and would be a solution for TSP because it does not contain edges of cost 2. \n\t So the Hamiltonian cycle problem is reduced to the TSP, the existence of an n-cost solution to the TSP being equivalent to the existence of a Hamiltonian cycle in the graph. Since the problem of determining a Hamiltonian cycle is NP-complete, there is no polynomial algorithm that can solve it, so a contradiction is reached. The assumption being false, it follows that the TSP is NP-complete."              
+            }
+            , "conclusion": "\t The inclusion of the traveling salesman problem in the NP-complete class means that no algorithm is known that provides a solution in polynomial time, and finding such an algorithm is most likely impossible (it is not known precisely because it was not possible to prove 𝑃 = 𝑁𝑃, but this statement cannot be ruled out with certainty either)."
+        }
+    },
+    "variations": {
+       "asymmetric": {
+            "title": "Asymmetric TSP - aTSP",
+            "header": "\t Mirroring sTSP, there is the asymmetric traveling salesman problem (abbreviated aTSP). Now there are two directions to go, the road from i to j and the one from j to i may differ in length. In other words, "
+            ,"explication": "the associated graph is directed, so the matrix D is not necessarily symmetric."
+            , "comutation-atsp-stsp": {
+                "title": "\t Fun fact!"
+                , "text": "\t aTSP contains sTSP as a special case because an edge (i,j) in sTSP is seen as two edges (i,j) and (j,i) in aTSP. Interestingly, the aTSP can also be converted to the general variant, a case discussed below."
+            }
+           , "subtitle-transformation": "Conversion from aTSP to sTSP"
+            , "transformation": {
+                "text": "\t An asymmetric TSP with n cities can transform into a symmetric TSP with 2n cities. Let D be the matrix corresponding to an sTSP. This fact is important if one wants to solve an aTSP using an algorithm designed only for sTSP."
+                , "step-0": " Steps to resolve:"
+                , "step-1": "The matrix D' is created which is identical to the matrix DE except that the positions d'(i,i) have the value -M instead of 0, knowing that M is a very large number"
+                , "step-2": "The matrix U is created where u(i,j) = ∞ for any i, j ∈ {1,…,n}."
+                , "step-3": "The sTSP with matrix D corresponds to an aTSP with matrix D'' of size (2n x 2n) defined as follows:"
+                , "step-4": " The TSP value for the matrix D is the TSP value of the created matrix D'' to which the value -M is added n times (the graph corresponding to the matrix D'' contains n edges with cost -M, edges that do not exist in the graph corresponding to D):"
+            } 
+            , "solution-formula": "aTSP = sTSP + n * M"
+            , "subtitle-exemplu": "Example on a given matrix"
+            , "slider": {
+                "0": "Transformation from aTSP to sTSP. The new graph will have 2n nodes (instead of n)"
+                , "1": "The edge from node i to node (i + n) has the value -999 (any small value to ensure that edge is chosen when i is reached). If in the original graph d(0, 2) = 4, now d(0, 4) = -999 and d(4, 2) = 4"
+                , "2": "Thus, from a node i in a directed graph, 2 nodes i and (i + n) were created in the undirected graph: enter the nodes with index < n and leave those with index >= n"
+                , "3": "The solution of the initial aTSP is the same as that of the resulting sTSP except that the value -999 (M = 999) has been added n times to the latter. So aTSP = sTSP + n * M"
+            }
+   
+        }, 
+        "multipleVisits": {
+            "title":  "TSP with multiple visits",
+            "header": "\t Departing from sTSP, multi-visit TSP allows visiting the same node more than once if this leads to the determination of a more efficient solution than the solution provided by sTSP."
+            , "slider": {
+                "0": "The sTSP solution is 8 given by the cycle 0 → 1 → 2 → 3 → 0"
+                , "1": "It is observed that the solution would be minimal if it is allowed to pass through node 0 twice: 0 → 1 → 2 → 0 → 3 → 0. The cycle has the value 6"
+            }
+        },
+        "max": {
+            "title": "Max TSP",
+            "header": "\t Max TSP differs from general TSP in that it aims to find the path of maximum length in the graph G."  
+            , "steps" : { 
+                "0": "Algorithm steps",
+                "1": "The weights are replaced by their inverses", 
+                "2": "Sum each weight with a constant c so that all edges become positive (TSP does not accept negative edges)",
+                "3": "Apply the algorithm for TSP on the created graph",
+                "4": "The solution to the problem is as follows:"
+                ,"formula": "MaxTSP = - (TSP - c*n)"
+            }
+            , "slider": {
+                "0": "It starts from the complete and symmetric graph"
+                , "1": "One replaces the weights with their inverses and then chooses c large enough that all the weights become positive. I take c = 10"
+                , "2": "The minimum cost Hamiltonian cycle is sought"
+                , "3": "The TSP solution is 27, so the MaxTSP solution is 13"
+            }
+        },
+        "metric": {
+            "title": "Metric TSP",
+            "header": "\t The traveling salesman problem in the metric case starts from the usual TSP for which the matrix is symmetric, the weights are non-negative and the distance from a node to itself is 0 – adding to these the need to satisfy the triangle inequality:"
+            , "formula": "d(i,j) ≤ d(i,k) + d(k,j) ∀ i,j,k ∈ V, i≠j, i≠k, j≠k \n In order to respect the triangle inequality, the graph it must be complete, i.e. there must be an edge between any two nodes."
+            , "connectin-with-christofides": {
+                "text": "\t Metric TSP is an important variation as it is often encountered in practice and unlike the general case there are approximation algorithms with a constant factor to solve the problem, the best known being Christofides' algorithm which will be discussed in "
+                , "linkText": " Approximation Algorithms section"
+            }
+            , "euclidian-tsp": {
+                "title": "Euclidean TSP"
+                , "text": "\t  A special case of metric TSP is TSP in Euclidean form where the distance between two cities is the Euclidean distance corresponding to points in the plane. For example, if the number of dimensions in Euclidean space is two (equivalent to the fact that for any point there are x and y coordinates), the formula to find the distance between cities X(a, b) and Y(c, d) is :"
+                , "formula": "d(X, Y) = d(Y, X) = √((a - c)^2 + (b - d)^2)"
+            }
+            , "slider": {
+                "0": "Checking if the graph belongs to a metric TSP"
+                , "1": "Note that the graph does not belong to a metric TSP, not respecting the triangle inequality: d(1, 3) > d(1, 0) + d(0, 3)"
+            } 
+        }
+    },
+    "exact-algorithms": {
+         "header": "\t Exact algorithms are algorithms that, as their name suggests, provide optimal solutions with certainty. They generally run in exponential time, but polynomial time can be reached for some special instances."
+        , "dynamic-programming": {
+            "title": "Dynamic programming"
+            , "text": "\t Dynamic programming is one of the faster ways to solve TSP compared to backtracking which is done in factorial time. The algorithm using dynamic programming for TSP is called Bellman-Help-Karp and it works for an n that can go up to 30. The number of cities is still small, but being an NP problem, it is difficult to make an algorithm even for relatively large numbers small."
+            , "definition": "\t Dynamic programming involves solving the problem using subroutines that return partial solutions that are used recursively to arrive at the solution of the entire problem. In other words, a larger problem A is solved using the output of a smaller problem B (called a subproblem), so problem B must be known before solving problem A - hence the idea of recursion, going from small to big. To avoid solving a smaller problem multiple times, partial results are stored and reused."
+            ,"analogy-to-tsp": {
+                "subproblem": {
+                    "title": "How is the subproblem determined?"
+                    , "text": "\t For TSP a subproblem corresponds to the beginning part of the path. It is considered that the journey starts from city 1 and arrives at city j after several cities have been visited. At each step, to extend the beginning of the road, it is necessary to know the city j because it is desired to find the cities to visit after passing through j. To know that the TSP rule of visiting each city only once is obeyed, one also needs to know the identity of the nodes visited in the partial path in order not to go through them again, therefore:"
+                    , "formula": "a subproblem corresponds to a shape pair (node subset, road start)."
+                    
+                } 
+                , "final-step": {
+                    "title": "The last step"
+                    , "text": "\t The optimal solution represents the completion of the cycle by bringing node j back to the starting node 1. At this step, all roads from 1 to j ∈ {2,…,n} are known, so there are n-1 candidates for the optimal solution of the problem. The solution is determined by obtaining the minimum sum between each path that stops at j and the edge weight (j,1)."
+                    , "formula": "optimal solution = min ( (shortest path from 1 to j containing all nodes in V) + d(j,1) )"
+                }
+                , "intermediar-step": {
+                    "title": "Intermediate step - Recurrence relations"
+                    , "text":  "\t An optimal path P starting from 1 and ending in j and passing through nodes in the set S is obtained from an optimal path P'⊆ P, P' = P - {j} starting in 1 and ending in i and passes through the nodes in S - {j} adding the edge (i, j)."
+                }
+            } 
+            , "recursion": {
+                "title": "Recursion"
+                , "header": "\t For a subset S ⊆ {1,…,n} containing 1 and j, let the subproblem M(S,j) = the length of the shortest path P from node 1 to j visiting nodes in S only once."
+                , "steps": "Recursion has two parts: "
+                , "first-step": {
+                    "step": "stop case"
+                    , "text": "refers to subproblems that can be solved directly. Given that we are working with sets, we stop when there is no more intermediate node i in P such that the path P' is formed. So if the subset S corresponding to the path P is of the form {1,j}, the values of M are the weights of the edges in the distance matrix D:"
+                    , "formula": "M(S,j) = d(1,j)"
+                }
+                , "middle-step": {
+                    "step": "recursive relation"
+                    , "text": "at any intermediate step M(S,j), the problem boils down to establishing the penultimate node i∈S such that the path from 1 to i denoted by M(S-{j},i) plus the length of the last edge d(i, j ) is minimal:"
+                    , "formula": "M(S,j) = min (i∈S; i≠1,j) (M(S-{j},i)  + d(i,j))"
+                }
+                , "final-step": {
+                    "text1": "\t Related to"
+                    , "step": "the last step "
+                    , "text2": "we know the node where we want to reach and all the n-1 possible roads:"
+                    , "formula": "M(V,1) = min (j ∈ V-{1}) (M(V,j) + d(j,1))"
+                }
+            }
+            , "complexity": {
+                "theorem": "\t The Bellman-Help-Karp algorithm has O(n^2 * 2^n) running time. \nProof: Even if one keeps track of all subsets of S, the order of visiting the nodes in S does not matter since only their identification is important in order not to visit a node more than once. This aspect makes the difference in running time between the dynamic programming and the brute-force variant: if the order between the source node and the destination node mattered, it would reach n! subroutines while now there are 2^n possibilities to choose S. There are n possibilities for destination j, the node that returns to 1, and n ways to choose node i (the penultimate one in the path), i∈S. So the resulting runtime is O(n^2 * 2^n)."   
+            }
+            , "pseudocode": {
+                "pseudocode": "D ← n x n matrix of distances between any 2 cities \n M ← 2^n x n matrix initialized with ∞ \n for j ← 2, n execute \n \t M({1, j}, j) ← d(1, j) \n for s ← 3, n executes \n \t for all subsets S ⊆ {1,…,n} with 1 ∈ S and |S| = s executes \n\t\t for any j ∈ S, j ≠ 1 execute \n \t\t\t M(S,j) ← min (M(S-{j},i) + d(i,j)) for i∈S; i≠1,j \n return min (M({1,…,n},j) + d(j,1))"
+                , "explications": {
+                    "text": "\t In the implementation of the algorithm, the subsets S can be stored by writing in binary the nodes that compose them as follows: the bit equal to 1 means that the node at the respective position exists in the subset and 0 that it does not exist. For example, the subset {0,1,2} corresponds in binary to 0111 which represents the number 7. Therefore, in the matrix M S is placed on line 7 of the matrix. Checking whether the node j is included in the subset S is done by the bitwise multiplication operation (&) between the two sets (S and the set containing only j determined by the left shift of j: 1 << j). For j = 2, this means: 7 & (1 << 2) = 0111 & 0100 = 0100. The result is different from 0, so j belongs to the set. \n\t To determine the path S'= S-{j} XOR is done between S and {j}: S ^ (1 << j) = 0111 ^ 0100 = 0011. It turns out that S' is 3."
+                }
+            }
+        }
+        , "branch-and-bound": {
+            "title": "Branch and bound"
+            , "text": "\t The Branch and Bound method applies to problems that can be solved by backtracking, so represented by a tree. Compared to backtracking, the tree of the branch and bound method is dynamically built, removing subtrees that exceed an upper limit of of the optimal solution. This limit can be the length of the first cycle found, which is certainly greater than or equal to the optimal solution. So, if a partial solution would exceed it, there is no point in continuing down that path. Thus, it does not the entire tree, reducing the complexity of the problem, and the goal is to find that resulting vertex (leaf) that provides the optimal solution from the total resulting vertices. \n\t The nodes of the tree correspond to possible states in the development of the solution, states corresponding to the path from the root to the node respectively. This idea is also found in the tree of the backtracking method."
+            , "lim": {
+                "title": "Choosing upper limit"
+                , "name": "lim"
+                , "0": "initially, not knowing if the instance has a solution, it is initialized with ∞ or a known theoretical limit"
+                , "1": "represents an addition approximation of the sought minimum being useful to eliminate from L the nodes with a higher cost than it, i.e. the nodes whose expansion does not obtain the optimal solution. Removing a node removes the entire subtree for which that node is the root."
+                , "2": "is updated during the algorithm, taking the value of any cycle with a value smaller than its own"
+                , "3": "at the end represents the value of the optimal solution"
+            }
+            , "pseudocode": { 
+                "text": "\t Let f(i) be the lower bound for the minimum cycle corresponding to node i, node_start the root, the starting node, and optimal_path the variable in which the path from the root to the leaf corresponding to the minimum solution found is retained. \n\t Considering that traversal goes from the current node to the son, then to the son's son, and so on, it is proposed to solve the problem using a recursive method and another method in which the values are initialized and the recursive function is called."
+                , "pseudocode-recursion": "Pseudocode traverse(i, path) \n minimum_distance ← ∞ \n next_node ← -1 \n if f(i) < lim then \n\t if path list contains all nodes then \n\t\t lim ← f(i) \n\t\t optimal_path ← path \n\t else \n\t\t how long i has children j execute \n\t\t\t next_node ← node j with f(j) minimum \n\t\t\t next_road ← road to which next_node is added \n\t\t\t traversal(next_node, road)"
+                , "pseudocode-branch-and-bound": "Pseudocode Branch_and_bound \n set start node \n lim ← ∞ \n optimal_path ← empty list \n traversal(start_node) \n if lim = ∞ then \n\t write ' No solution'\n else \n return lim, optimal_path"
+                , "explications": {
+                    "text": "\t The code includes code-level optimizations to provide a shorter runtime, such as: using a priority queue using heapq instead of queue. PriorityQueue to retain the inner bounds of f since the former is more slow when dealing with large amounts of data Additionally, distances between cities are kept in a numpy class array to streamline array operations (minimum search, row/column subtraction of it, copy) . Speed is also provided by using numpy's copy function instead of copy's deepcopy."
+                }
+            }
+            , "strategy": {
+                "title": "Strategy used to reach a leaf"
+                , "steps": {
+                    "0": "for the current node all children are generated and their cost is calculated"
+                    , "1": "the node chosen as the next node is the one with the minimum cost (similarity to BFS)"
+                    , "2": "at the next step all children are generated again, and the choice of the new node is made from direct children of the current node"
+                    , "3": "repeat until a leaf is reached"
+                    , "4": "when a leaf j is reached that has i as its father, it takes a step back in i and chooses as the current node the unvisited child of i with the minimum cost. The algorithm from the first step is repeated "
+                }
+                , "text": "\t The presented strategy generates n * (n - 1) / 2 sons to reach a leaf."
+                , "benefits" : {
+                    "text": "Advantages of this strategy in the case of problems encountered for the Euclidean TSP (where the graph is complete): "
+                    , "0": "take fewer steps (child generations) than BFS would"
+                    , "1": "gives a better upper bound than if using DFS"
+                }
+            }
+            , "construction": {
+                "text": "\tThe non-discussed part is related to the computation of the function f(i) such that it represents the lower bound of a cycle. There are several ways to define the function, the most well-known being based on reducing the distance matrix thus starting from to the following observation. If all elements on row i or column j of D are reduced by a value α, any Hamiltonian cycle will have cost reduced by α because it enters node j only once and leaves node j only once node i. It is mentioned that the distance from a node to itself is no longer 0, but infinite so that there can be an α different from 0. \n\t So the notion of a reduced distance matrix appears, the matrix obtained by repeated reductions until when at least one 0 appears on any row or column, unless the row/column contains only ∞. \n\t Returning to the lower bound f, f(node_start) represents the value by which the original matrix D is reduced. One node some j is associated with the previously reduced distance matrix of its parent. Assuming that j has i as his father, Dj is reduced as follows:"
+                , "steps": {
+                    "0": "The elements of line i become ∞ (only one time exits from i)"
+                    , "1": "Elements of column j become ∞ (j is entered only once)"
+                    , "2": "Dj(j,node_start) = ∞ to prevent circuit closure before traversing all nodes"
+                    , "3": "Let α be the amount by which the Dj matrix was reduced, then:"
+                    , "3-formula": "f(j) = f(i) + Di(i,j) + α"
+                }
+                , "solution": {
+                     "text": "\t The solution to the problem is:"
+                    , "formula": " min {f(i) where i is leaf}"
+               } 
+            }
+            , "complexity": {
+                "text": "\t Basically, the method is similar to the variant that uses backtracking, therefore, in the worst case, it ends up traversing all the subtrees, thus requiring exponential time. But, in a favorable case, the running time is reduced by iteratively reducing the distance matrix, helping to predict the optimal path, and removing subtrees that exceed the approximation of the optimal solution."
+            }
+            , "image-text": {
+                "image-1-text-1": "Tree associated with the graph presented in"
+                ,"image-1-text-2": "asymmetric TSP subsection"
+                , "image-2-text-1": "Result tree associated with the graph after applying the proposed strategy"
+            }
+        }
+    }
+    , "approximations-algorithms": {
+        "header": "\t Approximate algorithms are those algorithms for which it is desired to return a result, for any instance, in a certain relatively short time. These are called approximate algorithms, the need to find the optimal solution being relaxed, being acceptable solutions 'quite good', close to the optimal one, with a guaranteed approximation factor. "
+        , "definition-alpha-factor": "\t For an optimization problem, a 𝛼-approximate algorithm is a polynomial algorithm that for all instances of the problem produces an ALG solution whose value is within a factor of 𝛼 of the solution value optimal OPT (ALG ≤ 𝛼 OPT for a minimization problem and ALG ≥ 𝛼 OPT for a maximization problem). For a 𝛼-approximate algorithm, 𝛼 represents the approximation factor of the algorithm."
+        ,"approximation-factor": {
+
+        }
+        , "double-tree-algorithm": {
+            "title": "Double tree algorithm"
+            , "header": "\t The doubled tree algorithm is an approximate algorithm that solves the metric TSP whose name comes from the fact that to solve the problem, the edges of the minimum cost tree are doubled in order to create an Eulerian cycle and then the Hamiltonian cycle. "
+            , "eulerian": {
+                "0": "Eulerian cycle and graph:"
+                ,"1": "An Eulerian cycle involves traversing all edges only once, while repeating nodes is allowed."
+                ,"2": "A graph is called Eulerian if it has an Eulerian cycle."
+                ,"3": "An undirected graph with no isolated nodes has an Eulerian cycle if and only if it is connected and has all nodes of even degree."
+                
+            }, "theorem-subset-hamiltonian-cycle": "\t Let the subset 𝑆 ⊆ 𝑉. A minimum-cost Hamiltonian cycle 𝐶𝑆 of the node-induced subgraph of 𝑆 obeys the property 𝑙(𝐶𝑆) ≤ 𝑂𝑃𝑇. \nProof: Let 𝑆 = 𝑉–{𝑘}. A Hamiltonian cycle in the graph induced by S can be obtained from a Hamiltonian cycle of G by short-circuiting as visible in Figure 3.1. Observing the triangle inequality, the edge (i,j) is at most equal to the sum of the two edges that are not part of the short-circuit cycle. Hence it follows that 𝑙(𝐶𝑆) ≤𝑂𝑃𝑇."
+            , "steps": {
+                "header": "Algorithm steps"
+                , "prim": "The first step in solving the TSP problem is to determine the minimum-cost spanning tree (MST) T. This can be found, for example, with Prim's or Kruskal's algorithm."
+                , "prim-approximation-theorem": "\t The value of the minimum cost spanning tree is at most the value of the TSP cycle, i.e. l(T) ≤ OPT. \n Proof: If an edge is removed from the OPT Hamiltonian cycle, a partial tree that has cost greater than or equal to l(T)."
+                , "dfs": {
+                    "text": "To traverse all edges in the doubled spanning tree in search of an Eulerian cycle, the following strategy known as depth-first search (DFS, dept-first search) is proposed:  "
+                    , "1": "One node i is taken from the tree"
+                    , "2": {
+                        "1": "If there is an unvisited edge of the form (i,j), go to that edge, and i := j. Step 2 is repeated."
+                        , "2": "If all edges starting from i are visited, a step back is desired. If node i is chosen step 1, i has nowhere to return, so stop; otherwise i := k where k is the node where it returns and repeats step 2."
+                    }   
+                }
+                , "shortcuts": "The technique of shortcuts (shortcutting) is used, by which from the previously determined path (in which the edges are repeated twice), only the first appearance of each node is kept, i.e. it skips the already visited nodes"
+                , "approximation": "\t The doubling tree algorithm for the committed traveler problem in the metric case is 2-approximate. \nDemonstration: We denote by OPT the solution of the graph G for the TSP problem. Given that the triangle inequality is respected, the edges obtained by using shortcuts are certainly smaller than or equal to the ones skipped. So the total distance of the tour will never increase. Being T' the tree obtained following the shortcut technique, we have that l(T') ≤ 2 l(T) ≤ 2 OPT. Because l(T') ≤ 2 OPT, this algorithm is 2-approximate"
+            }
+            , "algorithm": {
+                "prim": {
+                    "title": "Prim"
+                    , "0": "keep track of the nodes that are part of the tree so as not to add the same node to the tree twice in a vector called visited"
+                    , "1": "keep track of the minimum distance from each unvisited (non-tree) node to the tree (nodes already in the tree) in a vector called distance."
+                    , "2": "a priority queue is used to store data as [min-distance, node, father] triplets: for each unvisited node (visited[node] == 0) a triple is put in the queue if d[ node] is updating"
+                    , "3": "at each step, the node with the minimum distance is removed from the queue, the edge is retained in an adjacency list, and the distances from the newly entered tree to the unvisited nodes are recalculated in order to find smaller distances"
+                    , "pseudocode": "distance ← vector of length n initialized with ∞ \n tree ← list of n lists representing the adjacency list \n visited ← vector of length n initialized with 0 \n distance[node_start] ← 0 \n h ← [[0, node_start, -1]] // root has no ascendant \n for steps ← 1, n executes \n\t node, father ← unvisited node with min distance in h, respectively father of this node \n\t adds to tree list[node] node father \n\t add to tree list[father] node node \n\t visited[node] ← 1 \n\t for neighbor ← 0, n - 1 execute \n\t\t if d(node, neighbor) ≠ ∞ and visited[neighbor] = 0 and distance[neighbor] > d(node, neighbor) then \n\t\t\t distance[neighbor] ← d(node, neighbor) \n \t\t\t add to h the triple [distance(neighbor), neighbor, node] \n return tree"
+                }
+                , "dfs": {
+                    "title": "DFS that does not retain already visited nodes to skip the shortcutting step"
+                    , "pseudocode": "Pseudocode Cycle_hamiltonian(tree) \n a start node is randomly chosen and denoted by k \n visited ← vector of length n initialized with 0 \n cycle ← initially empty list in which the Hamiltonian cycle will be retained \n Traversal(k, tree) \n adds node k // return edge to cycle \n\n Pseudocode Traversal(i, tree) \n visited[i] ← 1 \n adds i to cycle \n for each j from list tree[i] i.e. every neighbor j of i executes \n\t if visited[j] = 0 then \n\t Browse(j, tree)"
+                }
+                , "value-solution": {
+                    "title": "Determining the solution knowing the Hamiltonian cycle"
+                    , "pseudocode": "Pseudocode Cycle_value(cycle) \n solution ← 0 \n for every two adjacent nodes x and y in cycle execute \n\t solution ← solution + d(x, y) \n return solution"
+                }
+                , "bind": "\t Given all the necessary data, it is necessary to first call the function Prim(node_start) to determine the minimum cost partial tree via the parent vector, then Cycle_hamiltonian which takes the determined tree as a parameter. This calculates the cycle via calling the recursive function Loop. Finally the function Cycle_Value(cycle) is needed to determine the cycle value received as a parameter that is determined in the previous method."
+            }
+            , "complexity": {
+                "theorem": "\t The dual tree algorithm has complexity O(n + m log n)."
+                , "functions-complexity": {
+                    "0": "Prim: O(m log n) because it uses the priority queue; in total there are m inserts and at most m pulls in the queue, and an insert/pull takes O(log n)"
+                    , "1": "DFS: O(n + m); but since we are in a tree, m = n - 1, so the complexity is O(n)"
+                    , "2": "Determining the solution: O(n)"
+                }
+            }
+        }
+        
+        , "christofides-algorithm": {
+            "title": "Christofides' Algorithm"
+            , "header": "\t Christofides' algorithm is 3/2 - approximate and is applicable to the case where TSP is metric, being the approximation algorithm with the smallest approximation factor at the moment. Even though it seems a large approximation , 3/2 is for the worst case and in practice (on average) the algorithm can give better results."
+           
+            , "steps-christofides": {
+                "header": "Chistofides Enhancement:"
+                , "prim": "Starting creation of minimum cost spanning tree"
+                , "odd-nodes": "Being a tree, it is certain that it has odd nodes (at least because it has leaves), but the sum of all node degrees remains an even number. From this statement, it is concluded that there exists in the tree a even number of odd cardinal nodes. Determine these nodes"
+                , "matching": "Determining the perfect matching of minimum cost (minimum perfect matching) by applying the algorithm for determining a perfect coupling: choosing some edges that glue the nodes of odd degree two by two. The edges chosen by this algorithm applied over the set O are mark with M."
+                , "adding-nodes": "Adding new best-match edges to the tree"
+                , "determine-cycle": "Determine the Eulerian cycle (passing through all edges) - DFS can no longer be used because the edges are no longer duplicated"
+                , "shortcuts": "The technique of using shortcuts is applied "
+                , "approximation": "\t The obtained Eulerian graph has the total distance l(T) + l(M), and after applying the shortcut technique the resulting Hamiltonian cycle will not exceed l(T) + l(M) ≤ 3/2 OPT"
+                , "christofides-approximation-theorem": {
+                    "0": "\t Christofides' algorithm has the approximation factor of 3/2. \nProof: The cycle length determined by Christofides' algorithm does not exceed l(T) + l(M) where T is the minimum cost tree for which l (T) ≤ OPT and M is the set of edges chosen by the matching algorithm. We now focus on l(M). \n\t Let H be an optimal cycle containing the nodes in O. As we pass through H, we color in turn one edge in red and added to H1, then the next in blue and added to H2. H1 and H2 are perfect matches. M is the minimum cost perfect match, so:"
+                    , "1": "l(M) ≤ l(H1) \n l(M) ≤ l(H2) \n l(H1) + l(H2) = l(H) \n => 2 l(M) ≤ l(H) (a) \n H ⊂ G => l(H) ≤ OPT (b) \n from (a) and (b) => 2l(M) ≤ OPT, so l(M) ≤ 1/2 OPT \n  l(T) + l (M) ≤ 3/2 OPT, Christofides' algorithm is 3/2 approximately."
+                }
+            }
+            , "algorithm": {
+                "prim": {
+                    "title": "Prim"
+                    , "text": "\t Same as double tree algorithm with the only difference that when the edge is inserted into the tree, the number of times the edge was inserted is also incremented to retain the degree of the nodes"
+                } 
+                , "odd-nodes": {
+                    "title": "Determining nodes of odd degree"
+                    , "text": "\t Given the result of the Prim function, a list is created inserting the nodes that were marked with odd degree in the vector"
+                }
+                , "matching": {
+                    "title": "Determining Perfect Coupling"
+                    , "version-greedy": {
+                        "title": "Perfect coupling on nodes in O, determining the set M of edges using the greedy strategy"
+                        , "steps": "\t The greedy strategy is simplistic. A node u is extracted from the list of odd degree nodes and it is checked which is the closest node j with which it can be connected among the unconnected nodes in the list. This node j set as a pair of node u (pair_u). The selection process is repeated until there are no more nodes of odd degree." 
+                        , "approximation": "\t The approximation factor of 3/2 is related to using the perfect minimum cost coupling, so by replacing that method with a coupling based on a greedy choice, the approximation factor can no longer be guaranteed. However, in order to provide a coupling with the lowest possible weight, the greedy algorithm is repeated a greater number of times, at the end keeping the variant for which the coupling has the smallest length."
+                       , "pseudocode": "Input parameters: odd_degree_nodes tree obtained with Prim's algorithm, number of iterations set \n copy ← copy of odd_degree nodes vector \n minimum_solution ← ∞ \n edges ← empty list \n selected_edges ← list void \n for i ← 0, repeats - 1 execute \n\t match ← False \n\t while match = False execute \n\t\t match ← True \n\t\t shuffle nodes in odd_degree nodes \n\t\t solution ← 0 \n\t\t while there are nodes in odd_degree nodes execute \n\t\t\t u ← extract a node from odd_degree nodes \n\t\t\t min_length ← ∞ \n\t \t\t for each remaining node v odd_degree nodes execute \n\t\t\t\t if u ≠ v and d(u, v) < minimum_length and u and v were not already neighbors in the tree then \n\t\t\t\t\t minimum_length ← d(u, v) \n\t\t\t\t\t u_pair ← v \n\t\t\t\t\t if a pair of u is found then \n\t\t\t\t\t\t add edge (u, u_pair) to edge list\n\t\t\t\t\t\t solution ← solution + min_length \n\t\t\t\t\t\t the pair_u node is also removed from the list of odd_degree_nodes \n\t\t\t\t\t otherwise \n\t\t\t\t\t\t matching ← False // the last nodes are already neighbors in the tree, they cannot pair again \n\t if solution < minimum_solution then \n\t\t minimum_solution ← solution \n\t\t selected_edges ← edges \n return selected_edges"
+                        , "explications": "\t In order not to determine the same coupling at each iteration of the method, the list of nodes of odd degree is shuffled (line 9 of the pseudocode), i.e. we want to change the position of the nodes at each attempt to determine the minimum perfect coupling. \n\t Even if there is an even number of nodes over which a perfect coupling is desired, there may be nodes for which coupling is impossible because those nodes are already connected by an edge in the minimum cost partial tree.Noted in pseudocode a variable 'coupling' which is of boolean type. It starts from the assumption that a perfect coupling can be created (the variable 'coupling' takes the value True) and keeps track of whether the determined coupling is perfect or not. If it cannot be found among uncoupled nodes one pair for the current node, 'couple' becomes False Don't accept the set of edges found and start the search again, statement made in the first repeating structure 'how long...execute'. If instead the coupling is perfect, exit the repetitive structure and check if the sum of the edges of the determined coupling is minimal. This method is repeated times after which the list of edges (selected_edges) for which the sum of edges was minimal is returned."
+                    }
+                    , "version-min-perfect-matching": {
+                        "title": "The variant that determines the matching edges by the minimum-cost perfect matching algorithm (the approximation factor is 3/2)"
+                        , "description": "\t The method that creates the minimum cost perfect coupling is a complex one based on Karp's Blossom algorithm. To determine the edges of the minimum cost perfect coupling there is a predefined function max_weight_matching from the NetworkX library which by giving se the negated distances between nodes of odd degree, returns an array of node pairs."
+                        ,"reference": "For more details, it is recommended to access the book"
+                        , "book": "Combinatorial optimization written by Korte and Vygen"
+                    }
+                }
+                , "add-edges": {
+                    "title": "Adding edges to tree"
+                    , "pseudocode": "for each edge of the form (u, v) in matching execute \n\t add v to list tree[u] \n\t add u to list tree[v] "
+                }
+                , "hamiltonian-cycle": {
+                    "title": "Determining the Hamiltonian cycle"
+                    , "steps-eulerian-cycle": {
+                        "header": "The following steps are proposed to solve Hierholzer's algorithm (problem that solves the problem of determining an Eulerian cycle):"
+                        , "0": "Randomly choose a start node u and insert it as the first node on the path."
+                        , "1": "Nodes are added to the road, always walking only on unvisited edges until a node is encountered from which it is impossible to leave."
+                        , "2": "It goes from the end to the beginning and removes from the queue nodes that are inserted into a separate variable denoted cycle until it reaches a node that still has unvisited adjacent edges. The last 2 steps are repeated until when no more unvisited nodes are found and all nodes are moved into the cycle, thus creating the cycle containing all edges."
+                    }
+                    , "add-hamiltonian-step": "\t Hamiltonian cycle means that nodes are removed from the Eulerian cycle when they meet again in the cycle. If the last step would check if the node is already in the cycle variable and insert the node only if it has not been encountered before, it means that the Hamiltonian cycle is created instead of the Eulerian one (which is what we want)."
+                    ,  "pseudocode": "let k be the start node \n path ← [k] \n cycle ← [] \n visited ← list of length n initialized with 0 at each position \n while there are nodes in the path execute \n\t current_node ← last node in the path \n\t if current_node has no incident untraveled edges then \n\t\t if visited[current_node] = 0 then \n\t\t\t add current_node to cycle \n\t\t\t visited[current_node] ← 1 \n\t\t if path has only one element then \n\t\t\t add current_node to cycle \n\t\t remove current_node from path \n\t otherwise \n\t\t neighbor ← neighbor of current_node between which the edge is unvisited \n\t\t insert neighbor in path \n return cycle"
+
+                }
+                , "value-solution": {
+                    "title": "Determining the solution knowing the Hamiltonian cycle"
+                    , "text": "Same as double tree algorithm" 
+                }
+            }
+            , "recommand-yt": "For a good understanding of the way of thinking and the steps presented, it is recommended to view the following course: "
+        }
+    }
+    , "heuristic-algorithms": {
+        "header": "\t Greedy heuristics are good algorithms in performance even if they do not ensure the correctness of the solution found and do not necessarily guarantee a certain constant approximation factor and do not necessarily guarantee a certain constant approximation factor."
+        , "build-cycle": {
+            "title": "Construction of the Hamiltonian cycle"
+            , "header" : "\t Several algorithms for determining a least-cost Hamiltonian cycle are presented. These greedy algorithms construct a Hamiltonian cycle by incrementally adding one node at a time to the currently constructed path, the choice strategy being suggested by the name of the algorithm."
+            , "farthest-insertion": {
+                "title": "Farthest Insertion - The farthest node insertion algorithm"
+                , "header": "\t The farthest insertion algorithm is a greedy type algorithm in which, in order to extend the built cycle up to the current step, the furthest node j from any node i in the path is sought. It is inserted into the road in the position that takes advantage of the length of the road, thus avoiding the addition of long edges to the road. The matrix is complete and symmetrical."
+                , "worst-case": {
+                    "title": "\tThe worst case"
+                    , "text": "\t The algorithm is 2 ln(n) + 0.16 approximately, so even in the worst case:"
+                    , "formula": "(FARTHEST solution) / OPT ≤ 2 ln(n) + 0.16"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Algorithm steps"
+                        , "1": "It starts with a randomly chosen start node."
+                        , "2": "Among all the unvisited nodes, the one is chosen whose minimum distance to the nodes in the cycle is maximum compared to the distance of the other unvisited nodes. Let the current cycle be of the form (i1,i2,…,i(k-1),ik,i1) and distance(j) = min {d(i1, j), d(i2, j), …, d(ik , j)},"
+                        , "2-formula": "choose j with the maximum distance(j)."
+                        , "3": "Node j is inserted into the cycle at the position q in which the length of the road would increase the least, i.e "
+                        , "3-formula": "the position q that has the minimum value d(iq, j) + d(j, i(q+1)) - d(iq, i(q+1))."
+                        , "4": "If the cycle does not contain all the nodes, it skips to step 2, alftel stop."
+                    }
+                    , "pseudocode": "a random node denoted node_start is chosen \n solution ← 0 \n cycle ← [node_start] // list in which the minimum distance cycle is formed; to remember that between the nodes indexed on consecutive positions there is an edge \n h ← list of length n in which the distances from the nodes that are part of i from cycle to cycle \n for i ← 0, n - 1 execute \n\t if i != node_start then \n\t h[i] ← d(node_start, i) \n while the cycle does not yet have n nodes execute \n\t keep in k the node assigned to the maximum value in h knowing that they are taken into account only the unvisited nodes \n\t if the cycle consists of a single node then \n\t\t insert node k into the cycle \n\t\t mark k as visited \n\t\t solution ← 2 * h[ k] \n\t else \n\t\t min_increment ← ∞ \n\t\t m ← cycle size \n\t\t for each edge (cycles[i], cycle[(i+1) % m] ) from cycle execute \n\t\t\t a ← cycle[i] \n\t\t\t b ← cycle[(i+1) % m]) \n\t\t\t increase ← d(a , k) + d(k, b) – d(a, b) \n\t\t\t if minimum_growth > growth then \n\t\t\t\t minimum_growth ← growth \n\t\t\t\t insert_position ← i \n\t\t loop node k at position insert_position + 1 \n\t\t mark k as visited \n\t\t solution ← solution + min_increment \n\t for i ← 0, n - 1 execute \n\t\t if i is not visited and d(i, k) < h[i] then \n\t\t\t h[i] ← d(i, k) \n return solution and cycle"
+                    , "explications": {
+                        "text": "\t At first the start node nod_start is generated and h is initialized with the distances from node_start to any other node in the graph. At each step, the value of the solution and the cycle are updated, receiving one more node, the node corresponding to the farthest cycle node. After determining the node to be inserted denoted by k, the optimal position must be decided, i.e. the one that increases the value of the solution the least. After the updates, it is also required to modify the list h, to bring it to the current state of the cycle, checking if by introducing the node k, the distance from the unvisited nodes to the cycle can be reduced. \n\t The algorithm ends when the loop created contains all the nodes." 
+                    }
+                    , "vizualization": "\t Algorithm running steps on graph"
+                }
+                , "complexity": {
+                    "theorem": "\t The farthest node insertion algorithm runs in O(n^2). \n Demonstration: The repetitive structure that checks if the loop contains all the nodes executes n steps and inside it taking the information from the list h and inserting other values costs O(n), the repetitive structure in which the right position to insert the node is determined is executed in maximum O(n) and looping the node also O(n). \n\t So, in total, the interior of the structure is realized in O(n) and together with the n repetitions, results in the desired complexity O(n^2)."   
+                }    
+            } 
+            , "nearest-insertion": {
+                "title": "Nearest Insertion - The nearest node insertion algorithm"
+                , "header": "\t The nearest node insertion algorithm (nearest insertion algorithm) is a greedy type algorithm that aims to determine a Hamiltonian cycle of minimum length. The Hamiltonian cycle is gradually built starting from a single node, and at each step among all the unvisited nodes the one that is closest in distance to any node in the cycle is added, which is then inserted into the cycle at the position that brings the smallest increase in cycle length."
+                , "worst-case": {
+                    "title": "\tThe worst case"
+                    , "text": "\t The algorithm is 2 approximately, so even in the worst case:"
+                    , "formula": "(NEAREST solution) / OPT ≤ 2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Algorithm steps"
+                        , "1": "It starts with a randomly chosen start node."
+                        , "2": "Among all the unvisited nodes, the one whose minimum distance to the nodes in the cycle is minimum compared to the distance of the other unvisited nodes is chosen. Let the current cycle be of the form (i1 ,i2, …, i(k-1), ik, i1) and distance(j) = min {d(i1,j), d(i2,j), …, d(ik ,j)}, "
+                        , "2-formula": "j with the minimum distance(j) is chosen."
+                        , "3": "Node j is inserted into the cycle at the position q in which the length of the road would increase the least, i.e "
+                        , "3-formula": "the position q that has the minimum value d(iq,j) + d(j,i(q+1)) - d(iq,i(q+1))."
+                        , "4": "If the cycle does not contain all nodes, skip to step 2, otherwise stop."
+                    }
+                    , "pseudocode": "a random node marked nod_start is chosen \n solution ← 0 \n cycle ← [nod_start] // list in which the minimum distance cycle is formed, initialized with the start node; to remember that between the nodes indexed on consecutive positions there is an edge \n h ← list of length n in which the distances from the nodes that are part of i from cycle to cycle \n for i ← 0, n - 1 execute \n\t if i != node_start then \n\t h[i] ← d(node_start, i) \n while the cycle does not yet have n nodes execute \n\t retain in k the node assigned to the minimum value in h knowing that they are taken into account only the unvisited nodes \n\t if the cycle consists of a single node then \n\t\t insert node k into the cycle \n\t\t mark k as visited \n\t\t solution ← 2 * h[ k] \n\t else \n\t\t min_increment ← ∞ \n\t\t m ← cycle size \n\t\t for each edge (cycles[i], cycle[(i+1) % m] ) from cycle execute \n\t\t\t a ← cycle[i] \n\t\t\t b ← cycle[(i+1) % m]) \n\t\t\t increase ← d(a , k) + d(k, b) – d(a, b) \n\t\t\t if minimum_growth > growth then \n\t\t\t\t minimum_growth ← growth \n\t\t\t\t insert_position ← i \n\t\t loop node k at position insert_position + 1 \n\t\t mark k as visited \n\t\t solution ← solution + min_increment \n\t for i ← 0, n - 1 execute \n\t\t if i is not visited and d(i, k) < h[i] then \n\t\t\t h[i] ← d(i, k) \n return solution and cycle"
+                    , "explications": {
+                        "text": "\t As can be seen, it resembles the farthest node insertion algorithm, the difference being how to select the new node to be inserted into the cycle. Therefore, the pseudocode is the same except for a command that assigned to the variable k the node with the maximum distance from h taking into account only the unvisited nodes, now k takes the value of the node with the minimum distance." 
+                    }
+                    , "vizualization": "\t Running steps of the algorithm on the graph"
+                }  
+                , "complexity": {
+                    "theorem": "\t The nearest node insertion algorithm has O(n^2) complexity. \n Proof: Apart from the specified change, the algorithm works the same, so it also falls in O(n^2)."  
+                } 
+            }
+            , "cheapest-insertion": {
+                "title": "Cheapest Insertion - The lowest cost insertion algorithm"
+                , "header" : "\t The cheapest insertion algorithm is a greedy algorithm that aims to determine a Hamiltonian cycle of the lowest cost. At each step, the node that brings the smallest increase to the cycle distance is inserted into the current cycle, inserting the node in the position that gives it an advantage."
+                , "worst-case": {
+                    "title": "\tThe worst case"
+                    , "text": "\t The algorithm is 2 approximately, so even in the worst case:"
+                    , "formula": "(CHEAPEST solution) / OPT ≤ 2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Algorithm steps"
+                        , "1": "It starts with a randomly chosen start node."
+                        , "2": "Among all the unvisited nodes, the one that gives the smallest increase in the cycle length if inserted between two nodes already in the cycle is chosen. Let the current cycle be of the form (i1, i2, …, i(k-1), ik, i1) and"
+                        , "2-formula": "choose j with minimum d(ip,j) + d(j,iq) - d(ip,iq), where ip and iq are consecutive nodes."
+                        , "3": "Node j is inserted into the cycle"
+                        , "3-formula": "between the nodes for which the added distance is minimal."
+                        , "4": "If the cycle does not contain all the nodes, it skips to step 2, alftel stop."
+                    }
+                    , "pseudocode": "a random node denoted nod_start is chosen \n cycle ← [nod_start] // list in which the minimum distance cycle is formed, initialized with the start node; remember that there is an edge between adjacent nodes \n h ← list in which triplets of the form [increment, position to the left of the place where node k would have been added, k] \n determine the closest node to node_start and are denoted by k \n loop node k \n solution ← 2 * d(node_start, k) \n for i ← 0, n - 1 execute \n\t if i != cycle[0] and i != cycle[1 ]: \n\t\t increase ← d(cycle[0], j) + d(j, cycle[1]) - d(cycle[0], cycle[1]) \n\t\t add to h the triplet [increment, 0, i] \n while the loop does not yet have n nodes execute \n\t extract from h the triplet with the minimum increment and keep the values in min_increment, insertion_position, k \n\t insert into the loop the node k on position insert_position + 1 \n\t mark k as visited \n\t solution ← solution + min_increment \n\t m ← cycle size \n\t for any triplet in h of the form increment, position, node execute \n\t\t if position = insertion_position or node = k then \n\t\t\t remove triple from h \n\t\t if position > insertion_position and node is not visited then \n\t\t\t position ← (position + 1) % m \n\t for i ← 0, n - 1 execute \n\t\t if i is not visited then \n\t\t\t a ← cycle[insert_position] \n\t\t\t b ← cycle[(insertion_position +2) % m]) \n\t\t\t adds to h the triplet [d(a, i) + d(i, k) - d(a, k), insertion_position, i ] \n\t\t\t adds to h the triplet [d(k, i) + d(i, b) - d(k, b), (insert_position+2) % m, i] \n returns solution and cycle"
+                    , "explications": {
+                        "text": "\t Initially it is desired to create a cycle of two nodes with the aim of gradually expanding it. So, after the start node nod_start has been generated, the closest node to it, called k, is searched for. Because it is a cycle, its cost is twice the cost of the distance from node_start to k, and then the options from which the minimum possible increase will be chosen in the future are entered in the list h. \n\t The algorithm runs as long as the cycle does not yet have n nodes, at each step extracting from h the minimum possible increase, respectively the place where the node is to be inserted in the cycle and node k. It is necessary to update the solution value and the cycle by inserting the node found at the position where the cycle distance is advantageous. \n\t Given that node k becomes part of the cycle, list h must be modified, removing from it the triplets that treated node k as an unvisited node and those that considered that no ip was inserted between ip and iq another node. That is, triplets for which the calculated distance no longer reflects the current state of the cycle. Also, the insertion position must be updated for triplets targeting positions after the position extracted from h. This is because inserting the node at position insertion_position moves all other nodes after it to the right by one position. At the end, the list h is completed with triplets in which the distances including k at the nodes of the cycle are calculated."
+                    }
+                    , "vizualization": "\t Running steps of the algorithm on the graph"
+                }  
+                , "complexity": {
+                    "theorem": "\t Least cost insertion algorithm runs in O(n^2 log(n)). \n Proof: To make the determination of the minimum of list h efficient, work with a prioritized list, the operations to add and remove an element costing O(log(n)). Determining the closest node to the start node costs O(n), and inserting the first triplets into h runs in O(n log(n)). However, the execution time O(n^2 log(n)) is given by the repetitive structure that runs n times and checks that the loop contains all the nodes. Inside it extracting from h the minimum triple takes O(log(n)), update cycle O(n), removing and adding triplets to priority list O(n log(n)). \n\t In conclusion, the inside of the repeating structure runs in O(n log(n)) and is repeated n times, resulting in O(n^2 log(n)) complexity."
+                } 
+            }
+            , "nearest-neighbor": {
+                "title": "Nearest neighbor - The nearest neighbor algorithm"
+                , "header" : "\t The simplest heuristic algorithm is the nearest neighbor algorithm (NN). Given a complete graph with non-negative nodes, a Hamiltonian cycle is determined in which nodes are chosen according to their proximity. Therefore, at each step, the node that is not yet part of it and that is closest in distance to the last node in the path is inserted into the current path." 
+                , "worst-case": {
+                    "title": "\tThe worst case"
+                    , "text": "\t The algorithm is 1/2 ln(n) + 1/2 approximately, so even in the worst case:"
+                    , "formula": "(NN solution) / OPT ≤ 1/2 ln(n) + 1/2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Algorithm steps"
+                        , "1": "It starts with a randomly chosen start node."
+                        , "2": "Among all the unvisited nodes, the one that is closest to the last node in the road is chosen. Let the current path be of the form (i1, i2, …, i(k-1), ik) and"
+                        , "2-formula": "j is chosen with the minimum distance d(ik, j)."
+                        , "3": "It is inserted "
+                        , "3-formula": "node j at the end of the road."
+                        , "4": "If the road does not contain all the nodes, it skips to step 2, alftel stop."
+                    }
+                    , "pseudocode": "a random node denoted node_start is chosen and set as the first node in the cycle \n cycle_value ← 0 \n i ← node_start \n as long as there are unvisited nodes execute \n\t for the current node i put in the cycle the unvisited node j with d(i , j) minimum \n\t cycle_value ← cycle_value + d(i, j) \n\t marks j as visited \n\t i ← j \n cycle_value ← cycle_value + d(i, start_node) \n returns the created cycle and cycle_value" 
+                    , "vizualization": "\t Running steps of the algorithm on the graph"
+                }  
+                , "complexity": {
+                    "theorem": "\t The complexity of the NN algorithm is O(n^2). \n Proof: The algorithm is simplistic, its complexity being determined by the need to repeat the repetitive structure until all n nodes are in the path, so this loop costs O(n). At each step, the node closest to the last node in the path must be determined, an operation that takes O(n). So overall the algorithm runs in O(n^2)."
+                } 
+            }
+            , "not-optimal-solution": "\t The presented algorithms are not exact, the approximation factor being mentioned for each algorithm separately, in the respective subsection. We want a value as close as possible to the optimal one, therefore the determined Hamiltonian cycle is improved in the 2-OPT and 3-OPT algorithms. The goal of these algorithms is to improve the solution by optimizing the determined cycle."   
+        }
+        , "cycle-improvement": {
+            "title": "Hamiltonian cycle optimization: k-OPT"
+            , "header": "\t One of the presented algorithms can be used to create the Hamiltonian cycle. Having cycled, the next step is to improve its cost until it can't. In the end, it cannot be guaranteed that the obtained cycle is minimal. Repeating the algorithm several times using possibly different cycles increases the probability of finding the minimum solution."
+            , "definition-k-change-neighborhood": "\t Let F be the set of all Hamiltonian cycles. A neighborhood is a mapping N : F → 2^F where N maps every f ∈ F into the neighborhood N(f). Lin proposes the neighborhoods for a TSP on K_n. For f a cycle and k ∈ {2,...,n}, N(f) is the set of all Hamiltonian cycles g that are obtained from f by removing k edges and replacing them with k edges (not necessarily all added edges must be different from those removed). N(f) is called a k-change neighborhood, and any g whose distance is minimal among all other cycles in N(f) is called k-optimal."
+            , "pseudocode": "Pseudocode k-OPT(D) \n choose an initial cycle f \n while there exists g ∈ N(f) with d(g) < d(f) execute \n\t choose g ∈ N(f) with d( g) < d(f) \n\t f ← g"
+            , "explications": {
+                "text": "\t Consider a set of solutions N(f) that are neighbors to the current solution f and look for, from this set, the local optimum, the cycle g that brings the most significant improvement. The algorithm stops when no local optimum is found. So, if the current Hamiltonian cycle has no neighbors that offer a better solution, it is considered that it cannot be optimized anymore." 
+            }
+            , "complexity": {
+                "theorem": "\t Even though there are many possible cycles, their number is finite. After each iteration of the k-OPT algorithm, a Hamiltonian cycle of length strictly less than the previous one is produced, therefore the cycles cannot be repeated. \n\t Running time is given by the number of iterations of the main 'when time' loop multiplied by the number of operations performed by one iteration. Given that there are n nodes, there are O(n^k) k-permutations that need to be checked at each iteration (k represents the number of edges that will be replacements, so it varies depending on the problem being solved). The problem arises in the total number of iterations which can become exponential depending on the initial Hamiltonian cycle and the data set received as input."
+            }
+            , "2-opt": {
+                "title": "Algorithm 2-OPT"
+                ,"header": "\t The algorithm involves optimizing the algorithm by applying 2-changes, therefore the Hamiltonian cycle created in the first step continues to be modified by changing 2 edges, producing a new cycle g that is better or less optimal than the original one."
+                , "advantage": {
+                    "title": "The advantage of the new cycle g compared to the previous cycle f"
+                    , "formula": "δ(g) = d(m1) + d(m2) - d(m1') - d(m2')"
+                    , "explication": "\t If δ(g) > 0 it means that a shorter length cycle was found, i.e. an improvement occurred. The algorithm chooses the neighboring cycle g of f that has the greatest advantage, that is, the one that has the smallest cycle length." 
+                }
+                , "pseudocode-advantage": {
+                    "text": "\t Let calculus_advantage be the function that determines the advantage of applying a 2-exchange over a cycle. It is given as parameters the cycle f and the 2 edges for which it is desired to calculate the advantage obtained if one were to apply the 2-exchange with the 2 edges over f. The purpose of this method is to check whether it is necessary to create the new cycle g."
+                    ,"pseudocode": "Pseudocode calculate_advantage((x, y), (x', y')) \n calculates δ ← d(x, y) + d(x', y') - d(x, x') - d(y, y') \n returns δ"
+                }
+                , "pseudocode-2-change": {
+                    "text": "\t Let 2Changes be the function that determines a cycle g neighboring f and the value of δ. It is given as parameters the cycle f from which it starts and the 2 edges for which the modification is desired."
+                    , "pseudocode": "Pseudocode 2Changes(f, (x, y), (x', y')) \n remove from f the edges (x, y) and (x', y') that have no common node \n add to f the edges (x, x') and (y, y'), pair of edges leading to the creation of a new cycle g \n returns the new cycle g"
+                }
+                , "pseudocode-2-opt": {
+                    "text": "\t From the heuristic algorithm and the calculation_advantage and 2Exchanges methods, the desired 2-OPT algorithm is created, which aims to determine the cycle of the shortest length by modifying the initial cycle."
+                    , "pseudocode": "2-OPT pseudocode \n f, solution ← NN(D) \n repeat \n\t δ ← 0 \n\t g ← f \n\t for each m1, m2 in f, edges that have no common node execute \n\t\t δg ← advantage_calculation(m1, m2) \n\t\t if δg > δ then \n\t\t\t g ← 2Changes(f, m1, m2) \n\t\t\t δ ← δg \n\t f ← g \n\t solution ← solution - δ \n until δ = 0 \n return solution"
+                }
+                , "pseudocode-bind": {
+                    "text": "\t In order to reach the best possible solution, 2-OPT is called by 'repetitions' times with the aim of reaching the optimal solution by optimizing several cycles obtained by the NN method. Therefore, the minimum solution from these repeated runs of the algorithm is considered the optimal solution."
+                    , "pseudocode": "min_solution ← ∞ \n for i ← 1, iterations execute \n\t solution ← 2-OPT \n\t if solution < min_solution then \n\t\t min_solution ← solution"
+                }
+            }
+            , "3-opt": {
+                "title": "Algorithm 3-OPT"
+                , "header": "\t The 3-OPT algorithm has the same solution structure, the difference from the 2-OPT algorithm is the function that calculates the advantage of making an exchange, being adapted for the new type of substitution, and the function in which cycles are made through 2-exchanges, now through 3- exchanges. The concept of replacement remains the same: a 3-replacement means that 2-replacement is applied per cycle one or more times because there are 3 edges available. So from one cycle, 7 other cycles are created and among them the one with the maximum advantage is chosen."
+                , "cycles-created-with-3-change": {
+                    "0": "The 7 cycles are created as follows:"
+                    , "1": "3 cycles by applying 2-changes on 2 of the 3 edges"
+                    , "2": "3 cycles by repeated application 2 times of two pairs of edges"
+                    , "3": "1 cycle by applying all possible combinations of the 3 edges"
+                }
+                , "example": {
+                    "step-1-part-1":  "\t Let f be the initial form cycle "
+                    ,"cycle-1": "A → B → C → D → E → F."
+                    ,"step-1-part-2": "It is considered that node A is on position i, node C on position j and node E on position k, and it is shown how a 3-exchange is performed by applying two 2-exchanges. \n\t Initially, the edges retained on positions (i, i + 1) and (j, j + 1) are changed, and then the edges on positions (i, i + 1) and (k, k + 1)."
+                    , "step-2-part-1": " The function 2Exchanges is called with parameters f, AB, CD and the cycle g of the form is obtained"
+                    , "cycle-2": "A → C → B → D → E → F."
+                    ,"step-2-part-2": "So now on the positions (i, i + 1) there is the edge AC, on the positions (j, j + 1) the edge BD and on (k, k + 1) EF."
+                    , "step-3": "The function 2Exchanges is called with parameters g, AC, EF and the desired cycle h is obtained which looks like this "
+                    , "cycle-3": "A → E → D → B → C → F."
+                    , "step-4": "advantage δ = d(AB) + d(CD) + d(EF) - d(AE) - d(BD) - d(CF). "
+                }   
+                , "pseudocode-advantage": "Pseudocode calculation_advantage(AB, CD, EF) \n δ(A → C → B → D → E → F) ← d(AB) + d(CD) - d(AC) - d(BD) \n δ(A → E → D → C → B →F) ← d(AB) + d(EF) - d(AE) - d(BF) \n δ (A → B → C → E → D →F) ← d( CD) + d(EF) - d(CE) - d(DF) \n δ (A → C → B → E → D →F) ← d(AB) + d(CD) + d(EF) - d (AC) - d(BE) - d(DF) \n δ (A → E → D → B → C →F) ← d(AB) + d(CD) + d(EF) - d(AE) - d(DB) - d(CF) \n δ (A → D → E → C → B →F) ← d(AB) + d(CD) + d(EF) - d(AD) - d(EC) - d(BF) \n δ (A → D → E → B → C →F) ← d(AB) + d(CD) + d(EF) - d(AD) - d(EB) - d(CF ) \n choose the maximum advantage and denote it by δ \n return δ and a unique identifier by which it can be recognized which exchange corresponds to the advantage"
+                 
+                , "pseudocode-3-change": {
+                    "pseudocode": "Pseudocode 3Exchanges(f, AB, CD, EF, identifier) \n if identifier = 'ACBDEF' then \n\t g ← 2Exchanges(f, AB, CD) \n if identifier = 'AEDCBF' then \n\t g ← 2Exchanges (f, AB, EF) \n if identifier = 'AEDCBF' then \n\t g ← 2Exchanges(f, CD, EF) \n if identifier = 'ACBEDF' then \n\t g_aux← 2Exchanges(f, AB, CD) \n\t g ← 2Exchanges(g_aux, AB, EF) \n if identifier = 'AEDBCF' then \n\t g_aux← 2Exchanges(f, AB, CD) \n\t g ← 2Exchanges(g_aux, CD, EF ) \n if identifier = 'ADECBF' then \n\t g_aux← 2Exchanges(f, AB, EF)\n\t g ← 2Exchanges(g_aux, CD, EF) \n if identifier = 'ADEBCF' then \n\t g_1← 2Changes(f, AB, CD) \n\t g_2 ← 2Changes(g_1, AB, EF) \n\t g ← 2Changes(g_2, CD, EF) \n return cycle g"
+                    , "initial-text": "\t The order of the nodes in the resulting cycle is considered to be the identifier. Therefore, the function 3Exchanges looks like this: "
+                    , "final-text": "\t In the first three conditions of the pseudocode, the three 2-exchanges are calculated, in the next 3 the three cycles obtained by applying two 2-exchanges which are carried out in 2 stages and in the last the cycle built by three 2-exchanges. The identifier decides which condition will be entered by creating a single loop that returns at the end."
+                }
+                , "pseudocode-3-opt": "3-OPT pseudocode \n f, solution ← NN(D) \n repeat \n\t δ ← 0 \n\t g ← f \n\t for each m1, m2, m3 in f, edges that have no common node execute \n\t\t δg, identifier ← advantage_calc(m1, m2, m3) \n\t\t if δg > δ then \n\t\t\t g ← 3Changes(f, m1, m2, m3, identifier ) \n\t\t\t δ ← δg \n\t f ← g \n\t solution ← solution - δ \n until δ = 0 \n return solution"
+                , "pseudocode-bind": {
+                    "text": "\t Considering that the 3-OPT algorithm, like the 2-OPT algorithm, involves shrinking the solution of a cycle determined by an approximate algorithm whose starting node is chosen randomly, it is possible that 3-OPT does not provide a good solution from cause of that initial cycle. To have more chances, one can run the algorithm several times and keep the cycle with the smallest solution."
+                    , "pseudocode": "min_solution ← ∞ \n for i ← 1, iterations execute \n\t solution ← 3-OPT \n\t if solution < min_solution then \n\t\t min_solution ← solution"
+                }
+            }
+        }
+    }
+    , "input-class": {
+        "title": "Input Class"
+        , "header": "\t All the presented algorithms take as input data entered by the user. The input must be taken by an algorithm, processed and passed on to the classes that solve the TSP. The class that does this is called Input, it is the one that throws errors if the data entered does not correspond to what is necessary to solve the problem or the type of instance chosen by the user."
+        , "rules-title": "\t List of possible errors and the reasons why they are raised"
+        , "rules": {
+            "general": {
+                "title": "Errors that may appear regardless of the type of instance chosen"
+                ,"0": {
+                    "error": "The entered input does not have the correct form!",
+                    "explication":"Expecting 3 * n + 2 values for input to be accepted! The first line must have 2 positive integers, and the following lines must contain triplets of type node_1 node_2 distance."
+                }
+                , "1": {
+                    "error": "You entered at least one negative number!"
+                    , "explication": "At least one '-' character was found among the triplet input data. TSP does not accept negative weights and nodes, by convention, are numbered from 0 to n - 1 where n is the number of nodes."
+                }
+                , "2": {
+                    "error": "Nodes are numbered from 0 to {0}, but node {1} was found!"
+                    , "explication": "By convention it was decided that the nodes of the graph should be numbered from 0 to n where n is the number of nodes. The order of specifying them in triplets does not matter, but you cannot insert nodes with a label greater than or equal to n ."
+                }
+            }
+            ,"oriented-graph": {
+                "title": "The instance corresponds to a directed graph that transforms into an asymmetric and not necessarily complete matrix"
+                , "0": {
+                    "error": "The specified number of edges ({0}) is different from the number of lines of the type: node 1 node 2 value ({1})"
+                    , "explication": "The second value entered symbolizes the number of edges in the graph that is equivalent to the number of triplets entered by the user. The error occurs when the specified value is not equal to the number of triplets." 
+                }
+                , "1": {
+                    "error": "Already set the distance from node {0} to {1}!"
+                    , "explication": "Each distance between two nodes i and j can be established only once"
+                } 
+            }
+            , "neoriented-graph": {
+                "title":"The instance corresponds to an undirected graph that transforms into a symmetric and complete matrix"
+                ,"0": {
+                    "error": "The specified number of edges ({0}) is different from the number of lines of the type: node 1 node 2 value ({1})"
+                    , "explication": "The number of triplets is not the same as the number of edges specified" 
+                }
+                , "1": {
+                    "error": "Already set the distance from node {0} to {1}!"
+                    , "explication": "Each distance between two nodes i and j can be established only once"
+                } 
+                ,"2": {
+                    "error": "The given graph is not complete!"
+                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a complete graph. So if the input is entered for one of these types of algorithms, it is checked if a weight is specified between any two nodes"
+                } 
+                ,"3": {
+                    "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
+                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a graph that respects the triangle inequality (solves TSP in the metric case). So if the input is input for one of these types of algorithms, it is required that the distances from the matrix created to respect the triangle inequality"
+                } 
+            }
+            , "euclidean-distances": {
+                "title":"The instance corresponds to points in the 2D plane. It turns into a symmetric matrix for which the distance between any 2 nodes is the distance between those points in the plane. Finally, the matrix is complete"
+                ,"0": {
+                    "error": "The given graph is not complete!"
+                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a complete graph. So if the input is entered for one of these types of algorithms, it is checked if a weight is specified between any two nodes"
+                } 
+                ,"1": {
+                    "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
+                    ,"explication": "Approximation and heuristic algorithms require that the input data correspond to a graph that respects the triangle inequality (solves TSP in the metric case). So if the input is input for one of these types of algorithms, it is required that the distances from the matrix created to respect the triangle inequality"
+                }  
+                ,"2": {
+                    "error": "The number of nodes is different than specified!"
+                    ,"explication": "Appears for inputs where the number of triplets is not the same as the number of edges specified."
+                }
+                , "3": {
+                    "error": "Already set the coordonates for node {0}!"
+                    , "explication": "Indexes of the entered nodes are not unique (the value in the first position of the triplets is repeated at least 2 times)"
+                }
+                , "4": {
+                    "error": "Can not have the same coordonates for 2 different nodes!"
+                    , "explication": "Two (or more) different nodes with the same coordinates were inserted (the combination of the second and third values in the triplets is repeated at least 2 times)"
+                }
+            }
+        }    
+    }
+    , "code-section": {
+        "title": "Testează codul"
+        , "explications-nodes-with-distance-symmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following enter m lines with triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a completely undirected graph."
+        , "explications-nodes-with-distance-asymmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following enter m lines with triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a directed graph."
+        , "explications-euclidian-distance": "Euclidian distances mean that the number of nodes is specified on the first line (the nodes are numbered starting from 0) and the rest of the triplet lines of the type node X coordinate Y coordinate. A complete graph is built in which the weights edges are the distances between the respective points."
+        , "placeholder": "Enter data here..."
+        , "solution": {
+            "name": "Solution"
+            , "wait": "Wait for response!"
+            , "insert-data": "Insert some input before running!"
+            , "initial-text": "This is where the answer appears"
+            , "no-solution": "There is no solution for the given graph!"
+        } 
+        , "number-repetitions": "Number of repeats"
+        , "hamiltonian-cycle": "Hamiltonian cycle"
+        , "buttons": {
+            "show-input-area": "Test code"
+            , "hide-input-area": "Hide testing"
+            , "choose-euclidian": "Euclidean distances"
+            , "choose-distance-between-symmetric-graph":  "Distances between nodes are known - undirected graph"
+            , "choose-distance-between-asymmetric-graph": "The distances between nodes are known - directed graph"
+            ,  "run-code": "Run"
+        }
+        , "dynamic-programming": "Matrix M resulting from program execution"
+        , "branch-and-bound": {
+            "initial-matrix": "Presentation of the first 2 steps of the program run. The initial matrix where the value lim = "
+            , "first-step-matrix": {
+                "0": "Reduced matrix corresponding to the start node"
+                , "1": " leads to the value lim = "
+            } 
+            , "second-step-matrix": {
+                "0": "Reduced matrix corresponding to the node"
+                , "1": "starting from the start node"
+                , "2": " leads to the value lim = "
+            }
+        }
+        , "chistofides-algorithm": {
+            "tree": "The tree created by applying Prim's algorithm over the dataset."
+            , "odd-nodes": "Finding odd-degree nodes with the goal of joining them two by two."
+            , "matching": "The graph created by adding the edges resulting from the matching algorithm."
+        }
+        , "optimization-algorithm": {
+            "build-cycle": {
+                "0": "Hamiltonian cycle obtained after running the greedy heuristic algorithm:"
+                , "1": "with distance"
+            }
+            , "optimize-cycle": {
+                "no": "No optimization can be done over the created Hamiltonian cycle."
+                , "yes": {
+                    "0": "The first optimization found transforms the cycle like this. From the edges"
+                    , "1": "and" 
+                    , "2": "two more edges are chosen"
+                    , "3": "Cycle becomes "
+                    , "4": "and the solution becomes"
+                }
+            }
+        }
+    }
+    , "sidenav": {
+        "general": "General presentation",
+        "variations": "Variations",
+        "asymmetric-tsp": "Asymmetric TSP",
+        "multiple-visits-tsp": "TSP with multiple visits",
+        "max-tsp": "Max TSP",
+        "metric-tsp": "Metric TSP",
+        "exact-algorithms": "Exact algorithms",
+        "dynamic-programming": "Dynamic Programming",
+        "branch-and-bound": "Branch and bound",
+        "approximation-algorithms": "Approximation alg",
+        "chistofides-algorithm": "Christofides' alg",
+        "heuristic-algorithms": "Heuristic algorithms",
+        "farthest-insertion": "Farthest Insertion",
+        "nearest-insertion": "Nearest Insertion",
+        "cheapest-insertion": "Cheapest Insertion",
+        "nearest-neighbor": "Nearest Neighbor",
+        "2-opt": "2-OPT Algorithm",
+        "3-opt": "3-OPT Algorithm",
+        "input-class": "Input Class",
+        "double-tree-algorithm": "Double Tree Algorithm"
+    }
+    , "carousel": {
+        "current-node": "Current node",
+        "path": "Road",
+        "cicle": "Cycle",
+        "previous": "Previous",
+        "next": "Next",
+        "reset": "Reset",
+        "nodes": "Nodes",
+        "neighbours": "Neighbors", 
+        "start-node": "Start node"
+        ,"farthest-node": "The farthest node from the cycle is chosen"
+        , "distance-node-cycle": "Node-to-cycle distance"
+        , "positions-insert-node": "Positions where the node can be inserted "
+        , "index": "Index"
+        , "edge": "Edge"
+        , "growth": "Growth"
+        , "min-growth": "Minimum growth of cycle solution"
+        , "insertion-position": "Node is inserted between nodes"
+        , "solution-cycle": "Solution Cycle"
+        , "distance-actualization": "Update minimum distances to cycle"
+        , "unvisited-node": "Unvisited node"
+        , "new-inserted-node": "New inserted node"
+        , "matrix-distance": "Distance from matrix "
+        , "min-distance": "Minimum Distance"
+        , "is-actualizate": "Updating"
+        , "min-distances-unvisited-nodes-cycle": "Minimum distances from unvisited nodes to cycle"
+        , "nearest-node": "The node closest to the cycle is chosen"
+        , "chosen-node": "Chosen Node"
+        , "node-with-min-growth": "With minimum cycle solution growth"
+        , "cycle-node": "Cycle node"
+        , "set": "Setting"
+        , "solution": "Solution"
+        , "distance": "Distance"
+        , "with-distance-from-node": "With distance from current node"
+        , "minimum": "minimum"
+        , "go-to-start-node": "Return to start node"
+        , "edge-distance": "Edge distance"
+
+        , "example-eulerian-cycle": "Step-by-step example solving the problem of determining the Hamiltonian cycle based on determining the Eulerian cycle"
+        , "example-branch-and-bound": "Example solution using the discussed strategy"
+        , "example-farthest-insertion": "Step-by-step example based on the farthest insertion algorithm"
+        , "example-nearest-insertion": "Step-by-step example based on the nearest insertion algorithm"
+        , "example-cheapest-insertion": "Step-by-step example based on the cheapest insertion algorithm"
+        , "example-nearest-neighbor": "Step-by-step example based on the nearest neighbor algorithm"
+        , "instructions": {
+            "green": "GREEN: nodes and edges that are part of the final cycle"
+            , "orange": "ORANGE: edges of minimum length connecting each unvisited node to the cycle"
+            , "grey": "GRAY: unvisited nodes and all edges that do not fall into green and orange"
+            , "growth": "Growth obtained by adding k between a and b: D[a, k] + D[k, b] - D[a, b]"
+        }
+    }
+}

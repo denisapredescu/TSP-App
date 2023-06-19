@@ -1,0 +1,784 @@
+{
+    "general": {
+        "title": "Problema comis-voiajorului"
+        , "theorem": "Teoremă"
+        , "complexity": "Complexitate"
+        , "explications": "Explicații pe cod"
+        , "definition": "Definiție"
+        , "definitions": "Definiții"
+        , "example": "Exemplu"
+        , "algorithm": "Algoritm"
+        , "step-by-step-example": "Exemplu pas cu pas"
+        , "languages": {
+            "ro": "Română"
+            , "en": "Engleză"
+        }
+        , "construction": "Construire"
+    },
+    "about-tsp": {
+        "header-name-problem": "\t Problema comis-voiajorului (prescurtat TSP)"
+        ,"header": " este una dintre cele mai cunoscute probleme computaționale de optimizare, o problemă de interes datorită faptului că este întâlnită în practică sub diverse forme. Are o istorie lungă de încercări de a o rezolva, găsirea unui algoritm cât mai eficient chiar dacă vom vedea că este foarte posibil să nu se poată crea un algoritm care să ofere o soluție în timp polinomial, fiind demonstrat faptul că problema este NP-completă. "
+        
+        ,"title": "Prezentarea problemei"
+        , "problem-explication": "\t TSP presupune găsirea rutei optime prin care comis-voiajorul poate vizita n orașe, trecând prin fiecare o singură dată și întorcându-se la final în orașul de unde a plecat. Se poate considera ca ruta optimă distanța minimă sau costul minin al drumului (problema nu se schimbă)."
+        , "definition-graph": "\t Fie G = (V,E) un graf neorientat pentru care V este mulțimea nodurilor (orașelor), E este mulțimea muchiilor între noduri (drumurilor dintre orașe) și fiecare muchie are propria lungime cu condiția ca ponderea să fie ne-negativă. Un graf neorientat ponderat poate fi privit ca fiind complet creând muchii fictive între nodurile neadiacente de lungime infinit." 
+        , "definition-matrix": "\t Orice graf ponderat se poate memora cu ajutorul matricei de distanță D de dimensiune (n x n) unde pentru fiecare i și j  avem  d(i, j) = lungimea muchiei(i, j). Distanța de la un nod la sine este definită a fi zero (d(i, i) = 0 pentru orice i ∈ V). În algoritmii descriși în capitolele următoare, vom prefera să considerăm d(i, i) = ∞ pentru a elimina nevoia de a testa că vârfurile curente sunt distincte."
+        , "hamiltonain-cycle": {
+            "title": "Prezentarea noțiunii de ciclu hamiltonian și introducerea în problema comis-voiajorului"
+            , "cycle": "Un ciclu hamiltonian într-un graf complet G este o permutare ciclică (1,π(1), …, π^(n-1)(1)) pe mulțimea nodurilor {1,...,n} din graf: 1 →π(1) → ⋯ → π^(n-1)(1) → 1. "
+            , "minimum-cycle": "Un ciclu hamiltonian minim este un ciclu hamiltonian π astfel încât lungime totală a ciclului este minimă:"
+            , "cycle-length": "d(π) = sum d({i,π(i)}) cu i = {1, ..., n}"
+            , "analogy-reference": "\t Așadar problema TSP este următoarea:"
+            , "analogy-definition": "dat un graf neorientat complet, să se determine ciclul hamiltonian minim. "
+            , "general-tsp": "Această formă a problemei poartă numele de problema comis-voiajorului simetrică, prescurtat sTSP, sau de TSP general."
+            , "connectin-with-variations": {
+                "text": "\t Alte variații ale problemei se găsesc în "
+                , "linkText": "Secțiunea Variații"
+            }
+        }
+        , "general-tsp":{
+            "title": "TSP general"
+            , "definition-symmetric-matrix": "\t Graful fiind neorientat, d(i, j) = d(j, i) pentru orice i, j ∈ V, iar matricea este simetrică (egală cu transpusa sa). În analogie cu viața reală, problema poate fi văzută în felul următor: nodurile sunt destinații, iar muchiile sunt străzi cu specificația că nu există străzi cu sens unic (distanța este egală indiferent de direcția de mers). Se dorește drumul cel mai scurt."
+            , "matrix": "Matricea corespunzătoare grafului"
+            , "solution": "Soluția optimă este 8 obținută de drumul 0 -> 1 -> 2 -> 3 -> 0."
+        } 
+        , "np-completeness": {
+            "title": "NP-completitudinea problemei TSP"
+            , "definition-1": {
+                "part-1": "\t O problemă se numește "
+                , "part-2": "problemă de decizie "
+                , "part-3": "dacă necesită un răspuns logic, de tip true/false."
+            }
+            , "definition-2": {
+                "part-1": "\t O problemă face parte din "
+                , "part-2": " clasa de probleme P "
+                , "part-3": " dacă există un algoritm care oferă o soluție în timp polinomial. "
+                , "part-4": "Clasa NP "
+                , "part-5": "este clasa de probleme care, în cazul în care se determină o soluție, se poate verifica în timp polinomial dacă soluția este una corectă."
+            }
+            , "definition-3": {
+                "part-1": "\t O problemă se numește "
+                , "part-2": "NP-completă "
+                , "part-3": "dacă face parte din clasa NP și orice altă problemă din NP se reduce la ea."
+            }
+            ,"tsp-is-np": {
+                "title": "Teoremă: TSP face parte din clasa de probleme NP."
+                , "demonstration": "Demonstrație"
+                , "text": "\t TSP este o problemă de optimizare (dintre toate ciclurile hamiltoniane posibile între n orașe, se dorește ciclul hamiltonian de lungime minimă), dar poate fi redusă la o problemă de decizie pentru care, dându-se un parametru 𝑀 cu 𝑀 ∈ 𝑅+, se dorește să se decidă dacă se poate determina o permutare a nodurilor astfel încât 𝑑(𝜋) ≤ 𝑀. Problema în forma ei normală este cel puțin la fel de grea ca problema de decizie care îi este asociată. \n\t Mai departe, pe lângă răspunsul true sau false, se cere să se ofere și un ciclu hamiltonian, pentru care se poate verifica în 𝑂(𝑛) dacă drumul determinat de noduri are lungime mai mică sau egală cu 𝑀. Așadar, problema de decizie oferă și o soluție pentru care poate fi verificat în timp polinomial corectitudinea răspunsului dat (dacă 𝑑(𝜋) ≤ 𝑀). \n\t Prin urmare, TSP în forma de problemă de decizie este NP, deci și TSP este cel puțin NP."
+            }
+            ,"tsp-is-np-complete": {
+                "title": "Teoremă: TSP face parte din clasa de probleme NP-complete."
+                , "demonstration": "Demonstrație"
+                , "text": "\t În continuare considerăm problema CH a determinării unui ciclu hamiltonian care se știe că este NP-completă și se demonstrează pornind de la NP-completitudinea problemei comis voiajorului. Presupunem că există un algoritm polinomial care rezolvă TSP. \n\t Fie G = (V, E) un graf neorientat căruia îi asociem un graf complet G' cu ponderile: d(i, j) = 1 dacă muchia (i, j) ∈ E, altfel d(i, j) = 2. \n\t Fie 𝜋 soluția TSP pentru graful ponderat obținut.\n\t\n\t Există în G un ciclu hamiltonian dacă și numai dacă în graful G’ 𝑑(𝜋)=𝑛 deoarece, din definiția TSP-ului, 𝜋 este permutarea ciclică de lungime minimă. \n\t Într-adevăr, dacă 𝑑(𝜋)=𝑛, ciclul 𝜋 nu conține nicio muchie de pondere 2, deci 𝜋 se găsește și în graful inițial G (G ⊆ G’) și este soluție și pentru CH în G.\n\t Reciproc, dacă G are ciclul hamiltonian 𝜋 acest ciclu ar avea cost n în G’ și ar fi soluție pentru TSP deoarece nu conține muchii de cost 2. \n\t Așadar problema ciclului hamiltonian s-a redus la TSP, existența unei soluții de cost n pentru TSP fiind echivalentă cu existența unui ciclu hamiltonian în graf. Cum problema determinării unui ciclu hamiltonian este NP-completă nu există algoritm polinomial care să o poată rezolva, deci se ajunge la o contradicție. Presupunerea fiind falsă, se concluzionează că TSP este NP-completă."              
+            }
+            , "conclusion": "\t Încadrarea problemei comis-voiajorului în clasa NP-completă înseamnă că nu se cunoaște un algoritm care să ofere o soluție în timp polinomial și găsirea unui astfel de algoritm este cel mai probabil imposibilă (nu se știe exact deoarece nu s-a putut demonstra 𝑃 = 𝑁𝑃, dar nici nu se exclude cu certitudine această afirmație)."
+        }
+    },
+    "variations": {
+       "asymmetric": {
+            "title": "TSP asimetric - aTSP",
+            "header": "\t În oglindă cu sTSP, există problema comis-voiajorului asimetrică (prescurtat aTSP). Acum sunt două direcții de mers, drumul de la i la j și cel de la j la i poate să difere ca lungime. Cu alte cuvinte, "
+            ,"explication": "graful asociat este orientat, deci matricea D nu este neapărat simetrică."
+            , "comutation-atsp-stsp": {
+                "title": "\t Fun fact!"
+                , "text": "\t aTSP conține sTSP ca și caz special pentru că o muchie (i,j) din sTSP este văzută ca două muchii (i,j) și (j,i) în aTSP. Interesant este că și aTSP-ul poate fi transformat în varianta generală, caz discutat mai jos."
+            }
+           , "subtitle-transformation": "Transformare din aTSP în sTSP"
+            , "transformation": {
+                "text": "\t Un TSP asimetric cu n orașe se poate transforma într-un TSP simetric cu 2n orașe. Fie D matricea corespunzătoare unui sTSP. Acest fapt este important dacă se dorește rezolvarea unui aTSP folosind un algoritm proiectat doar pentru sTSP."
+                , "step-0": " Pași de rezolvare:"
+                , "step-1": "Se creează matricea D' care este identică cu matricea D excepție făcând pe pozițiile d'(i,i) care au valoarea -M în loc de 0, știind că M este un număr foarte mare"
+                , "step-2": "Se creează matricea U unde u(i,j) = ∞ pentru orice i, j ∈ {1,…,n}."
+                , "step-3": "sTSP-ului cu matricea D îi corespunde un aTSP cu matricea D'' de dimensiune (2n x 2n) definită astfel:"
+                , "step-4": " Valoarea TSP pentru matricea D este valoarea TSP a matricei  D'' create la care se adăuga de n ori valoarea -M (graful corespunzător matricei D'' conține n muchii cu costul -M, muchii ce nu există în graful corespunzător lui D):"
+            } 
+            , "solution-formula": "aTSP = sTSP + n * M"
+            , "subtitle-exemplu": "Exemplu pe o matrice dată"
+            , "slider": {
+                "0": "Transformare din aTSP in sTSP. Graful nou va avea 2n noduri (în loc de n)"
+                , "1": "Muchia de la nodul i la nodul (i + n) are valoarea -999 (orice valoare mică astfel încât sa asigure alegerea acelei muchii când se ajunge în i). Dacă în graful inițial d(0, 2) = 4, acum d(0, 4) = -999 și d(4, 2) = 4"
+                , "2": "Astfel dintr-un nod i dintr-un graf orientat s-au creat 2 noduri i și (i + n) în graful neorientat: se intră în nodurile cu indice < n și se iese din cele cu indice >= n"
+                , "3": "Soluția aTSP-ului inițial este aceeași cu a sTSP-ului rezultat excepție că la aceasta din urmă a fost adăugat de n ori valoarea -999 (M = 999). Deci aTSP = sTSP + n * M"
+            }
+   
+        }, 
+        "multipleVisits": {
+            "title":  "TSP cu vizitări multiple",
+            "header": "\t Plecând de la sTSP, TSP cu vizitări multiple permite vizitarea aceluiași nod de mai multe ori în cazul în care acest fapt duce la determinarea unei soluții mai eficiente decât soluția oferită de sTSP."
+            , "slider": {
+                "0": "Soluția sTSP este 8 dată de ciclul 0 → 1 → 2 → 3 → 0"
+                , "1": "Se observă că soluția ar fi minimă dacă se permite trecerea de două ori prin nodul 0: 0 → 1 → 2 → 0 → 3 → 0. Ciclul are valoarea 6"
+            }
+        },
+        "max": {
+            "title": "Max TSP",
+            "header": "\t Max TSP de diferențiază de TSP-ul general prin faptul ca are ca scop găsirea drumului de lungime maximă din graful G."  
+            , "steps" : { 
+                "0": "Pași algoritm",
+                "1": "Se înlocuiesc ponderele cu inversele lor", 
+                "2": "Se adună fiecare ponderă cu o constantă c astfel încât toate muchiile să devină pozitive (TSP nu acceptă muchii negative)",
+                "3": "Se aplică algoritmul pentru TSP pe graful creat",
+                "4": "Soluția problemei este următoarea:"
+                ,"formula": "MaxTSP = - (TSP - c*n)"
+            }
+            , "slider": {
+                "0": "Se pleacă de la graful complet și simetric"
+                , "1": "Se înlocuiesc ponderile cu inversele lor și apoi se alege c îndeajuns de mare ca toate ponderile să devină pozitive. Iau c = 10"
+                , "2": "Se caută ciclul hamiltonian de cost minim"
+                , "3": "Soluția TSP este 27, deci soluția MaxTSP este 13"
+            }
+        },
+        "metric": {
+            "title": "Metric TSP",
+            "header": "\t Problema comis-voiajorului în cazul metric pleacă de la TSP-ul uzual pentru care matricea este simetrică, ponderile sunt nenegative și distanța de la un nod la el însuși este 0 – la acestea adăugându-se necesitatea satisfacerii inegalității triunghiului:"
+            , "formula": "d(i,j) ≤ d(i,k) + d(k,j) ∀ i,j,k ∈ V, i≠j, i≠k, j≠k \n Pentru a se putea respecta inegalitatea triunghiului graful trebuie să fie complet, adică să existe muchie între oricare două noduri."
+            , "connectin-with-christofides": {
+                "text": "\t TSP metric este o variație importantă întrucât se întâlnește des în practică și spre deosebire de cazul general există algoritmi de aproximare cu factor constant care să rezolve problema, cel mai cunoscut fiind algoritmul lui Christofides care va fi discutat în "
+                , "linkText": " Secțiunea Algoritmi de aproximare"
+            }
+            , "euclidian-tsp": {
+                "title": "TSP euclidian"
+                , "text": "\t Un caz special de TSP metric este TSP în forma euclidiană în care distanța dintre două orașe este distanța euclidiană corespunzătoare punctelor în plan. De exemplu, în cazul în care numărul dimensiunilor în spațiul euclidian este doi (echivalent cu faptul că pentru orice punct există coordonatele x și y), formula de a afla distanța dintre orașele X(a, b) și Y(c, d) este: "
+                , "formula": "d(X, Y) = d(Y, X) = √((a - c)^2 + (b - d)^2)"
+            }
+            , "slider": {
+                "0": "Verificare dacă graful aparține unui TSP metric"
+                , "1": "Se observă că graful nu aparține unui TSP metric, nerespectându-se inegalitatea triunghiului: d(1, 3) > d(1, 0) + d(0, 3)"
+            } 
+        }
+    },
+    "exact-algorithms": {
+         "header": "\t Algoritmii exacți sunt algoritmi care, după cum le zice numele, oferă soluții cu certitudine optime. În mod general, aceștia rulează în timp exponențial, dar se poate ajunge la timp polinomial pentru anumite instanțe speciale."
+        , "dynamic-programming": {
+            "title": "Programare dinamică"
+            , "text": "\t Programarea dinamică este una din căile mai rapide de a rezolva TSP comparative cu backtracking care se realizează în timp factorial. Algoritmul care folosește programare dinamică pentru TSP se numește Bellman-Help-Karp și funcționează pentru un n care poate ajunge până la 30. Numărul de orașe este încă mic, dar fiind o problemă NP, este dificil de realizat un algoritm până și pentru numere relativ mici."
+            , "definition": "\t Programarea dinamică presupune rezolvarea problemei folosind subprograme ce returnează soluții parțiale care sunt folosite în mod recursiv cu scopul de a ajunge la soluția întregei probleme. Cu alte cuvinte, o problemă mai mare A este rezolvată folosind rezultatul unei probleme mai mici B (numită subproblemă), deci problema B trebuie să fie știută înainte de a rezolvă problema A - de aici ideea de recursivitate, mergându-se de la mic la mare. Pentru a nu rezolva o problemă mai mică de mai multe ori, se memorează rezultatele parțiale și se reutilizează."
+            ,"analogy-to-tsp": {
+                "subproblem": {
+                    "title": "Cum se stabilește subproblema?"
+                    , "text": "\t Pentru TSP o subproblemă corespunde părții de început a drumului. Se consideră că se pornește parcurgerea din orașul 1 și se ajunge în orașul j după ce au fost vizitate câteva orașe. La fiecare pas, pentru a extinde începutul de drum, este necesar să se cunoască orașul j pentru că se dorește găsirea orașelor care de vizitat după ce s-a trecut prin j. Pentru a ști că se respectă regula TSP de a vizita fiecare oraș o singură dată, trebuie să se cunoască și identitatea nodurilor vizitate în drumul parțial pentru a nu le parcurge din nou, de aceea:"
+                    , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, început de drum)."
+                    
+                } 
+                , "final-step": {
+                    "title": "Ultimul pas"
+                    , "text": "\t Soluția optimă reprezintă întregirea ciclului prin aducerea nodului j înapoi la nodul de start 1. La acest pas se știu toate drumurile din 1 și ajuns în j ∈ {2,…,n}, deci există n-1 candidați la soluția optimă a problemei. Soluția este stabilită prin obținerea sumei minime dintre fiecare drum care se oprește în j și ponderea muchiei (j,1)."
+                    , "formula": "soluția optimă = min ( (drumul cel mai scurt de la 1 la j continând toate nodurile din V) + d(j,1) )"
+                }
+                , "intermediar-step": {
+                    "title": "Pas intermediar - Relațiile de recurentă"
+                    , "text":  "\t Un drum optim P care pornește din 1 și se termină în j și trece prin nodurile din mulțimea S se obține dintr-un drum optim P'⊆ P, P' = P - {j} care începe în 1 și se termină în i și trece prin nodurile din S - {j} adăugând muchia (i, j)."
+                }
+            } 
+            , "recursion": {
+                "title": "Recursivitate"
+                , "header": "\t Pentru o submulțime S ⊆ {1,…,n} care conține 1 și j, fie subproblema M(S,j) = lungimea celui mai scurt drum P de la nodul 1 la j vizitând nodurile din S o singură dată."
+                , "steps": "Recursivitatea prezintă două părți: "
+                , "first-step": {
+                    "step": "cazul de oprire"
+                    , "text": "se referă la subproblemele care se pot rezolva direct. Având în vedere că se lucrează cu mulțimi, ne oprim când în P nu mai există un nod i intermediar astfel încât să se formeze drumul P’. Așadar dacă submulțime S corespunzătoare drumului P este de forma {1,j}, valorile lui M sunt ponderile muchiilor din matricea de distanțe D:"
+                    , "formula": "M(S,j) = d(1,j)"
+                }
+                , "middle-step": {
+                    "step": "relația recursivă"
+                    , "text": "la orice pas intermediar M(S,j), problema se rezumă la stabilirea penultimul nod i∈S astfel încât drumul de la 1 la i notat cu  M(S-{j},i) plus lungimea ultimei muchii d(i, j) este minim:"
+                    , "formula": "M(S,j) = min (i∈S; i≠1,j) (M(S-{j},i)  + d(i,j))"
+                }
+                , "final-step": {
+                    "text1": "\t Legat de "
+                    , "step": "ultimul pas "
+                    , "text2": "se știe nodul unde se dorește să se ajungă și toate cele n-1 posibilități de drumuri:"
+                    , "formula": "M(V,1) = min (j ∈ V-{1}) (M(V,j) + d(j,1))"
+                }
+            }
+            , "complexity": {
+                "theorem": "\t Algoritmul Bellman-Help-Karp are timpul de rulare O(n^2 * 2^n). \nDemonstrație: Chiar dacă se ține evidența tuturor submulțimilor S, nu contează ordinea vizitării nodurilor din S întrucât doar identificarea acestora este importantă pentru a nu parcurge un nod de mai multe ori. Acest aspect face diferența timpului de rulare dintre varianta cu programare dinamică și cea cu forță brută: în cazul în care conta ordinea dintre nodul sursă și nodul destinație se ajungea la n! subprograme pe când acum sunt 2^n posibilități de a alege S. Sunt n posibilități pentru destinația j, nodul care se întoarce în 1, și n variante de a alege nodul i (penultimul din drum), i∈S. Așadar, timpul de rulare rezultat este O(n^2 * 2^n)."   
+            }
+            , "pseudocode": {
+                "pseudocode": "D ← matrice n x n de distanțe între oricare 2 orașe  \n M ← matrice 2^n x n inițializată cu ∞ \n pentru j ← 2, n execută \n \t M({1, j}, j) ← d(1,j) \n pentru s ← 3, n execută \n \t pentru toate submulțimile S ⊆ {1,…,n} cu 1 ∈ S și |S| = s execută \n \t\t pentru orice j ∈ S, j ≠ 1 execută \n \t\t\t M(S,j) ← min (M(S-{j},i) + d(i,j)) pentru i∈S; i≠1,j \n return min (M({1,…,n},j) + d(j,1))"
+                , "explications": {
+                    "text": "\t În implementarea algoritmului, submulțimile S se pot stoca prin scriere în binar a nodurilor ce le compun astfel: bitul egal cu 1 înseamnă că nodul de pe poziția respectivă există în submulțime și 0 că nu există. De exemplu, submulțimii {0,1,2} îi corespunde în binar 0111 care reprezintă numărul 7. Prin urmare, în matricea M S este plasat pe linia 7 a matricei. Verificarea dacă nodul j este inclus în submulțimea S se realizează prin operația de înmulțire bit cu bit (&) între cele două mulțimi (S și mulțimea ce îl conține doar pe j determinată prin șiftarea la stânga a lui j: 1 << j). Pentru j = 2, aceasta înseamnă: 7 & (1 << 2) = 0111 & 0100 = 0100. Rezultatul este diferit de 0, așadar j aparține mulțimii. \n\t Pentru a determina drumul S'= S-{j} se face XOR între S și {j}: S ^ (1 << j) = 0111 ^ 0100 = 0011. Rezultă că S' este 3."
+                }
+            }
+        }
+        , "branch-and-bound": {
+            "title": "Branch and bound"
+            , "text": "\t Metoda Branch and Bound se aplică problemelor care pot fi rezolvate prin backtracking, deci reprezentate printr-un arbore. Comparativ cu backtrackingul, arborele metodei branch and bound este construit dinamic fiind eliminați subarborii care depășesc o limită superioară a soluției optime. Această limită poate fi lungimea primului ciclu găsit care, este sigur mai mare sau egală cu soluția optimă. Deci, în cazul în care o soluție parțială ar depăși-o, nu are rost să se continue drumul respectiv. Astfel nu se parcurge tot arborele, micșorând complexitatea problemei, iar scopul este găsirea acelui vârf rezultat (frunză) care oferă soluția optimă din totalul de vârfuri rezultat. \n\t Nodurile arborelui corespund stărilor posibile în dezvoltarea soluției, stări ce corespund traseului de la rădăcină până la nodul respectiv. Ideea aceasta este întâlnită și la arborele metodei backtracking."
+            , "lim": {
+                "title": "Alegerea limitei superioare"
+                , "name": "lim"
+                , "0": "inițial, neștiind dacă instanța are soluție, este inițializat cu ∞ sau cu o limită teoretică cunoscută"
+                , "1": "reprezintă o aproximație prin adaos a minimului căutat fiind folositoare pentru a elimina din L nodurile cu cost mai mare decât ea, adică nodurile care prin a căror extindere nu se obține soluția optimă. Prin eliminarea unui nod, se elimina tot subarborele pentru care nodul respectiv este rădăcină."
+                , "2": "se actualizează pe parcursul algoritmului, luând valoarea oricărui ciclu  cu valoare mai mică decât a sa"
+                , "3": "la final reprezintă valoarea soluției optime"
+            }
+            , "pseudocode": { 
+                "text": "\t  Fie f(i) limita inferioară pentru ciclul minim corespunzător nodului i, nod_start rădăcina, nodul de început, și drum_optim variabila în care se reține drumul de la rădăcină până la frunză corespunzător soluției minime găsite. \n\t Având în vedere ca parcurgerea merge din nodul curent în fiu, apoi în fiul fiului și așa mai departe, se propune rezolvarea problemei folosind o metoda recursivă și o altă metodă în care se inițializează valorile și se apeleze funcția recursivă."
+                , "pseudocode-recursion": "Pseudocod parcurgere(i, drum) \n distanța_minimă ← ∞ \n nod_următor ← -1 \n dacă f(i) < lim atunci \n\t dacă lista drum conține toate nodurile atunci \n\t\t lim ← f(i) \n\t\t drum_optim ← drum \n\t altfel \n\t\t cât timp i mai are fii j execută \n\t\t\t nod_următor ← nodul j cu f(j) minim \n\t\t\t drum_următor ← drum la care se adaugă nod_următor \n\t\t\t parcurgere(nod_următor, drum)"
+                , "pseudocode-branch-and-bound": "Pseudocod Branch_and_bound \n setează nodul de start \n lim ← ∞ \n drum_optim ← lista vidă \n parcurgere(nod_start) \n dacă lim = ∞ atunci \n\t scrie 'Nu există soluție'\n altfel \n returnează lim, drum_optim"
+                , "explications": {
+                    "text": "\t Codul include optimizarări la nivel de cod pentru a oferi un timp mai scurt de rulare, precum: folosirea unui cozi de priorități folosind heapq în loc de queue. PriorityQueue pentru a reține limitele interioare f întrucât cea dintâi este mai lentă atunci când are de-a face cu un număr mare de date. În adaos, distanțele dintre orașe sunt reținute într-o matrice din clasa numpy pentru a eficientiza operațiile pe matrice (căutarea minimului, scăderea pe linie/coloana a acestuia, copierea). Rapiditate este oferită și de folosirea funcției copy din numpy în loc de deepcopy din copy."
+                }
+            }
+            , "strategy": {
+                "title": "Strategie folosită pentru a ajunge la o frunză"
+                , "steps": {
+                    "0": "pentru nodul curent se generează toți fiii și li se calculeze costul"
+                    , "1": "nodul ales ca nod următor este cel cu costul minim (asemănarea cu BFS)"
+                    , "2": "la următorul pas din nou se generează toții fii, iar alegerea noului nod se face din fii direcți ai nodului curent"
+                    , "3": "se repetă până se ajunge la o frunză"
+                    , "4": "când se ajunge la o frunză j care are ca tată pe i, se face un pas în spate în i și se alege ca nod curent fiul nevizitat al lui i cu costul minim. Se repetă algoritmul de la primul pas"
+                }
+                , "text": "\t Strategia prezentată generează n * (n - 1) / 2 fii pentru a ajunge la o frunză."
+                , "benefits" : {
+                    "text": "Avantaje ale acestei strategii în cazul problemelor întâlnite pentru TSP euclidian (unde graful este complet): "
+                    , "0": "face mai puțini pași (generări de fii) decât ar face BFS"
+                    , "1": "oferă o limită superioară mai bună ca în cazul în care s-ar folosi DFS"
+                }
+            }
+            , "construction": {
+                "text": "\tPartea nediscutată este legată de calculul funcției f(i) astfel încât să reprezinte limita inferioară a unui ciclu. Există mai multe modalități de a defini funcția, cea mai cunoscută bazându-se pe reducerea matricei de distanțe astfel pornind de la următoarea observație. Dacă se micșorează toate elementele de pe o linie i sau coloană j din D cu o valoare α, orice ciclu hamiltonian va avea costul micșorat cu α pentru că se intră o singură dată în nodul j și se pleacă o singură dată din nodul i. Se menționează ca distanța de la un nod la el însuși nu mai este 0, ci infinit pentru a putea exista un α diferit de 0. \n\t Așadar apare noțiunea de matrice de distanțe redusă, matricea obținută prin micșorări repetate până când pe orice linie și coloană apare cel puțin un 0, excepție făcând cazul în care linia/coloana conține numai ∞. \n\t Revenind la limita inferioară f, f(nod_start) reprezintă valoarea cu care se reduce matricea inițială D. Unui nod oarecare j îi este asociată matricea de distanțe redusă anterior de părintele său. Presupunând că j îl are ca tată pe i, se reduce Dj astfel:"
+                , "steps": {
+                    "0": "Elementelei liniei i devin ∞ (numai o singură dată se iese din i)"
+                    , "1": "Elementele coloanei j devin ∞ (numai o singură dată se intră în j)"
+                    , "2": "Dj(j,nod_start) = ∞ pentru a împiedica închiderea circuitului înainte de a parcurge toate nodurile"
+                    , "3": "Fie α cantitatea cu care s-a redus matricea Dj, atunci:"
+                    , "3-formula": "f(j) = f(i) + Di(i,j) + α"
+                }
+                , "solution": {
+                     "text": "\t Soluția problemei este:"
+                    , "formula": " min {f(i) unde i este frunză}"
+               } 
+            }
+            , "complexity": {
+                "text": "\t La bază, metoda este asemănătoare cu varianta care folosește backtracking, prin urmare, în worse case, ajunge să parcurgă toți subarborii, deci să necesite timp exponențial. Însă, în caz favorabil, timpul de rulare este diminuat de reducerea repetată a matricei de distanță, aceasta ajutând la prezicerea drumului optim, și de eliminare a subarborilor care întrec aproximația soluției optime."
+            }
+            , "image-text": {
+                "image-1-text-1": "Arbore asociat grafului prezentat în"
+                ,"image-1-text-2": "subsecțiunea TSP asimentric"
+                , "image-2-text-1": "Arbore rezultat asociat grafului dupa ce s-a aplicat strategia propusă"
+            }
+        }
+    }
+    , "approximations-algorithms": {
+        "header": "\t Algoritmi aproximativi sunt acei algoritmi pentru care se dorește returnarea unui rezultat, pentru orice instanță, într-un anumit relativ timp scurt. Aceștia se numesc algoritmi aproximativi, necesitatea găsirii soluției optime fiind relaxată, fiind acceptabile soluții ”destul de bune”, apropiate de cea optimă, cu un factor de aproximare garantat. "
+        , "definition-alpha-factor": "\t Pentru o problemă de optimizare, un algoritm 𝛼-aproximativ este un algoritm polinomial care pentru toate instanțele problemei produc o soluție ALG a cărei valoare este într-un factor de 𝛼 față de valoarea soluției optime OPT (ALG ≤ 𝛼 OPT pentru o problemă de minimizare și ALG ≥ 𝛼 OPT pentru o problemă de maximizare). Pentru un algoritm 𝛼-aproximativ, 𝛼 reprezintă factorul de aproximare al algoritmului."
+        ,"approximation-factor": {
+
+        }
+        , "double-tree-algorithm": {
+            "title": "Algoritmul arborelui dublat (Double tree algorithm)"
+            , "header": "\t Algoritmul arborelui dublat este un algoritm aproximativ care rezolvă TSP metric a cărui nume provine din faptul că pentru rezolvarea problemei sunt dublate muchiile arborelui de cost minim pentru a se putea crea un ciclu eulerian și mai apoi ciclul hamiltonian. "
+            , "eulerian": {
+                "0": "Ciclul și graful eulerian:"
+                ,"1": "Un ciclu eulerian presupune parcurgerea tuturor muchiilor o singură dată fiind permisă repetarea nodurilor."
+                ,"2": "Un graf se numește eulerian dacă are un ciclu eulerian."
+                ,"3": "Un graf neorientat fără noduri izolate are un ciclu eulerian dacă și numai dacă este conex și are toate nodurile de grad par."
+                
+            }, "theorem-subset-hamiltonian-cycle": "\t Fie submulțimea 𝑆 ⊆ 𝑉. Un ciclul hamiltonian de cost minim 𝐶𝑆 din subgraful indus de nodurile lui 𝑆 respectă proprietatea 𝑙(𝐶𝑆) ≤ 𝑂𝑃𝑇. \nDemonstrație: Fie 𝑆 = 𝑉–{𝑘}. Un ciclu hamiltonian în graful indus de S se poate obține dintr-un ciclu hamiltonian al lui G prin scurtcircuitate așa cum este vizibil în Figura 3.1. Respectându-se inegalitatea triunghiului, muchia (i,j) este cel mult egală cu suma celor două muchii care nu fac parte din ciclu scurtcircuit. De aici rezultă că 𝑙(𝐶𝑆) ≤𝑂𝑃𝑇."
+            , "steps": {
+                "header": "Pași algoritm"
+                , "prim": "Primul pas al rezolvării problemei TSP este determinarea arborelui de acoperire de cost minim (MST, minimum-cost spanning tree) T. Acesta poate fi aflat, de exemplu, cu algoritmul lui Prim sau Kruskal."
+                , "prim-approximation-theorem": "\t Valoarea arborelui de acoperire de cost minim este cel mult valoarea ciclului TSP, adică l(T) ≤ OPT. \n Demonstrație: Dacă din ciclul hamiltonian OPT se elimină o muchie se obține un arbore parțial care are costul mai mare sau egal cu l(T)."
+                , "dfs": {
+                    "text": "Pentru a parcurge toate muchiile din arborele de acoperire dublat în căutarea unui ciclu eulerian, se propune următoarea strategie cunoscută sub numele de parcurgerea în adâncime (DFS, depth-first search): "
+                    , "1": "Se ia un nod i din arbore"
+                    , "2": {
+                        "1": "Dacă există o muchie de forma (i,j) nevizitată, se merge pe acea muchie, iar i := j. Se repetă pasul 2."
+                        , "2": "Dacă toate muchiile care pornesc din i sunt vizitate, se dorește să se facă un pas în spate. Dacă i este nodul ales pasul 1, i nu are unde să se întoarcă, deci stop; altfel i := k unde k este nodul în care se întoarce și se repetă pasul 2."
+                    }   
+                }
+                , "shortcuts": "Se folosește tehnica scurtăturilor (shortcutting) prin care din parcurgerea determinată anterior (în care muchiile se repetă de două ori), se păstrează doar prima apariție a fiecărui nod, adică se sare peste nodurile deja vizitate"
+                , "approximation": "\t Algoritmul arborelui dublat pentru problema comis voiajorului în cazul metric este 2-aproximativ. \nDemonstrație: Notăm cu OPT soluția grafului G pentru problema TSP. Având în vedere că se respectă inegalitatea triunghiului, muchiile obținute prin folosirea scurtăturilor sunt sigur mai mici sau egale cu cele peste care s-a sărit. Așadar nu se va mări niciodată distanța totală a turului. Fiind T' arborele obținut în urma tehnicii de shortcut-uri, avem că l(T') ≤ 2 l(T) ≤ 2 OPT. Pentru că l(T') ≤ 2 OPT, acest algoritm este 2-aproximativ"
+            }
+            , "algorithm": {
+                "prim": {
+                    "title": "Prim"
+                    , "0": "se ține evidența nodurilor ce fac parte din arbore pentru a nu adăuga de două ori același nod în arbore într-un vector numit vizitat"
+                    , "1": "se ține evidența distanței minime de la fiecare nod nevizitat (care nu face parte din arbore) la arbore (nodurile care deja fac parte din arbore) într-un vector numit distanța."
+                    , "2": "se folosește o coadă de priorități pentru stocarea datelor sub formă de triplete [distanță minimă, nod, tata]: pentru fiecare nod nevizitat (vizitat[nod] == 0) se întroduce un triplet în coadă dacă d[nod] se actualizează"
+                    , "3": "la fiecare pas se scoate din coadă nodul cu distanța minimă se reține muchia într-o listă de adiacentă și se recalculează distanțele de la noul nou întrodus în arbore la nodurile nevizitate cu scopul de a găsi distanțe mai mici"
+                    , "pseudocode": "distanța ← vector de lungime n inițializat cu ∞ \n arbore ← listă de n liste ce reprezintă lista de adiacență \n vizitat ← vector de lungime n inițializat cu 0 \n distanța[nod_start]  ← 0 \n h ← [[0, nod_start, -1]]     // rădăcina nu are ascendent \n pentru pași ← 1, n execută \n\t nod, tata  ← nodul nevizitat cu distanța minină din h, respectiv tatăl acestui nod \n\t adaugă la lista arbore[nod] nodul tata \n\t adaugă la lista arbore[tata] nodul nod \n\t vizitat[nod] ← 1 \n\t pentru vecin ← 0, n - 1 execută \n\t\t dacă d(nod, vecin) ≠ ∞ și vizitat[vecin] = 0 și distanța[vecin] > d(nod, vecin) atunci \n\t\t\t distanța[vecin] ← d(nod, vecin) \n\t\t\t adaugă la h tripletul [distanța(vecin), vecin, nod] \n returnează arbore"
+                }
+                , "dfs": {
+                    "title": "DFS care nu reține nodurile deja vizitate pentru a sări peste pasul cu shortcutting"
+                    , "pseudocode": "Pseudocod Ciclu_hamiltonian(arbore) \n se alege random un nod de start și se notează cu k \n vizitat ← vector de lungime n inițializat cu 0 \n ciclu ← listă inițial vidă în care se va reține ciclul hamiltonian \n Parcurgere(k, arbore) \n adaugă la ciclu nodul k      // muchia de întoarcere \n\n Pseudocod Parcurgere(i, arbore) \n vizitat[i] ← 1 \n adaugă pe i la ciclu \n pentru fiecare j din lista arbore[i] adică fiecare j vecin al lui i execută \n\t dacă vizitat[j] = 0 atunci \n\t Parcurgere(j, arbore)"
+                }
+                , "value-solution": {
+                    "title": "Determinarea soluției știind ciclul hamiltonian"
+                    , "pseudocode": "Pseudocod Valoare_ciclu(ciclu) \n soluție ← 0 \n pentru fiecare două noduri x și y alăturate în ciclu execută \n\t soluție ← soluție + d(x, y) \n returnează soluție"
+                }
+                , "bind": "\t Având toate datele necesare, este nevoie să se apeleze inițial funcția Prim(nod_start) pentru a determina arborele parțial de cost minim prin vectorul de tată, apoi Ciclu_hamiltonian care primește ca parametru arborele determinat. Aceasta calculează ciclul prin apelarea funcției recursive Parcurgere. La final este nevoie de funcția Valoare_ciclu(ciclu) pentru a determina valoarea ciclului primit ca parametru care este determinat în metoda anterioară."
+            }
+            , "complexity": {
+                "theorem": "\t Algoritmul arborelui dublu are complexitatea O(n + m log n)."
+                , "functions-complexity": {
+                    "0": "Prim: O(m log n) pentru că folosește coada de priorități; per total sunt m inserări și maxim m extrageri în coadă, iar o inserare/extragere ia O(log n)"
+                    , "1": "DFS: O(n + m); dar cum suntem într-un arbore, m = n - 1, deci complexitatea este O(n)"
+                    , "2": "Determinarea soluției: O(n)"
+                }
+            }
+        }
+        
+        , "christofides-algorithm": {
+            "title": "Algoritmul lui Christofides"
+            , "header": "\t Algoritmul lui Christofides este 3/2 - aproximativ și este aplicabil pe cazul în care TSP este metric, fiind algoritmul de aproximare cu cel mai mic factor de aproximare în momentul de față. Chiar dacă  pare o aproximare mare, 3/2 este pentru cazul cel mai nefavorabil și în practică (în medie) algoritmul poate dă rezultate mai bune."
+           
+            , "steps-christofides": {
+                "header": "Îmbunătățire lui Chistofides:"
+                , "prim": "Se pornește cu crearea arborelui de acoperire de cost minim"
+                , "odd-nodes": "Fiind un arbore, este sigur ca are noduri impare (cel puțin pentru că are frunze), dar suma tuturor gradelor nodurilor rămâne un număr par. Din această afirmație, se ajunge la concluzia că există în arbore un număr par de noduri de cardinal impar. Se determină aceste noduri"
+                , "matching": "Determinarea potrivirii perfercte de cost minim (minimum perfect matching) aplicând algoritmul de determinare a unui cuplajul perfect: alegerea unor muchii care să lipească nodurile de grad impar două câte două. Muchiile alese de acest algoritm aplicat peste mulțimea O se notează cu M."
+                , "adding-nodes": "Adăugarea noilor muchii ale potrivirii optime la arbore"
+                , "determine-cycle": "Se determină ciclul eulerian (trecerea prin toate muchiile) - nu se mai poate folosi DFS pentru ca muchiile nu mai sunt dublate"
+                , "shortcuts": "Se aplică tehnica de utilizare a scurtăturilor "
+                , "approximation": "\t Graful eulerian obținut are distanța total l(T) + l(M), iar după ce se aplică tehnica de shortcut-uri ciclul hamiltonian rezultat nu va depăși l(T) + l(M) ≤ 3/2 OPT"
+                , "christofides-approximation-theorem": {
+                    "0": "\t Algoritmul lui Christofides are factorul de aproximare de 3/2. \nDemonstrație: Lungimea ciclului determinat de algoritmul lui Christofides nu depășeste l(T) + l(M) unde T este arborele de cost minim pentru care l(T) ≤ OPT și M este mulțimea muchiilor alese de algoritmul de matching.  Acum ne axăm atenția pe l(M). \n\t Fie H un ciclu optimal care conține nodurile din O. La trecerea prin H, se colorează pe rând o muchie cu roșu și se adaugă în H1, apoi următoarea cu albastru și se adaugă în H2. H1  și H2 sunt potriviri perfecte. M este potrivirea perfectă de cost minim, așadar:"
+                    , "1": "l(M) ≤ l(H1) \n l(M) ≤ l(H2) \n l(H1) + l(H2) = l(H) \n => 2 l(M) ≤ l(H) (a) \n H ⊂ G => l(H) ≤ OPT (b) \n din (a) și (b) => 2l(M) ≤ OPT, deci l(M) ≤ 1/2 OPT \n  l(T) + l (M) ≤ 3/2 OPT, algoritmul lui Christofides este 3/2 aproximativ."
+                }
+            }
+            , "algorithm": {
+                "prim": {
+                    "title": "Prim"
+                    , "text": "\t La fel ca la algoritmul arborelui dublu cu singura diferență că atunci când se introduce muchia în arbore, se incrementează și de câte ori s-a introdus muchia pentru a reține astfel gradul nodurilor"
+                } 
+                , "odd-nodes": {
+                    "title": "Determinarea nodurilor de grad impar"
+                    , "text": "\t Având la dispoziție rezultatul funcției Prim, se creează o listă în care se inserează nodurile care au fost notate cu grad impar în vector"
+                }
+                , "matching": {
+                    "title": "Determinarea cuplajului perfect"
+                    , "version-greedy": {
+                        "title": "Cuplajul perfect pe nodurile din O, determinând mulțimea M de muchii folosind strategia greedy"
+                        , "steps": "\t Strategia greedy este simplistă. Se extrage un nod u din lista de noduri de grad impar și se verifică care este cel mai apropiat nod j cu care se poate cupla dintre nodurile necuplate din listă. Acest nod j se setează ca pereche a nodului u (pereche_u). Se repetă modul de alegere până când nu mai există noduri de grad impar." 
+                        , "approximation": "\t Factorul de aproximare 3/2 este legat de folosirea cuplajului perfect de cost minim, așadar înlocuind acea metodă cu un cuplaj ce se bazează pe o alegere greedy, nu mai poate fi garantat factorul de aproximare. Totuși, pentru a oferi un cuplaj de pondere cât mai mică, se repetă de un număr mai mare de ori algoritmul greedy, la final păstrându-se varianta pentru care cuplajul are lungimea cea mai mică."
+                       , "pseudocode": "Parametri de intrare: arbore noduri_grad_impar obținute cu algoritmul lui Prim, numărul de repetări stabilit \n copie ← copie a  vectorului de noduri de grad impar \n soluție_minimă ← ∞ \n muchii ← listă vidă \n muchii_alese ← listă vidă \n pentru i ← 0, repetări - 1 execută \n\t potrivire ←  Fals \n\t cât timp potrivire = Fals execută \n\t\t potrivire ← Adevărat \n\t\t se amestecă nodurile din noduri_grad_impar \n\t\t soluție ← 0 \n\t\t cât timp există noduri în noduri_grad_impar execută \n\t\t\t u ← extrage un nod din noduri_grad_impar \n\t\t\t lungime_minimă ← ∞ \n\t\t\t pentru fiecare nod v rămas noduri_grad_impar execută \n\t\t\t\t dacă u ≠ v și d(u, v) < lungime_minimă și u și v nu erau deja vecini în arbore atunci \n\t\t\t\t\t lungime_minimă ← d(u, v) \n\t\t\t\t\t pereche_u ← v \n\t\t\t\t\t dacă s-a găsit o pereche lui u atunci \n\t\t\t\t\t\t adaugă muchia (u, pereche_u) la lista muchii\n\t\t\t\t\t\t soluție ← soluție + lungime_minimă \n\t\t\t\t\t\t se scoate și nodul pereche_u din lista noduri_grad_impar \n\t\t\t\t\t altfel \n\t\t\t\t\t\t potrivire ← Fals    // ultimele noduri sunt deja vecine în arbore, nu se pot împerechia din nou \n\t dacă soluție < soluție_minimă atunci \n\t\t soluție_minimă ← soluție \n\t\t muchii_alese ← muchii \n returnează muchii_alese"
+                        , "explications": "\t Pentru a nu se determina la fiecare repetarea a metodei același cuplaj, lista nodurilor de grad impar se amestecă (linia 9 din pseudocod) adică se dorește schimbarea poziției nodurilor la fiecare încercare de a determina cuplajul perfect minim. \n\t Chiar dacă există un număr par de noduri peste care se dorește realizarea unui cuplaj perfect, pot exista noduri pentru care cuplarea este imposibilă deoarece acele noduri sunt deja legate printr-o muchie în arborele parțial de cost minim. Se observă în pseudocod o variabilă 'cuplaj' care este de tip boolean. Se pornește de la presupunerea că se poate crea un cuplaj perfect (variabila 'cuplaj' ia valoarea True) și se ține evidența dacă cuplajul determinat este perfect sau nu. Dacă nu se poate găsi printre nodurile necuplate o pereche pentru nodul curent, 'cuplaj' devine False. Nu se acceptă mulțimea de muchii găsite și se pornește din nou de la capăt căutarea, instrucțiune realizată în prima structura repetitivă 'cât timp...execută'. Dacă în schimb cuplajul este perfect se iese din structura repetitivă și se verifică dacă suma muchiilor cuplajului determinat este minimă. Această metodă se repetă de repetări ori după care se returnează lista de muchii (muchii_alese) pentru care suma muchiilor a fost minimă."
+                    }
+                    , "version-min-perfect-matching": {
+                        "title": "Varianta care determină muchiile potrivirii prin algoritmul de minim-cost perfect matching (factorul de aproximare este 3/2)"
+                        , "description": "\t Metoda care creează cuplajul perfect de cost minim este una complexă ce se bazează pe algoritmul Blossom a lui Karp. Pentru a determina muchiile cuplajului perfect de cost minim există funcție predefinită max_weight_matching din biblioteca NetworkX care dându-i-se distanțele negate dintre nodurile de grad impar, returnează o mulțime de perechi de noduri."
+                        ,"reference": "Pentru mai multe detalii se recomandă accesarea cărții"
+                        , "book": "Combinatorial optimization scrisă de Korte și Vygen"
+                    }
+                }
+                , "add-edges": {
+                    "title": "Adăugare muchii la arbore"
+                    , "pseudocode": "pentru fiecare muchie de forma (u, v) din matching execută \n\t adaugă pe v la lista arbore[u] \n\t adaugă pe u la lista arbore[v] "
+                }
+                , "hamiltonian-cycle": {
+                    "title": "Determinarea ciclului hamiltonian"
+                    , "steps-eulerian-cycle": {
+                        "header": "Sunt propuși următorii pași pentru a rezolva algoritmul lui Hierholzer (problemă ce rezolvă problema determinării unui ciclu eulerian):"
+                        , "0": "Se alege în mod aleator un nod de start u și se introduce ca prim nod la drum."
+                        , "1": "Se adaugă noduri la drum mergând mereu doar pe muchii nevizitate până se întâlnește un nod din care nu se mai poate pleca."
+                        , "2": "Se merge de la final spre început și se elimină din coadă noduri care se inserează într-o variabilă separată notată ciclu până când se ajunge într-un nod care mai are muchii adiacente nevizitate. Se repetă ultimii 2 pași până când nu se mai găsesc noduri nevizitate și toate nodurile sunt mutate în ciclu, creându-se astfel ciclul care conține toate muchiile."
+                    }
+                    , "add-hamiltonian-step": "\t Ciclu hamiltonian înseamnă că din ciclul eulerian se elimină nodurile când se întâlnesc din nou în ciclu. Dacă la ultimul pas s-ar verifica dacă nodul este deja în variabila ciclu și s-ar insera nodul doar dacă nu a mai fost întâlnit, înseamnă că se creează ciclul hamiltonain în loc de cel eulerian (ceea ce ne si dorim)."
+                    ,  "pseudocode": "fie k nodul de start \n drum ← [k] \n ciclu ← [] \n vizitat ← listă de lungime n inițializată cu 0 pe fiecare poziție \n cât timp există noduri în drum execută \n\t nod_curent ← ultimul nod din drum \n\t dacă nod_curent nu are muchii neparcurse incidente atunci \n\t\t dacă vizitat[nod_curent] = 0 atunci \n\t\t\t adaugă nod_curent la ciclu \n\t\t\t vizitat[nod_curent] ← 1 \n\t\t dacă drum are un singur element atunci \n\t\t\t adaugă nod_curent la ciclu \n\t\t scoate nod_curent din drum \n\t altfel \n\t\t vecin ← vecin al lui nod_curent între care muchia este nevizitată \n\t\t inserează vecin în drum \n returnează ciclu"
+
+                }
+                , "value-solution": {
+                    "title": "Determinarea soluției știind ciclul hamiltonian"
+                    , "text": "La fel ca la algoritmul arborelui dublu" 
+                }
+            }
+            , "recommand-yt": "Pentru o bună înțelegere a modului de gândire și a pașilor prezentați, se recomandă vizualizarea următorului curs: "
+        }
+    }
+    , "heuristic-algorithms": {
+        "header": "\t Algoritmii euristici de tio greedy sunt algoritmi buni ca performanță chiar dacă nu asigură corectitudinea soluției găsite și și nu garantează neapărat un anumit factor de aproximare constant și nu garantează neapărat un anumit factor de aproximare constant."
+        , "build-cycle": {
+            "title": "Construirea ciclului hamiltonian"
+            , "header" : "\t Sunt prezentați mai mulți algoritmi de determinare a unui ciclu hamiltonian de cost cât mai mic. Acești algoritmi de tip greedy construiesc un ciclu hamiltonian prin adăugarea treptată a câte un nod la drumul curent construit, strategia de alegere fiind sugerată de numele algoritmului."
+            , "farthest-insertion": {
+                "title": "Farthest Insertion - Algoritmul de inserție a celui mai îndepărtat nod"
+                , "header": "\t Algoritmul de inserție a celui mai îndepărtat nod (farthest insertion) este  un algoritm de tip greedy în care se caută, pentru a extinde ciclul construit până la pasul curent, cel mai îndepărtat nod j față de orice nod i din drum. Acesta se inserează în drum pe poziția care avantajează lungimea drumului, evitându-se astfel adăugarea unor muchii de lungime mare la drum. Matricea este completă și simetrică."
+                , "worst-case": {
+                    "title": "\tCazul cel mai nefavorabil"
+                    , "text": "\t Algoritmul este 2 ln(n) + 0.16 aproximativ, așadar chiar și în cel mai rău caz:"
+                    , "formula": "(soluția FARTHEST) / OPT ≤ 2 ln(n) + 0.16"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Pași algoritm"
+                        , "1": "Se începe cu un nodul de start ales în mod aleator."
+                        , "2": "Dintre toate nodurile nevizitate, se alege acela a cărui distanță minimă față de nodurile din ciclu este maximă comparativ cu distanța celorlalte noduri nevizitate. Fie ciclul curent de forma (i1,i2,…,i(k-1),ik,i1) și distanța(j) = min {d(i1, j), d(i2, j), …, d(ik, j)},"
+                        , "2-formula": "se alege j cu distanța(j) maximă."
+                        , "3": "Se inserează în ciclu nodul j pe poziția q în care ar crește cel mai puțin lungimea drumului, adică "
+                        , "3-formula": "poziția q care are valoarea d(iq, j) + d(j, i(q+1)) - d(iq, i(q+1)) minimă."
+                        , "4": "Dacă ciclul nu conține toate nodurile, se sare la pasul 2, alftel stop."
+                    }
+                    , "pseudocode": "se alege un nod random notat nod_start \n soluție ← 0 \n ciclu ← [nod_start]  // listă în care se formează ciclul de distanță minimă; de reținut ca între nodurile indexate pe poziții consecutive se află muchie \n h ← listă de lungime n în care se rețin distanțele de la nodurile care mi fac parte din ciclu la ciclu \n pentru i ← 0, n - 1 execută \n\t dacă i != nod_start atunci \n\t h[i] ← d(nod_start, i) \n cât timp ciclul nu are încă n noduri execută \n\t reține în k nodul atribuit valorii maxime din h știind că se iau în calcul doar nodurile nevizitate \n\t dacă ciclul este format dintr-un singur nod atunci \n\t\t introdu în ciclu nodul k \n\t\t marchează k ca vizitat \n\t\t soluție ← 2 * h[k] \n\t altfel \n\t\t creștere_minimă ← ∞ \n\t\t m ← dimensiune ciclu \n\t\t pentru fiecare muchie (ciclu[i],  ciclu[(i+1) % m]) din ciclu execută \n\t\t\t a ← ciclu[i] \n\t\t\t b ← ciclu[(i+1) % m]) \n\t\t\t creștere ← d(a, k) + d(k, b) – d(a, b) \n\t\t\t dacă creștere_minimă > creștere atunci \n\t\t\t\t creștere_minimă ← creștere \n\t\t\t\t poziție_inserare ← i \n\t\t introdu în ciclu nodul k pe poziția poziție_inserare + 1 \n\t\t marchează k ca vizitat \n\t\t soluție ← soluție + creștere_minimă \n\t pentru i ← 0, n - 1 execută \n\t\t dacă i nu este vizitat și d(i, k) < h[i] atunci \n\t\t\t h[i] ← d(i, k) \n returnează soluție și ciclu"
+                    , "explications": {
+                        "text": "\t La început se generează nodul de start nod_start și se inițializează h cu distanțele de la nod_start la orice alt nod din graf. La fiecare pas, valoarea soluției și ciclul se actualizează, primind încă un nod, nod ce corespunde celui mai îndepărtat nod de ciclu. După ce se determină nodul de introdus notat cu k, trebuie să se decidă poziția optimă, adică aceea care să crească valoarea soluției cel mai puțin. După actualizări, se necesită și modificarea listei h, pentru a o aduce la starea curentă a ciclului, verificând dacă, prin introducerea nodului k, distanța de la nodurile nevizitate la ciclu se poate micșora. \n\t Algoritmul se încheie când ciclul creat conține toate nodurile." 
+                    }
+                    , "vizualization": "\t Pașii de rulare ai algoritmului pe graf"
+                }
+                , "complexity": {
+                    "theorem": "\t Algoritmul de inserție a celui mai îndepărtat nod rulează în O(n^2). \n Demonstrație: Structura repetitivă ce verifică dacă ciclul conține toate nodurile execută n pași și în interiorul ei luarea informației din lista h și introducerea unor alte valori costă O(n), structura repetitivă în care se determină poziția potrivită pentru inserarea nodului se execută în maxim O(n) și introducerea nodului în ciclu tot O(n). \n\t Așadar, per total, interiorul stucturii se realizează în O(n) și împreună cu cele n repetări, rezultă complexitatea dorită O(n^2)."   
+                }    
+            } 
+            , "nearest-insertion": {
+                "title": "Nearest Insertion - Algoritmul de inserție a celui mai apropiat nod"
+                , "header": "\t Algoritmul de inserție a celui mai apropiat nod (nearest insertion algorithm) este un algoritm de tip greedy care are ca scop determinarea unui ciclu hamiltonian de lungime minimă. Ciclul hamiltonian se construiește treptat pornind de la un singur nod, iar la fiecare pas dintre toate nodurile nevizitate se adaugă acela care este cel mai apropiat ca distanță față de orice nod din ciclu, acesta fiind apoi introdus în ciclu pe poziția care aduce cea mai mică creștere a lungimii ciclului."
+                , "worst-case": {
+                    "title": "\tCazul cel mai nefavorabil"
+                    , "text": "\t Algoritmul este 2 aproximativ, așadar chiar și în cel mai rău caz:"
+                    , "formula": "(soluția NEAREST) / OPT ≤ 2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Pași algoritm"
+                        , "1": "Se începe cu un nodul de start ales în mod aleator."
+                        , "2": "Dintre toate nodurile nevizitate, se alege acela a cărui distanță minimă față de nodurile din ciclul este minimă comparativ cu distanța celorlalte noduri nevizitate. Fie ciclul curent de forma (i1 ,i2, …, i(k-1), ik, i1) și distanța(j) = min {d(i1,j), d(i2,j), …, d(ik,j)}, "
+                        , "2-formula": "se alege j cu distanța(j) minimă."
+                        , "3": "Se inserează în ciclu nodul j pe poziția q în care ar crește cel mai puțin lungimea drumului, adică "
+                        , "3-formula": "poziția q care are valoarea d(iq,j) + d(j,i(q+1)) - d(iq,i(q+1)) minimă."
+                        , "4": "Dacă ciclul nu conține toate nodurile, se sare la pasul 2, alftel stop."
+                    }
+                    , "pseudocode": "se alege un nod random notat nod_start \n soluție ← 0 \n ciclu ← [nod_start]  // listă în care se formează ciclul de distanță minimă, inițializată cu nodul de start; de reținut ca între nodurile indexate pe poziții consecutive se află muchie \n h ← listă de lungime n în care se rețin distanțele de la nodurile care mi fac parte din ciclu la ciclu \n pentru i ← 0, n - 1 execută \n\t dacă i != nod_start atunci \n\t h[i] ← d(nod_start, i) \n cât timp ciclul nu are încă n noduri execută \n\t reține în k nodul atribuit valorii minime din h știind că se iau în calcul doar nodurile nevizitate \n\t dacă ciclul este format dintr-un singur nod atunci \n\t\t introdu în ciclu nodul k \n\t\t marchează k ca vizitat \n\t\t soluție ← 2 * h[k] \n\t altfel \n\t\t creștere_minimă ← ∞ \n\t\t m ← dimensiune ciclu \n\t\t pentru fiecare muchie (ciclu[i],  ciclu[(i+1) % m]) din ciclu execută \n\t\t\t a ← ciclu[i] \n\t\t\t b ← ciclu[(i+1) % m]) \n\t\t\t creștere ← d(a, k) + d(k, b) – d(a, b) \n\t\t\t dacă creștere_minimă > creștere atunci \n\t\t\t\t creștere_minimă ← creștere \n\t\t\t\t poziție_inserare ← i \n\t\t introdu în ciclu nodul k pe poziția poziție_inserare + 1 \n\t\t marchează k ca vizitat \n\t\t soluție ← soluție + creștere_minimă \n\t pentru i ← 0, n - 1 execută \n\t\t dacă i nu este vizitat și d(i, k) < h[i] atunci \n\t\t\t h[i] ← d(i, k) \n returnează soluție și ciclu"
+                    , "explications": {
+                        "text": "\t După cum se observă, seamană cu algoritmul de inserție a celui mai îndepărtat nod, diferența fiind modul de selectare a noului nod care va fi introdus în ciclu. Prin urmare, și pseudocodul este același în afară de o comandă ce atribuia variabilei k nodul ce are distanța maximă din h luând în calcul doar nodurile nevizitate, acum k ia valoarea nodului cu distanța minimă." 
+                    }
+                    , "vizualization": "\t Pașii de rulare ai algoritmului pe graf"
+                }  
+                , "complexity": {
+                    "theorem": "\t Algoritmul de inserție a celui mai apropiat nod are complexitatea în O(n^2). \n Demonstrație: În afară de modificarea specificată, algoritmul funcționează la fel, prin urmare și acesta se încadrează în O(n^2)."  
+                } 
+            }
+            , "cheapest-insertion": {
+                "title": "Cheapest Insertion - Algoritmul de inserție cu cel mai mic cost"
+                , "header" : "\t Algoritmul de inserție cu cel mai mic cost (cheapest insertion algorithm) este un algoritm greedy care are ca scop determinarea unui ciclu hamiltonian de cost cât mai mic. La fiecare pas, se introduce la ciclul curent nodul ce aduce distanței ciclului cea mai mică creștere, introducându-se nodul pe poziția care îl avantajează."
+                , "worst-case": {
+                    "title": "\tCazul cel mai nefavorabil"
+                    , "text": "\t Algoritmul este 2 aproximativ, așadar chiar și în cel mai rău caz:"
+                    , "formula": "(soluția CHEAPEST) / OPT ≤ 2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Pași algoritm"
+                        , "1": "Se începe cu un nodul de start ales în mod aleator."
+                        , "2": "Dintre toate nodurile nevizitate, se alege acela care aduce cea mai mică creștere a lungimii ciclului dacă este introdus între două noduri deja aflate în ciclu. Fie ciclul curent de forma (i1, i2, …, i(k-1), ik, i1) și"
+                        , "2-formula": "se alege j cu d(ip,j) + d(j,iq) - d(ip,iq) minimă, unde ip și iq sunt noduri consecutive."
+                        , "3": "Se inserează în ciclu nodul j"
+                        , "3-formula": "între nodurile pentru care distanța adaugată este minimă."
+                        , "4": "Dacă ciclul nu conține toate nodurile, se sare la pasul 2, alftel stop."
+                    }
+                    , "pseudocode": "se alege un nod random notat nod_start \n ciclu ← [nod_start]  // listă în care se formează ciclul de distanță minimă, inițializată cu nodul de start; de reținut că între nodurile alăturate se află muchie \n h ← listă în care se rețin triplete de forma [creștere, poziție din stânga locului în care ar fi adăugat nodul k, k] \n determină cel mai apropiat nod de nod_start și se notează cu k \n introdu în ciclu nodul k \n soluție ← 2 * d(nod_start, k) \n pentru i ← 0, n - 1 execută \n\t dacă i != ciclu[0] și i != ciclu[1]: \n\t\t creștere ← d(ciclu[0], j) + d(j, ciclu[1]) - d(ciclu[0], ciclu[1]) \n\t\t adaugă la h tripletul [creștere, 0, i] \n cât timp ciclul nu are încă n noduri execută \n\t extrage din h tripletul cu creșterea minimă și reține valorile în creștere_minimă, poziție_inserare, k \n\t introdu în ciclu nodul k pe poziția poziție_inserare + 1 \n\t marchează k ca vizitat \n\t soluție ← soluție + creștere_minimă \n\t m ← dimensiune ciclu \n\t pentru orice triplet din h de forma creștere, poziție, nod execută \n\t\t dacă poziție = poziție_inserare sau nod = k atunci \n\t\t\t elimină tripletul din h \n\t\t dacă poziție > poziție_inserare și nod nu este vizitat atunci \n\t\t\t poziție ← (poziție + 1) % m \n\t pentru i ← 0, n - 1 execută \n\t\t dacă i nu este vizitat atunci \n\t\t\t a ← ciclu[poziție_inserare] \n\t\t\t b ← ciclu[(poziție_inserare +2) % m]) \n\t\t\t adaugă la h tripletul [d(a, i) + d(i, k) - d(a, k), poziție_inserare, i] \n\t\t\t adaugă la h tripletul [d(k, i) + d(i, b) - d(k, b), (poziție_inserare+2) % m, i] \n returnează soluție și ciclu"
+                    , "explications": {
+                        "text": "\t Inițial se dorește crearea unui ciclu din două noduri cu scopul de a-l extinde treptat. Așadar, după ce a fost generat nodul de start nod_start, se caută cel mai apropiat nod de acestă, numit k. Pentru că este un ciclu, costul acestuia este de două ori costul distanței de la nod_start la k, iar mai apoi se introduce în lista h opțiunile din care se va alege în viitor creșterea minimă posibilă. \n\t Algoritmul rulează cât timp ciclul nu are încă n noduri, la fiecare pas extrăgându-se din h creșterea minimă posibilă, respectiv locul în care se dorește inserarea nodului în ciclu și nodul k. Este nevoie să se actualizeze valoarea soluției și ciclul prin introducerea nodului găsit pe poziția în care avantajează distanța ciclului. \n\t Având în vedere că nodul k devine parte din ciclu, trebuie să se modifice lista h, eliminându-se din ea tripletele care tratau nodul k precum un nod nevizitat și acelea care considerau că între ip și iq nu a fost introdus un alt nod. Adică tripletele pentru care distanța calculată nu mai reflectă starea actuală a ciclului. De asemenea, trebuie să se actualizeze poziția de inserare pentru tripletele care vizează poziții ce se află după poziția extrasă din h. Aceasta deoarece, inserând nodul pe poziția poziție_inserare, toate celelalte noduri de după el se mută mai la dreapta cu o poziție. La final, se completează lista h cu triplete în care sunt calculate distanțele ce îl includ și pe k la nodurile ciclului."
+                    }
+                    , "vizualization": "\t Pașii de rulare ai algoritmului pe graf"
+                }  
+                , "complexity": {
+                    "theorem": "\t Algoritmul de inserție cu cel mai mic cost rulează în O(n^2 log(n)). \n Demonstrație: Pentru a eficientiza determinarea minimului din lista h, se lucrează cu o listă de priorități, operațiile de adăugat și de scoatere a unui element costând O(log(n)). Determinarea celui mai apropiat nod de nodul de start costă O(n), iar inserarea în h a primelor triplete ruleaza în O(n log(n)). Timpul de execuție O(n^2 log(n)) este dat însă de structura repetitivă care se rulează de n ori și verifică dacă ciclul conține toate nodurile. În interiorul ei extragerea din h a tripletului minim necesită O(log(n)), actualizarea ciclului O(n), eliminarea și adăugare de triplete în lista de priorități O(n log(n)). \n\t Concluzionând, interiorul structurii repetitive rulează în O(n log(n)) și se repetă de n ori, rezultând complexitatea O(n^2 log(n))."
+                } 
+            }
+            , "nearest-neighbor": {
+                "title": "Nearest neighbor - Algoritmul cel mai apropiat vecin"
+                , "header" : "\t Cel mai simplu algoritm euristic este algoritmul cel mai apropiat vecin (nearest neighbor algorithm, NN). Dându-se un graf complet cu ponduri ne-negative, se determină un ciclu hamiltonian în care nodurile sunt alese în funcție de apropierea dintre ele. Așadar, la fiecare pas se introduce la drumul curent nodul care nu face încă parte din el și care este cel mai aproape ca distanță de ultimul nod din drum." 
+                , "worst-case": {
+                    "title": "\tCazul cel mai nefavorabil"
+                    , "text": "\t Algoritmul este 1/2 ln(n) + 1/2 aproximativ, așadar chiar și în cel mai rău caz:"
+                    , "formula": "(soluția NN) / OPT ≤ 1/2 ln(n) + 1/2"
+                }
+                , "pseudocode": {
+                    "algorithm": {
+                        "0" : "Pași algoritm"
+                        , "1": "Se începe cu un nodul de start ales în mod aleator."
+                        , "2": "Dintre toate nodurile nevizitate, se alege acela care este cel mai aproape de ultimul nod din drum. Fie drumul curent de forma (i1, i2, …, i(k-1), ik) și"
+                        , "2-formula": "se alege j cu distanța d(ik, j) minimă."
+                        , "3": "Se inserează "
+                        , "3-formula": "nodul j la finalul drumului."
+                        , "4": "Dacă drumul nu conține toate nodurile, se sare la pasul 2, alftel stop."
+                    }
+                    , "pseudocode": "se alege un nod random notat nod_start și se setează ca primul nod din ciclu \n valoare_ciclu ← 0 \n i ← nod_start \n cât timp există noduri nevizitate execută \n\t pentru nodul curent i introdu în ciclu nodul j nevizitat cu d(i, j) minim \n\t valoare_ciclu ← valoare_ciclu + d(i, j) \n\t marchează j ca vizitat \n\t i ← j \n valoare_ciclu ← valoare_ciclu + d(i, nod_start) \n returnează ciclul creat și valoare_ciclu" 
+                    , "vizualization": "\t Pașii de rulare ai algoritmului pe graf"
+                }  
+                , "complexity": {
+                    "theorem": "\t Complexitatea algoritmului NN este O(n^2). \n Demonstrație: Algoritmul este simplist, complexitatea fiindu-i determinată de necesitatea repetării structurii repetive până când în drum sunt toate cele n noduri, așadar acest loop costă O(n). La fiecare pas, trebuie să se determine nodul cel mai apropiat de ultimul nod din drum, operație care se efectuează în O(n). Așadar per total algoritmul rulează în O(n^2)."
+                } 
+            }
+            , "not-optimal-solution": "\t Algoritmii prezentați nu sunt exacți, factorul de aproximare fiind menționat pentru fiecare algoritm în parte, în subsecțiunea respectivă. Ne dorim o valoare cât mai apropiată de cea optimă, prin urmare ciclul hamiltonian determinat este îmbunătățit în algoritmii 2-OPT și 3-OPT. Scopul acestor algoritmi este îmbunătățirea soluției prin optimizarea ciclului determinat."   
+        }
+        , "cycle-improvement": {
+            "title": "Optimizarea ciclului hamiltonian: k-OPT"
+            , "header": "\t Pentru crearea ciclului hamiltonian se poate folosi unul dintre algoritmii prezentați. Având ciclul, următorul pas este îmbunătățirea costului lui până când nu se mai poate. La final nu se poate garanta că ciclul obținut este minim. Reluarea algoritmului de mai multe ori folosind cicluri posibil diferite duce la creșterea probabilității găsirii soluției minime."
+            , "definition-k-change-neighborhood": "\t Fie F mulțimea tuturor ciclurilor hamiltoniane. O vecinătate este o mapare N : F → 2^F în care N mapează fiecare f ∈ F în vecinătatea N(f). Lin propune vecinătățile pentru un TSP pe K_n. Pentru f un ciclu și k ∈ {2,...,n}, N(f) este mulțimea tuturor ciclurilor hamiltoniene g care sunt obținute din f prin eliminarea a k muchii și înlocuirea lor cu k muchii (nu neapărat toate muchiile adăugate trebuie să fie diferite de cele eliminate). N(f) poartă numele de vecinătate k-schimburi (k-change neighborhood), iar oricare g a cărui distanță este minimă dintre toate celelalte cicluri din N(f) se numește k-optimal."
+            , "pseudocode": "Pseudocod k-OPT(D) \n alege un ciclu initial f \n cât timp există g ∈ N(f) cu d(g) < d(f) execută \n\t alege g ∈ N(f) cu d(g) < d(f) \n\t f ← g"
+            , "explications": {
+                "text": "\t Se consideră o mulțime de soluții N(f) care sunt vecine cu soluția curentă f și se caută, din această mulțime, optimul local, ciclul g care aduce cea mai însemnată îmbunătățire. Algoritmul se oprește când nu se mai găsește niciun optim local. Așadar, dacă ciclul hamiltonian curent nu are vecini care să ofere o soluție mai bună se consideră că nu se mai poate optimiza." 
+            }
+            , "complexity": {
+                "theorem": "\t Chiar dacă există multe cicluri posibile, numărul lor este finit. După fiecare iterație a algoritmului k-OPT, se produce un ciclu hamiltonian cu lungime strict mai mică ca cel precedent, prin urmare ciclurile nu se pot repeta. \n\t Timpul de rulare este dat de numărul de iterații a ciclului principal „când timp” înmulțit cu numărul de operații realizate de o iterație. Având în vedere că sunt n noduri, există O(n^k)    k-schimburi care trebuie verificare la fiecare iterație (k reprezentă numărul de muchii care vor fi înlocuire, prin urmare variază în funcție de problema pentru care se dorește rezolvare). Problema apare la numărul total de iterații care poate ajunge să fie exponențial, acesta depinzând de ciclul hamiltonian inițial și de setul de date primit ca input."
+            }
+            , "2-opt": {
+                "title": "Algoritmul 2-OPT"
+                ,"header": "\t Algoritmul presupune optimizarea algoritmului prin aplicare de 2-schimburi, prin urmare ciclul hamiltonian creat la primul pas continuă să fie modificat prin schimbarea a 2 muchii, producând un ciclu nou g care este mai bun sau mai puțin optim ca cel original."
+                , "advantage": {
+                    "title": "Avantajul ciclului nou g comparativ cu ciclul anterior f"
+                    , "formula": "δ(g) = d(m1) + d(m2) - d(m1') - d(m2')"
+                    , "explication": "\t Dacă δ(g) > 0 înseamnă că s-a găsit un ciclu de lungime mai mică adică s-a produs o îmbunătățire. Algoritmul alege ciclul g vecin al lui f care are avantajul cel mai mare adică cel care are lungimea ciclului cea mai mică." 
+                }
+                , "pseudocode-advantage": {
+                    "text": "\t Fie calcul_avantaj funcția care determină avantajul aplicării unui 2-schimb asupra unui ciclu. Îi sunt date ca parametri ciclul f și cele 2 muchii pentru care se dorește să se calculeze avantajul care se obține dacă s-ar aplica 2-schimbul cu cele 2 muchii peste f. Scopul acestei metode este să se verifice dacă este necesar să se creeze noul ciclu g."
+                    ,"pseudocode": "Pseudocod calcul_avantaj((x, y), (x', y')) \n calculează δ ← d(x, y) + d(x', y') - d(x, x') - d(y, y') \n returnează δ"
+                }
+                , "pseudocode-2-change": {
+                    "text": "\t Fie 2Schimburi funcția care determină un ciclu g vecin cu f și valoarea lui δ. Îi sunt date ca parametri ciclul f de la care se pornește și cele 2 muchii pentru care se dorește modificarea."
+                    , "pseudocode": "Pseudocod 2Schimburi(f, (x, y), (x', y')) \n înlătură din f muchiile (x, y) și (x', y') care nu au niciun nod comun \n adaugă în f muchiile (x, x') și (y, y'), pereche de muchii care duce la crearea unui nou ciclu g \n returnează noul ciclu g"
+                }
+                , "pseudocode-2-opt": {
+                    "text": "\t Din algoritmul euristic și metodele calcul_avantaj și 2Schimburi se creează algoritmul dorit 2-OPT care are ca scop determinarea ciclului de lungime cât mai mică prin modificarea ciclului inițial."
+                    , "pseudocode": "Pseudocod 2-OPT \n f, soluție ← NN(D) \n repetă \n\t δ ← 0 \n\t g ← f \n\t pentru fiecare m1, m2 din f, muchii care nu au niciun nod comun execută \n\t\t δg ← calcul_avantaj(m1, m2) \n\t\t dacă δg > δ atunci \n\t\t\t g ← 2Schimburi(f, m1, m2) \n\t\t\t δ ← δg \n\t f ← g \n\t soluție ← soluție - δ \n până când δ = 0 \n returnează soluție"
+                }
+                , "pseudocode-bind": {
+                    "text": "\t Pentru a ajunge la o soluție cât mai bună, 2-OPT este apelată de 'repetări' ori cu scopul de a ajunge la soluția optimă prin optimizarea a mai multor cicluri obținute prin metoda NN. Prin urmare, soluția minimă din aceste repetări rulări ale algoritmului este considerată soluția optimă."
+                    , "pseudocode": "soluție_minimă ← ∞ \n pentru i ← 1, repetări execută \n\t soluție ← 2-OPT \n\t dacă soluție < soluție_minimă atunci \n\t\t soluție_minimă ← soluție"
+                }
+            }
+            , "3-opt": {
+                "title": "Algoritmul 3-OPT"
+                , "header": "\t Algoritmul 3-OPT are aceeași structură de rezolvare, diferența față de algoritmul 2-OPT este funcția care calculează avantajul realizării unui schimb, fiind adaptată pentru noul tip de înlocuire, și funcția în care se realizează cicluri prin 2-schimburi, acum prin 3-schimburi. Conceptul de înlocuire rămâne același: un 3-schimb înseamnă că se aplică 2-schimb pe un ciclu de unul sau mai multe ori pentru că sunt la dispoziție 3 muchii. Așadar dintr-un ciclu se creează 7 alte cicluri și dintre acestea se alege cel care are avantajul maxim."
+                , "cycles-created-with-3-change": {
+                    "0": "Cele 7 cicluri se creează astfel:"
+                    , "1": "3 cicluri prin aplicarea 2-schimburi pe câte 2 din cele 3 muchii" 
+                    , "2": "3 cicluri prin aplicarea repetată de 2 ori a două perechi de muchii"
+                    , "3": "1 ciclu prin aplicarea tuturor combinațiilor posibile din cele 3 muchii"
+                }
+                , "example": {
+                    "step-1-part-1":  "\t Fie f ciclul inițial de formă "
+                    ,"cycle-1": "A → B → C → D → E → F."
+                    ,"step-1-part-2": "Se consideră ca nodul A se află pe poziția i, nodul C pe poziția j și nodul E pe poziția k și se prezintă modul în care se realizează un 3-schimb prin aplicarea a două 2-schimburi. \n\t Inițial se schimbă muchiile reținute pe poziții (i, i + 1) și (j, j + 1), iar apoi a muchiilor de pe pozițiile (i, i + 1) și (k, k + 1)."
+                    , "step-2-part-1": "Se apelează funcția 2Schimburi cu parametri f, AB, CD și se obține ciclul g de forma "
+                    , "cycle-2": "A → C → B → D → E → F."
+                    ,"step-2-part-2": "Deci acum pe pozițiile (i, i + 1) se află muchia AC, pe pozițiile (j, j + 1) muchia BD și pe (k, k + 1) EF."
+                    , "step-3": "Se apelează funcția 2Schimburi cu parametri g, AC, EF și se obține ciclul dorit h care arată astfel "
+                    , "cycle-3": "A → E → D → B → C → F."
+                    , "step-4": "avantajul δ = d(AB) + d(CD) + d(EF) - d(AE) - d(BD) - d(CF). "
+                }   
+                , "pseudocode-advantage": "Pseudocod calcul_avantaj(AB, CD, EF) \n δ(A → C → B → D → E → F)  ← d(AB) + d(CD) - d(AC) - d(BD) \n δ(A → E → D → C → B →F)  ← d(AB) + d(EF) - d(AE) - d(BF) \n δ (A → B → C → E → D →F)  ← d(CD) + d(EF) - d(CE) - d(DF) \n δ (A → C → B → E → D →F)  ← d(AB) + d(CD) + d(EF) - d(AC) - d(BE) - d(DF) \n δ (A → E → D → B → C →F)  ← d(AB) + d(CD) + d(EF) - d(AE) - d(DB) - d(CF) \n δ (A → D → E → C → B →F)  ← d(AB) + d(CD) + d(EF) - d(AD) - d(EC) - d(BF) \n δ (A → D → E → B → C →F)  ← d(AB) + d(CD) + d(EF) - d(AD) - d(EB) - d(CF) \n se alege avantajul maxim și se notează cu δ \n returnează δ și un identificator unic prin care să se poată recunoaște cărui schimb îi corespunde avantajul"
+                 
+                , "pseudocode-3-change": {
+                    "pseudocode": "Pseudocod 3Schimburi(f, AB, CD, EF, identificator) \n dacă identificator = 'ACBDEF' atunci \n\t g ← 2Schimburi(f, AB, CD) \n dacă identificator = 'AEDCBF' atunci \n\t g ← 2Schimburi(f, AB, EF) \n dacă identificator  = 'AEDCBF' atunci \n\t g ← 2Schimburi(f, CD, EF) \n dacă identificator = 'ACBEDF' atunci \n\t g_aux← 2Schimburi(f, AB, CD) \n\t g ← 2Schimburi(g_aux, AB, EF) \n dacă identificator = 'AEDBCF' atunci \n\t g_aux← 2Schimburi(f, AB, CD) \n\t g ← 2Schimburi(g_aux, CD, EF) \n dacă identificator = 'ADECBF' atunci \n\t g_aux← 2Schimburi(f, AB, EF)\n\t g ← 2Schimburi(g_aux, CD, EF) \n dacă identificator = 'ADEBCF' atunci \n\t g_1← 2Schimburi(f, AB, CD) \n\t g_2 ← 2Schimburi(g_1, AB, EF) \n\t g ← 2Schimburi(g_2, CD, EF) \n returnează ciclu g"
+                    , "initial-text": "\t Se consideră identificator ordinea nodurilor în ciclul rezultat. Prin urmare, funcția 3Schimburi arată astfel: "
+                    , "final-text": "\t În primele trei condiții din pseudocod se calculează cele trei 2-schimburi, în următoarele 3 cele trei cicluri obținute prin aplicarea a două 2-schimburi care se realizează în 2 etape șiîn ultima ciclul construit prin trei 2-schimburi. Identificatorul decide pe ce condiție se va intra creându-se un singur ciclu care la final se returnează."
+                }
+                , "pseudocode-3-opt": "Pseudocod 3-OPT \n f, soluție ← NN(D) \n repetă \n\t δ ← 0 \n\t g ← f \n\t pentru fiecare m1, m2, m3 din  f, muchii care nu au niciun nod comun execută \n\t\t δg, identificator ← calcul_avantaj(m1, m2, m3) \n\t\t dacă δg > δ atunci \n\t\t\t g ← 3Schimburi(f, m1, m2, m3, identificator) \n\t\t\t δ ← δg \n\t f ← g \n\t soluție ← soluție - δ \n până când δ = 0 \n returnează soluție"
+                , "pseudocode-bind": {
+                    "text": "\t Având în vedere că și algoritmul 3-OPT, la fel ca algoritmul 2-OPT, presupune micșorarea soluției unui ciclu determinat de un algoritm aproximativ a cărui nod de start este ales aleator, este posibil ca 3-OPT să nu ofere o soluție bună din cauza acelui ciclu inițial. Pentru a avea mai multe șanse, se poate rula de mai multe ori algoritmul și să se păstreze ciclul cu soluția cea mai mică."
+                    , "pseudocode": "soluție_minimă ← ∞ \n pentru i ← 1, repetări execută \n\t soluție ← 3-OPT \n\t dacă soluție < soluție_minimă atunci \n\t\t soluție_minimă ← soluție"
+                }
+            }
+        }
+    }
+    , "input-class": {
+        "title": "Clasa Input"
+        , "header": "\t Toți algoritmii prezentați au ca input date introduse de utilizator. Inputul trebuie preluat de un algoritm, prelucrat și dat mai departe claselor care rezolvă TSP. Clasa care face acest lucru este numită Input, ea fiind cea care aruncă erori în cazul în care datele introduse nu corespund celor necesare rezolvării problemei sau tipului de instanță aleasă de utilizator."
+        , "rules-title": "\t Listă de erori posibile și motivele pentru care sunt ridicate"
+        , "rules": {
+                "general": {
+                    "title": "Erori ce pot apărea indiferent de tipul de instanță aleasă"
+                    ,"0": {
+                        "error": "The entered input does not have the correct form!",
+                        "explication":"Se așteaptă 3 * n + 2 valori pentru ca inputul să fie acceptat! Pe prima linie trebuie să existe 2 numere pozitive întregi, iar următoarele linii să conțină triplete de tipul nod_1 nod_2 distanță."
+                    }
+                    , "1": {
+                        "error": "You entered at least one negative number!"
+                        , "explication": "S-a găsit cel puțin un semn '-' printre datele introduse tripletelor. TSP nu acceptă ponderi negative și nodurile, prin convenție, sunt numerotate de la 0 la n - 1 unde n este numărul de noduri."
+                    }
+                    , "2": {
+                        "error": "Nodes are numbered from 0 to {0}, but node {1} was found!"
+                        , "explication": "Prin convenței s-a decis ca nodurile grafului să fie numerotate de la 0 la n unde n este numărul de noduri. Nu contează ordinea specificării acestora în triplete, dar nu se poate introduce noduri cu etichetă mai mare sau egală cu n."
+                    }
+                }
+                ,"oriented-graph": {
+                    "title": "Instanța corespunde unui graf orientat care se transformă într-o matrice nesimetrică și nu neapărat completă"
+                    , "0": {
+                        "error": "The specified number of edges ({0}) is different from the number of lines of the type: node 1 node 2 value ({1})"
+                        , "explication": "A doua valoare introdusă simbolizează numărul de muchii din graf care este echivalent cu numărul de triplete introduse de utilizator. Eroarea apare când valoarea specificată nu este egală cu numărul de triplete." 
+                    }
+                    , "1": {
+                        "error": "Already set the distance from node {0} to {1}!"
+                        , "explication": "Fiecare distanță dintre două noduri i și j se poate stabili o singură dată"
+                    } 
+                }
+                , "neoriented-graph": {
+                    "title":"Instanța corespunde unui graf neorientat care se transformă într-o matrice simetrică și completă"
+                    ,"0": {
+                        "error": "The specified number of edges ({0}) is different from the number of lines of the type: node 1 node 2 value ({1})"
+                        , "explication": "Numărul de triplete nu este același ca numărul de muchii specificate" 
+                    }
+                    , "1": {
+                        "error": "Already set the distance from node {0} to {1}!"
+                        , "explication": "Fiecare distanță dintre două noduri i și j se poate stabili o singură dată"
+                    } 
+                    ,"2": {
+                        "error": "The given graph is not complete!"
+                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf complet. Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se verifică dacă este specificată o pondere între oricare două noduri"
+                    } 
+                    ,"3": {
+                        "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
+                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf care respecte inegalitatea triunghiului (rezolvă TSP în cazul metric). Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se cere ca distanțele din matricea creată să respecte inegalitatea triunghiulu"
+                    } 
+                }
+                , "euclidean-distances": {
+                    "title":"Instanța corespunde unor puncte din planul 2D. Se transformă într-o matrice simetrică pentru care distanța dintre oricare 2 noduri reprezintă distanța dintre acele puncte în plan. La final, matricea este completă"
+                    ,"0": {
+                        "error": "The given graph is not complete!"
+                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf complet. Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se verifică dacă este specificată o pondere între oricare două noduri"
+                    } 
+                    ,"1": {
+                        "error": "The given set of data does not transform to a matrix that respect the triangle inequality!"
+                        ,"explication": "Algoritmii de aproximare și cei euristici necesită ca datele introduse să corespundă unui graf care respecte inegalitatea triunghiului (rezolvă TSP în cazul metric). Așadar dacă inputul este introdus pentru unul din aceste tipuri de algoritmi, se cere ca distanțele din matricea creată să respecte inegalitatea triunghiulu"
+                    }  
+                    ,"2": {
+                        "error": "The number of nodes is different than specified!"
+                        ,"explication": "Apare în cazul inputurilor în care numărul de triplete nu este același ca numărul de muchii specificate."
+                    }
+                    , "3": {
+                        "error": "Already set the coordonates for node {0}!"
+                        , "explication": "Indexele nodurilor introduse nu sunt unice (se repetă de cel puțin 2 ori valoarea din prima poziție din triplete)"
+                    }
+                    , "4": {
+                        "error": "Can not have the same coordonates for 2 different nodes!"
+                        , "explication": "Au fost inserare două (sau mai multe) noduri diferite cu aceleași coordonate (se repetă de cel puțin 2 ori combinația dintre a doua și a treia valoare din triplete)"
+                    }
+                } 
+            
+        }    
+    }
+    , "code-section": {
+        "title": "Testează codul"
+        , "explications-nodes-with-distance-symmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele introdu m linii cu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf neorientat complet."
+        , "explications-nodes-with-distance-asymmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele introdu m linii cu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf orientat."
+        , "explications-euclidian-distance": "Distanțe euclidiene înseamnă că se precizează pe prima linie numărul de noduri (nodurile se numerotează începând cu 0) și restul liniilor triplete de tipul nod coordonata X coordonata Y. Se construiește un graf complet în care ponderile muchiilor sunt distanțele dintre punctele respective."
+        , "placeholder": "Introdu datele aici..."
+        , "solution": {
+            "name": "Soluție"
+            , "wait": "Așteptați răspunsul!"
+            , "insert-data": "Introdu un input înainte de a rula!"
+            , "initial-text": "Aici apare răspunsul"
+            , "no-solution": "Nu există soluție pentru graful dat!"
+        } 
+        , "number-repetitions": "Număr repetări"
+        , "hamiltonian-cycle": "Ciclu hamiltonian"
+        , "buttons": {
+            "show-input-area": "Testează codul"
+            , "hide-input-area": "Ascunde testarea"
+            , "choose-euclidian": "Distanțe euclidiene"
+            , "choose-distance-between-symmetric-graph":  "Se știu distanțele dintre noduri - graf neorientat"
+            , "choose-distance-between-asymmetric-graph": "Se știu distanțele dintre noduri - graf orientat"
+            ,  "run-code": "Rulează"
+        }
+        , "dynamic-programming": "Matricea M rezultată de rularea programului"
+        , "branch-and-bound": {
+            "initial-matrix": "Prezentarea primilor 2 pași ai rulării programului. Matricea inițială în care valoarea lim = "
+            , "first-step-matrix": {
+                "0": "Matricea redusă corespunzătoare nodului de start"
+                , "1": " duce la valoarea lim = "
+            } 
+            , "second-step-matrix": {
+                "0": "Matricea redusă corespunzătoare nodului"
+                , "1": "plecând din nodul de start"
+                , "2": " duce la valoarea lim = "
+            }
+        }
+        , "chistofides-algorithm": {
+            "tree": "Arborele creat prin aplicarea algoritmului lui Prim peste setul de date."
+            , "odd-nodes": "Găsirea nodurilor de grad impar cu scopul de a le uni două câte două."
+            , "matching": "Graful creat prin adăugarea muchiilor rezultate prin algoritmul de matching."
+        }
+        , "optimization-algorithm": {
+            "build-cycle": {
+                "0": "Ciclul hamiltonian obținut în urma rulării algoritmului euristic greedy:"
+                , "1": "cu distanța"
+            }
+            , "optimize-cycle": {
+                "no": "Peste ciclul hamiltonian creat nu se poate face nicio optimizare."
+                , "yes": {
+                    "0": "Prima optimizare găsită transformă ciclul astfel. Din muchiile"
+                    , "1": "și" 
+                    , "2": "se aleg alte două muchii"
+                    , "3": "Ciclul devine "
+                    , "4": "și soluția devine"
+                }
+            }
+        }
+    }
+    , "sidenav": {
+        "general": "Prezentare generală",
+        "variations": "Variații",
+        "asymmetric-tsp": "TSP asimetric",
+        "multiple-visits-tsp": "TSP cu vizitari multiple",
+        "max-tsp": "Max TSP",
+        "metric-tsp": "Metric TSP",
+        "exact-algorithms": "Algoritmi exacți",
+        "dynamic-programming": "Programare dinamică",
+        "branch-and-bound": "Branch and bound",
+        "approximation-algorithms": "Algoritmi de aproximare",
+        "chistofides-algorithm": "Alg lui Christofides",
+        "heuristic-algorithms": "Algoritmi euristici",
+        "farthest-insertion": "Farthest Insertion",
+        "nearest-insertion": "Nearest Insertion",
+        "cheapest-insertion": "Cheapest Insertion",
+        "nearest-neighbor": "Nearest Neighbor",
+        "2-opt": "Algoritmul 2-OPT",
+        "3-opt": "Algoritmul 3-OPT",
+        "input-class": "Clasa Input",
+        "double-tree-algorithm": "Alg arborelui dublu"
+    }
+    , "carousel": {
+        "current-node": "Nod curent",
+        "path": "Drum",
+        "cicle": "Ciclu",
+        "previous": "Precedent",
+        "next": "Următorul",
+        "reset": "Resetează",
+        "nodes": "Noduri",
+        "neighbours": "Vecini", 
+        "start-node": "Nod de start"
+        ,"farthest-node": "Nodul cel mai îndepărtat de ciclu este ales"
+        , "distance-node-cycle": "Distanța de la nod la ciclu"
+        , "positions-insert-node": "Pozițiile pe care se poate introduce nodul "
+        , "index": "Index"
+        , "edge": "Muchie"
+        , "growth": "Creștere"
+        , "min-growth": "Creșterea minimă a soluția ciclului"
+        , "insertion-position": "Nodul se inserează între nodurile"
+        , "solution-cycle": "Soluție ciclu"
+        , "distance-actualization": "Actualizarea distanțelor minime până la ciclu"
+        , "unvisited-node": "Nod nevizitat"
+        , "new-inserted-node": "Nod nou introdus"
+        , "matrix-distance": "Distanță din matrice "
+        , "min-distance": "Distanță minimă"
+        , "is-actualizate": "Se actualizează"
+        , "min-distances-unvisited-nodes-cycle": "Distanțele minime de la nodurile nevizitate până la ciclu"
+        , "nearest-node": "Nodul cel mai apropiat de ciclu este ales"
+        , "chosen-node": "Nodul ales"
+        , "node-with-min-growth": "Cu creșterea minimă a soluției ciclului"
+        , "cycle-node": "Nodul din ciclu"
+        , "set": "Se setează"
+        , "solution": "Soluție"
+        , "distance": "Distanță"
+        , "with-distance-from-node": "Cu distanța de la nodul curent"
+        , "minimum": "minimă"
+        , "go-to-start-node": "Întoarcere la nodul de start"
+        , "edge-distance": "Distanța muchiei"
+
+        , "example-eulerian-cycle": "Exemplu pas cu pas în care se rezolvă problema determinării ciclului hamiltonian pe baza determinării ciclului eulerian"
+        , "example-branch-and-bound": "Exemplu de rezolvare folosind strategia discutată"
+        , "example-farthest-insertion": "Exemplu pas cu pas pe baza algoritmului farthest insertion"
+        , "example-nearest-insertion": "Exemplu pas cu pas pe baza algoritmului nearest insertion"
+        , "example-cheapest-insertion": "Exemplu pas cu pas pe baza algoritmului cheapest insertion"
+        , "example-nearest-neighbor": "Exemplu pas cu pas pe baza algoritmului nearest neighbor"
+        , "instructions": {
+            "green": "VERDE: nodurile și muchiile ce fac parte din ciclul final"
+            , "orange": "PORTOCALIU:  muchiile de lungime minimă ce leagă fiecare nod nevizitat de ciclu"
+            , "grey": "GRI: noduri nevizitate și toate muchiile ce nu se încadrează la verde și portocaliu"
+            , "growth": "Creșterea obținută prin adăugarea lui k între a și b: D[a, k] + D[k, b] - D[a, b]"
+        }
+    }
+}

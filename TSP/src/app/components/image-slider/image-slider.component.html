@@ -1,0 +1,10 @@
+<div #container [ngClass]="isVerticle ? 'display-container-verticle' : 'display-conatiner-horizonal'">
+    <ng-image-slider 
+        [images]=images
+        [infinite]="false" 
+        [autoSlide]="1"
+        [imagePopup]=popup
+        [imageSize]="{width: '100%', height: 400, space: 0}"
+        (imageClick)='closeSidenav()'>
+    </ng-image-slider>
+</div>

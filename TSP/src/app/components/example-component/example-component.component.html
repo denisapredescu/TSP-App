@@ -1,0 +1,700 @@
+<div class="example-section">
+
+    <!-- For hamiltonian cycle determination in approximation algorithms section -->
+    <div  *ngIf="example === 'hamiltonian-cycle-from-hierholzer'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let currentInfo of infos; index as i" [id]="currentInfo.id">  
+                <div class="image-info-side">
+                    <div class="example-images">
+                        <img src="./assets/images/hamiltonian_cycle/hamiltonian_cycle_{{i+1}}.png" alt="the {{i}} photo in example">
+                    </div>
+
+                    <div class="info-side">
+                        <div class="title-container">
+                            <h3> {{ title }} </h3>
+                        </div>
+
+                        <div class="top-text-info">
+                            <div class="icon-text">
+                                <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                <p style="margin-top: 5px;"> {{'carousel.current-node' | translate}} : {{ currentInfo.currentNode.length === 0 ? "-" : currentInfo.currentNode }} </p>
+                            </div>
+                            
+                            <div class="icon-text">
+                                <img src="./assets/images/route.png" height="40px" style="margin-right: 10px">
+                                <p style="margin-top: 5px;"> {{'carousel.path' | translate}} : {{ currentInfo.path }} </p>
+                            </div>
+
+                            <div class="icon-text">
+                                <img src="./assets/images/circle.png" height="40px" style="margin-right: 10px">
+                                <p style="margin-top: 5px;"> {{'carousel.cicle' | translate}} : {{ currentInfo.cycle.length === 0 ? "-" : currentInfo.cycle }} </p>
+                            </div>
+                        </div>
+
+                        <table class="tabel-nodes-neighborhood">
+                            <tr> 
+                                <th> {{'carousel.nodes' | translate}} </th>
+                                <th> {{'carousel.neighbours' | translate}} </th>
+                            </tr>
+                            <tr *ngFor="let j of [1,2,3,4,5,6]">
+                                <th> {{ j }} </th>
+                                <td> {{ currentInfo.neighborhood[j - 1].length === 0 ? "-" : currentInfo.neighborhood[j - 1] }} </td>
+                            </tr>
+                        </table>
+
+                        <div class="button-container">
+                            <div class="prev-next-container">
+                                <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                <button *ngIf="carousel.activeId === 'img-17'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                <button *ngIf="carousel.activeId != 'img-17'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                            </div>
+
+                            <div class="reset-container">
+                                <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="example === 'branch-and-bound'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let state of branchAndBound; index as i" [id]="state.id">  
+                <div class="bb-container">
+                    
+                    <div class="title-container" style="display: flex; justify-content: space-around;">
+                            <h3> {{ title }} </h3>
+                    </div>
+
+                    <div class="bb-example-content">
+                        <div class="bb-top-half">
+                            <div class="bb-carousel-and-buttons">
+                                <div class="bb-example-images">
+                                    <img src="./assets/images/branch_and_bound/s_{{i+1}}.png" alt="the {{i}} photo in example" height="350px">
+                                </div>
+
+                                <div class="bb-button-container">
+                                    <div class="prev-next-container">
+                                        <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                        <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                        <button *ngIf="carousel.activeId === 'img-3'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                        <button *ngIf="carousel.activeId != 'img-3'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                    </div>
+
+                                    <div class="reset-container" stylr="margin-right:200px">
+                                        <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                        <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bb-parent-container">
+                                <div *ngIf="i != 0" class="text-blue">
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p style="margin-top: 5px;"> Nod părinte: {{state.fromNode}} </p>
+                                    </div>
+                                    <div>
+                                        <p style="margin-top: 5px;"> f părinte: {{state.fromF}} </p>
+                                    </div>
+                                    <p style="margin-top: 5px;"> Matrice părinte: </p>                                    
+                                </div>
+                                
+                                <div *ngIf="i === 0" class="text-blue">
+                                    <div style="width: 80%;">
+                                        <p>La primul pas se reduce matricea de distanțe și costul reducerii se setează ca valoarea f a rădăcinii</p>
+                                    </div>
+                                    <p style="margin-top: 5px;"> Matrice de distanțe: </p>
+                                </div>
+
+                                <table class="bb-parent-table">
+                                    <tr>
+                                        <th *ngFor="let row of [' ', 1, 2, 3, 4]">
+                                            {{row}}
+                                        </th>
+                                    </tr>
+                                    <tr *ngFor="let column of state.fromMatrix; index as indexC">
+                                        <th>{{indexC + 1}}</th>
+                                        <td *ngFor="let elem of column">{{elem}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="bb-children-list">
+                            <div  *ngFor="let child of state.node; index as j">
+                                <div class="text-blue" style="display: inline-flex">
+                                    <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                    <p style="margin-top: 5px;"> {{'carousel.current-node' | translate}}: {{child}} </p>
+                                </div>
+
+        
+                                <p class="text-blue" style="margin-top: 5px;"> Matrice redusă corespunzătoare nodului {{child}}: </p>
+                                
+                                <table class="bb-child-table">
+                                    <tr>
+                                        <th *ngFor="let row of [' ', 0, 1, 2, 3]">
+                                            {{row}}
+                                        </th>
+                                    </tr>
+                                   
+                                    <tr *ngFor="let column of state.matrix[j]; index as indexC">
+                                        <th>{{indexC }}</th>
+                                        <td *ngFor="let elem of column">{{elem}}</td>
+                                    </tr>
+                                    
+                                </table>
+
+                                <div class="text-blue">
+                                    <p style="margin-top: 5px;"> Cost reducere: {{state.reduction[j]}} </p>
+                                </div>
+
+                                <div class="text-blue" *ngIf="i != 0">
+                                    <p style="margin-top: 5px;"> f = {{state.fromF}} + {{state.distances[j]}} + {{state.reduction[j]}} = {{state.f[j]}}</p>
+                                </div>
+
+                                <div class="text-blue" *ngIf="i === 0">
+                                    <p style="margin-top: 5px;"> f rădăcină = {{state.f[j]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="example === 'farthest-insertion'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let state of farthest_insertion; index as i" [id]="state.id">  
+                <div class="fi-example-container">
+                    <div class="fi-title-container text-blue">
+                        <h3> {{ title }} </h3>
+                    </div>
+
+                    <div class="fi-content-container">
+                        <div class="fi-carousel-and-buttons">
+                            <img src="./assets/images/farthest-insertion/farthest_insertion_{{i+1}}.png" height="500px" alt="the {{i}} photo in example">
+                        
+                            <div class="fi-button-container text-blue">
+                                <div class="fi-prev-next-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                    <button *ngIf="carousel.activeId === 'img-5'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-5'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                </div>
+
+                                <div class="fi-reset-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fi-info-side">
+                            <div class="fi-top-text-info">
+                                <div *ngIf="i === 0" style="margin-top: 130px">
+                                    <p style="color: #339966"> {{ 'carousel.instructions.green' | translate}} </p>
+                                    <p style="color: #ff9900"> {{ 'carousel.instructions.orange' | translate}} </p>
+                                    <p style="color: #c0c0c0"> {{ 'carousel.instructions.grey' | translate}} </p> 
+                                    <p class="text-blue"> {{ 'carousel.instructions.growth' | translate}} </p>
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px">{{ 'carousel.start-node' | translate}}: 1 </p>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="i != 0">
+
+                                    <div style="display: flex;" *ngIf="i === 1">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px">{{ 'carousel.start-node' | translate}}: 1 </p>
+                                    </div>
+
+                                    <div *ngIf="i != 1">
+                                        <p class="text-blue">{{ 'carousel.farthest-node' | translate}}: {{state.chosen_node}} </p>
+                                    </div>
+                                    
+                                    <div  class="text-blue" style="display: flex;">
+                                        <img src="./assets/images/distance.png" height="30px">
+                                        <p style="margin-top: 5px; margin-left: 5px;"> {{ 'carousel.distance-node-cycle' | translate}}: {{state.chosen_distance}} </p>
+                                    </div>
+                                
+                                    <div *ngIf="state.insertions.length !== 0" style="margin-bottom: 40px;">
+                                        <p  class="text-blue" > {{ 'carousel.positions-insert-node' | translate}} {{state.chosen_node}}: </p>
+                                        
+                                        <div class="fi-side-by-side">
+
+                                            <div>
+                                                <table class="fi-positions-table">
+                                                    <tr> 
+                                                        <th> {{ 'carousel.index' | translate}} </th>
+                                                        <th> {{ 'carousel.edge' | translate}} </th>
+                                                        <th> {{ 'carousel.growth' | translate}} </th>
+                                                    </tr>
+                                                    <tr *ngFor="let currentGrowth of state.insertions; index as j">
+                                                        <th> {{ j + 1 }} </th>
+                                                        <td> ({{currentGrowth[0]}}, {{currentGrowth[1]}}) </td>
+                                                        <td> {{currentGrowth[2]}} </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text-blue" > {{ 'carousel.min-growth' | translate}}: {{state.chosen_position[2]}} </p>
+                                                <p class="text-blue" > {{ 'carousel.insertion-position' | translate}}: ({{state.chosen_position[0]}}, {{state.chosen_position[1]}}) </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle.png" height="30px">
+                                        <p class="text-blue"  style="margin-top: 2px; margin-left: 5px;"> {{'carousel.cicle' | translate}} : {{ state.cycle.length === 0 ? "-" : state.cycle }} </p>
+                                    </div>
+                                    
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle_solution.png" height="30px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{ 'carousel.solution-cycle' | translate}}: {{state.solution}} </p>
+                                    </div>
+
+                                    <div *ngIf="state.actualization.length !== 0" style="margin-bottom: 30px;" >
+                                        <p class="text-blue" > {{ 'carousel.distance-actualization' | translate}}: </p>
+                                        <table class="fi-dist-min-table">
+                                            <tr>
+                                                <th> {{ 'carousel.unvisited-node' | translate}} </th>
+                                                <th> {{ 'carousel.new-inserted-node' | translate}} </th>
+                                                <th> {{ 'carousel.matrix-distance' | translate}} </th>
+                                                <th> {{ 'carousel.min-distance' | translate}} </th>
+                                                <th> {{ 'carousel.is-actualizate' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let instance of state.actualization">
+                                                <td> {{instance[0]}} </td>
+                                                <td> {{instance[1]}} </td>
+                                                <td> {{instance[2]}} </td>
+                                                <td> {{instance[3]}} </td>
+                                                <td> {{instance[4]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div *ngIf="state.h.length !== 0">
+                                        <p class="text-blue" > {{ 'carousel.min-distances-unvisited-nodes-cycle' | translate}} </p>
+                                        <table class="fi-dist-min-table">
+                                            <tr>
+                                                <th> {{ 'carousel.unvisited-node' | translate}} </th>
+                                                <th> {{ 'carousel.min-distance' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let distance of state.h">
+                                                <td> {{distance[0]}} </td>
+                                                <td> {{distance[1]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="example === 'nearest-insertion'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let state of nearest_insertion; index as i" [id]="state.id">  
+                <div class="fi-example-container">
+                    <div class="fi-title-container text-blue">
+                        <h3> {{ title }} </h3>
+                    </div>
+
+                    <div class="fi-content-container">
+                        <div class="fi-carousel-and-buttons">
+                            <img src="./assets/images/nearest-insertion/near_ins_{{i+1}}.png"  height="500px" alt="the {{i}} photo in example">
+                            
+                            <div class="fi-button-container text-blue">
+                                <div class="fi-prev-next-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                    <button *ngIf="carousel.activeId === 'img-5'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-5'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                </div>
+
+                                <div class="fi-reset-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fi-info-side">
+                            <div class="fi-top-text-info">
+                                <div *ngIf="i === 0" style="margin-top: 130px">
+                                    <p style="color: #339966"> {{ 'carousel.instructions.green' | translate}} </p>
+                                    <p style="color: #ff9900"> {{ 'carousel.instructions.orange' | translate}} </p>
+                                    <p style="color: #c0c0c0"> {{ 'carousel.instructions.grey' | translate}} </p> 
+                                    <p class="text-blue"> {{ 'carousel.instructions.growth' | translate}} </p>
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px"> {{'carousel.start-node' | translate}} : 1 </p>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="i != 0">
+                                    <p class="text-blue"> {{'carousel.nearest-node' | translate}} : {{state.chosen_node}} </p>
+                                    
+                                    <div class="text-blue" style="display: flex;">
+                                        <img src="./assets/images/distance.png" height="30px">
+                                        <p style="margin-top: 5px; margin-left: 5px;"> {{'carousel.distance-node-cycle' | translate}} : {{state.chosen_distance}} </p>
+                                    </div>
+                                    
+                                    <div *ngIf="state.insertions.length !== 0" style="margin-bottom: 40px;">
+                                        <p class="text-blue"> {{'carousel.positions-insert-node' | translate}}  {{state.chosen_node}}: </p>
+                                        
+                                        <div class="fi-side-by-side">
+                                            <div>
+                                                <table class="fi-positions-table">
+                                                    <tr> 
+                                                        <th> {{'carousel.index' | translate}}  </th>
+                                                        <th> {{'carousel.edge' | translate}}  </th>
+                                                        <th> {{'carousel.growth' | translate}}  </th>
+                                                    </tr>
+                                                    <tr *ngFor="let currentGrowth of state.insertions; index as j">
+                                                        <th> {{ j + 1 }} </th>
+                                                        <td> ({{currentGrowth[0]}}, {{currentGrowth[1]}}) </td>
+                                                        <td> {{currentGrowth[2]}} </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-blue"> {{'carousel.min-growth' | translate}}: {{state.chosen_position[2]}} </p>
+                                                <p class="text-blue"> {{'carousel.insertion-position' | translate}}: ({{state.chosen_position[0]}}, {{state.chosen_position[1]}}) </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle.png" height="30px">
+                                        <p class="text-blue"  style="margin-top: 2px; margin-left: 5px;"> {{'carousel.cicle' | translate}}: {{ state.cycle.length === 0 ? "-" : state.cycle }} </p>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle_solution.png" height="30px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{'carousel.solution-cycle' | translate}}: {{state.solution}} </p>
+                                    </div>
+
+                                    <div *ngIf="state.actualization.length !== 0" style="margin-bottom: 30px;" >
+                                        <p class="text-blue"> {{'carousel.distance-actualization' | translate}} : </p>
+                                        <table class="fi-dist-min-table">
+                                            <tr>
+                                                <th> {{'carousel.unvisited-node' | translate}} </th>
+                                                <th> {{'carousel.new-inserted-node' | translate}}  </th>
+                                                <th> {{'carousel.matrix-distance' | translate}}  </th>
+                                                <th> {{'carousel.min-distance' | translate}}  </th>
+                                                <th> {{'carousel.is-actualizate' | translate}}  </th>
+                                            </tr>
+                                            <tr *ngFor="let instance of state.actualization">
+                                                <td> {{instance[0]}} </td>
+                                                <td> {{instance[1]}} </td>
+                                                <td> {{instance[2]}} </td>
+                                                <td> {{instance[3]}} </td>
+                                                <td> {{instance[4]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div *ngIf="state.h.length !== 0">
+                                        <p class="text-blue"> {{'carousel.min-distances-unvisited-nodes-cycle' | translate}}: </p>
+                                        <table class="fi-dist-min-table">
+                                            <tr>
+                                                <th> {{'carousel.unvisited-node' | translate}} </th>
+                                                <th> {{'carousel.min-distance' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let distance of state.h">
+                                                <td> {{distance[0]}} </td>
+                                                <td> {{distance[1]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="example === 'cheapest-insertion'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let state of cheapest_insertion; index as i" [id]="state.id">  
+                <div class="ci-example-container">
+                    <div class="fi-title-container text-blue">
+                        <h3> {{ title }} </h3>
+                    </div>
+
+                    <div class="fi-content-container">
+                        <div class="fi-carousel-and-buttons">
+                            <img src="./assets/images/cheapest-insertion/cheap-ins-{{i+1}}.png" height="450px" alt="the {{i}} photo in example">
+                        
+                            <div class="ci-button-container text-blue">
+                                <div class="fi-prev-next-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+    
+                                    <button *ngIf="carousel.activeId === 'img-5'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-5'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                </div>
+    
+                                <div class="fi-reset-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ci-info-side">
+                            <div class="ci-top-text-info">
+                                <div *ngIf="i === 0">
+                                    <p style="color: #339966"> {{'carousel.instructions.green' | translate}}</p>
+                                    <p style="color: #ff9900">  {{'carousel.instructions.orange' | translate}} </p>
+                                    <p style="color: #c0c0c0">  {{'carousel.instructions.grey' | translate}}</p> 
+                                    <p class="text-blue">  {{'carousel.instructions.growth' | translate}} </p>
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px">  {{'carousel.start-node' | translate}}: 1 </p>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="i != 0" class="ci-center-content">
+                                    <div *ngIf="i === 1">
+                                        <div style="display: flex;">
+                                            <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top: 5px">  {{'carousel.current-node' | translate}}: {{state.chosen_node}} </p>
+                                        </div>
+                                    </div>
+                                
+                                    <div *ngIf="i != 1">
+                                        <div style="display: flex;">
+                                            <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top: 5px"> {{'carousel.chosen-node' | translate}}: {{state.chosen_node}} </p>
+                                        </div>
+                                        
+                                        <p class="text-blue"> {{'carousel.node-with-min-growth' | translate}}: {{state.chosen_distance}} </p>
+                                        <p class="text-blue"> {{'carousel.insertion-position' | translate}}: ({{state.chosen_position[0]}}, {{state.chosen_position[1]}}) </p>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle.png" height="30px">
+                                        <p class="text-blue"  style="margin-top: 2px; margin-left: 5px;">  {{'carousel.cicle' | translate}} : {{ state.cycle.length === 0 ? "-" : state.cycle }} </p>
+                                    </div>
+                                    
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/circle_solution.png" height="30px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{'carousel.solution-cycle' | translate}}: {{state.solution}}</p>
+                                    </div>
+
+                                    <div *ngIf="i === 1">
+                                        <table class="ci-table">
+                                            <tr> 
+                                                <th> {{'carousel.index' | translate}} </th>
+                                                <th> {{'carousel.cycle-node' | translate}}</th>  
+                                                <th> {{'carousel.unvisited-node' | translate}}</th>
+                                                <th> {{'carousel.growth' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let currentGrowth of state.h; index as j">
+                                                <th> {{ j + 1 }} </th>
+                                                <td> {{currentGrowth[0]}} </td>
+                                                <td> {{currentGrowth[1]}} </td>
+                                                <td> {{currentGrowth[2]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div *ngIf="i != 1 && state.h.length != 0">
+                                        <table class="ci-table">
+                                            <tr> 
+                                                <th> {{'carousel.index' | translate}} </th>
+                                                <th> {{'carousel.edge' | translate}} </th>
+                                                <th> {{'carousel.unvisited-node' | translate}}</th>
+                                                <th> {{'carousel.growth' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let currentGrowth of state.h; index as j">
+                                                <th> {{ j + 1 }} </th>
+                                                <td> ({{currentGrowth[0]}}, {{currentGrowth[1]}}) </td>
+                                                <td> {{currentGrowth[2]}} </td>
+                                                <td> {{currentGrowth[3]}} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="example === 'nearest-neighbor'">
+        <ngb-carousel 
+            #carousel
+            [animation]="false"
+            [showNavigationIndicators]="false"
+            [showNavigationArrows]="false"
+            [interval]="0"
+            [wrap]="false"
+            >
+            
+            <ng-template ngbSlide *ngFor="let state of nearest_neighbor; index as i" [id]="state.id">  
+                <div class="ci-example-container">                    
+                    <div class="fi-title-container text-blue">
+                        <h3> {{ title }} </h3>
+                    </div>
+
+                    <div class="fi-content-container">
+                        <div class="fi-carousel-and-buttons">
+                            <img src="./assets/images/nn/nn_{{i+1}}.png" height="500px" alt="the {{i}} photo in example">
+                        
+                            <div class="ci-button-container">
+                                <div class="fi-prev-next-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="prev-button-deactiveted"> {{'carousel.previous' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="prev-button" (click)="prev()"> {{'carousel.previous' | translate}} </button>
+
+                                    <button *ngIf="carousel.activeId === 'img-5'" class="next-button-deactiveted"> {{'carousel.next' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-5'" class="next-button" (click)="next()"> {{'carousel.next' | translate}} </button>
+                                </div>
+
+                                <div class="fi-reset-container">
+                                    <button *ngIf="carousel.activeId === 'img-0'" class="reset-button-deactiveted"> {{'carousel.reset' | translate}} </button>
+                                    <button *ngIf="carousel.activeId != 'img-0'" class="reset-button" (click)="reset()"> {{'carousel.reset' | translate}} </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ci-info-side">
+                            <div class="ci-top-text-info">
+                                <div *ngIf="i === 0">
+                                    <p style="color: #339966"> {{'carousel.instructions.green' | translate}} </p>
+                                    <p style="color: #ff9900">  {{'carousel.instructions.orange' | translate}} </p>
+                                    <p style="color: #c0c0c0">  {{'carousel.instructions.grey' | translate}} </p> 
+                                    <p class="text-blue"> {{'carousel.set' | translate}} </p>
+
+                                    <div style="display: flex; margin-left: 20px"> 
+                                        <img src="./assets/images/circle.png" height="30px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{'carousel.cicle' | translate}} : {{ state.cycle }} </p>
+                                    </div>
+
+                                    <div style="display: flex; margin-left: 17px"> 
+                                        <img src="./assets/images/solution.png" height="35px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 0px;"> {{'carousel.solution' | translate}}: {{ state.solution }} </p>
+                                    </div>
+                                </div>
+        
+                                <div *ngIf="i != 0" class="ci-center-content">
+                                    <div class="icon-text">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px;"> {{'carousel.current-node' | translate}} : {{ state.currentNode }} </p>
+                                    </div>
+
+                                    <div *ngIf="state.distances.length != 0">
+                                        <table class="ci-table">
+                                            <tr>
+                                                <th> {{'carousel.unvisited-node' | translate}} </th>
+                                                <th> {{'carousel.distance' | translate}} </th>
+                                            </tr>
+                                            <tr *ngFor="let distance of state.distances">
+                                                <td> {{distance[0]}} </td>
+                                                <td> {{distance[1]}} </td>
+                                            </tr>
+                                        </table>
+
+                                        <div style="display: flex; margin-top: 20px;">
+                                            <img src="./assets/images/selected_node.png" height="40px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top: 5px"> {{'carousel.chosen-node' | translate}}: {{state.nextNode}}</p>
+                                        </div>
+
+                                        <div style="display: flex;">
+                                            <img src="./assets/images/distance.png" height="35px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top:5px;"> {{'carousel.with-distance-from-node' | translate}} {{state.currentNode}} {{'carousel.minimum' | translate}} ({{state.minimunDistance}}) </p>    
+                                        </div>
+                                    </div>
+                                
+                                    <div *ngIf="state.distances.length === 0">
+                                        <div style="display: flex;">
+                                            <img src="./assets/images/finish-flag.png" height="35px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top:5px;"> {{'carousel.go-to-start-node' | translate}}: {{state.nextNode}}</p>
+                                        </div>
+
+                                        <div style="display: flex;">
+                                            <img src="./assets/images/distance.png" height="35px" style="margin-right: 10px">
+                                            <p class="text-blue" style="margin-top:5px;"> {{'carousel.edge-distance' | translate}} ({{state.currentNode}},{{state.nextNode}}): {{state.minimunDistance}} </p>    
+                                        </div>
+                                    </div>
+                                
+                                    <div class="icon-text">
+                                        <img src="./assets/images/circle.png" height="40px" style="margin-right: 10px">
+                                        <p style="margin-top: 5px;" class="text-blue"> {{'carousel.cicle' | translate}} : {{ state.cycle.length === 0 ? "-" : state.cycle }} </p>
+                                    </div>
+
+                                    <div style="display: flex;"> 
+                                        <img src="./assets/images/solution.png" height="35px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 2px; margin-left: 5px;"> {{'carousel.solution' | translate}}: {{ state.solution }} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+</div>

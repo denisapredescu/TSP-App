@@ -1,0 +1,200 @@
+<div id="up" (mouseover)="getSection('')" class="section-box header">
+    <p>{{ 'exact-algorithms.header' | translate }}</p>
+</div>
+
+<div id="dynamic-programming" (mouseover)="getSection('dynamic-programming')" class="section-box">
+
+    <div class="title">
+        <h2>{{ 'exact-algorithms.dynamic-programming.title' | translate }}</h2> 
+    </div>
+
+    <p>{{ 'exact-algorithms.dynamic-programming.text' | translate }}</p>
+
+    <div class="theorem">
+        <p class="highlight">{{ 'general.definition' | translate }}</p>
+        <p >{{ 'exact-algorithms.dynamic-programming.definition' | translate }}</p>
+    </div>
+    
+
+    <div>
+        <h4>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.title' | translate }}</h4>
+    
+        <p>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.text' | translate }}<p>
+    
+        <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.subproblem.formula' | translate }}</p>
+    </div>
+
+    <div>
+        <h4>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.final-step.title' | translate }}</h4>
+    
+        <p>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.final-step.text' | translate }}<p>
+    
+        <img src="./assets/images/dynamic-programming-final-step.png" class="display-image">
+    
+        <p class="formula">{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.final-step.formula' | translate }}</p>
+    </div>
+    
+    <div>
+        <h4>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.intermediar-step.title' | translate }}</h4>
+    
+        <p>{{ 'exact-algorithms.dynamic-programming.analogy-to-tsp.intermediar-step.text' | translate }}<p>
+    
+        <img src="./assets/images/dynamic-programming-intermediar-step.png" class="display-image">
+    
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/recursive_connect.png" class="icons-h4">
+        <h4>{{ 'exact-algorithms.dynamic-programming.recursion.title' | translate }}</h4>
+    </div>
+ 
+    <p>{{ 'exact-algorithms.dynamic-programming.recursion.header' | translate }}</p>
+
+    <ul>
+        {{ 'exact-algorithms.dynamic-programming.recursion.steps' | translate }}
+        <li>
+            <p>
+                <label class="italic-text">{{ 'exact-algorithms.dynamic-programming.recursion.first-step.step' | translate }}:</label>
+                {{ 'exact-algorithms.dynamic-programming.recursion.first-step.text' | translate }}
+            </p>
+
+            <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.first-step.formula' | translate }}</p>
+        </li>
+
+        <li>
+            <p>
+                <label class="italic-text">{{ 'exact-algorithms.dynamic-programming.recursion.middle-step.step' | translate }}:</label>
+                {{ 'exact-algorithms.dynamic-programming.recursion.middle-step.text' | translate }}
+            </p>
+
+            <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.middle-step.formula' | translate }}</p>
+        </li>
+    </ul>
+
+    <div>
+        <p>
+            {{ 'exact-algorithms.dynamic-programming.recursion.final-step.text1' | translate }}
+            <label class="italic-text">{{ 'exact-algorithms.dynamic-programming.recursion.final-step.step' | translate }}:</label>
+            {{ 'exact-algorithms.dynamic-programming.recursion.final-step.text2' | translate }}
+        </p>
+
+        <p class="formula">{{ 'exact-algorithms.dynamic-programming.recursion.final-step.formula' | translate }}</p>
+  
+    </div>
+ 
+    <div class="pseudocode">
+        {{'exact-algorithms.dynamic-programming.pseudocode.pseudocode' | translate }}
+    </div>
+
+    <app-code-section [currentSubsection]=dynamicProgramming></app-code-section>
+    <app-input-output-section [currentSubsection]=dynamicProgramming></app-input-output-section>
+   
+    <div style="display: flex"> 
+        <img src="./assets/images/explication.png" class="icons-h4">
+        <h4>{{ 'general.explications' | translate }}</h4> 
+    </div>
+    <p>{{ 'exact-algorithms.dynamic-programming.pseudocode.explications.text' | translate }}</p>
+
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        
+        <p>{{ 'exact-algorithms.dynamic-programming.complexity.theorem' | translate }}</p>
+    </div>
+    
+</div>
+
+<div id="branch-and-bound" (mouseover)="getSection('branch-and-bound')" class="section-box">
+    
+    <div class="title">
+        <h2>{{ 'exact-algorithms.branch-and-bound.title' | translate }}</h2>
+    </div>
+
+    <p>{{ 'exact-algorithms.branch-and-bound.text' | translate }}</p>
+    
+    <div id="image-with-text">
+        <img src="./assets/images/bb-1.png" class="display-image">
+        <span> 
+            {{ 'exact-algorithms.branch-and-bound.image-text.image-1-text-1' | translate }} 
+            <a (click)="goToATSP()">{{ 'exact-algorithms.branch-and-bound.image-text.image-1-text-2' | translate }}</a>
+        </span>
+    </div>
+
+    <div>
+        <h4>{{ 'exact-algorithms.branch-and-bound.lim.title' | translate }} (
+            <label class="italic-text">{{ 'exact-algorithms.branch-and-bound.lim.name' | translate }}</label>
+            )</h4>
+
+        <ul> 
+            <li *ngFor="let i of [0,1,2,3]">
+                {{ 'exact-algorithms.branch-and-bound.lim.' + i | translate }}
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <div style="display: flex"> 
+            <img src="./assets/images/steps.png" class="icon-theorem">
+            <p class="steps">{{ 'exact-algorithms.branch-and-bound.strategy.title' | translate }}</p>
+        </div>
+        <!-- <h4>{{ 'exact-algorithms.branch-and-bound.strategy.title' | translate }}</h4> -->
+        <ol> 
+            <li *ngFor="let i of [0,1,2,3, 4]">
+                {{ 'exact-algorithms.branch-and-bound.strategy.steps.' + i | translate }}
+            </li>
+        </ol>
+        <p>{{ 'exact-algorithms.branch-and-bound.strategy.text' | translate }}</p>
+        <ul>
+            {{ 'exact-algorithms.branch-and-bound.strategy.benefits.text' | translate }}
+            <li>{{ 'exact-algorithms.branch-and-bound.strategy.benefits.0' | translate }}</li>
+            <li>{{ 'exact-algorithms.branch-and-bound.strategy.benefits.1' | translate }}</li>
+        </ul>
+    </div>
+
+
+    <div id="image-with-text">
+        <img src="./assets/images/bb-2.png" class="display-image">
+        <span>{{ 'exact-algorithms.branch-and-bound.image-text.image-2-text-1' | translate }}</span>
+    </div>
+
+    <p>{{ 'exact-algorithms.branch-and-bound.pseudocode.text' | translate }}</p>
+    <div class="pseudocode">
+        {{ 'exact-algorithms.branch-and-bound.pseudocode.pseudocode-recursion' | translate }}
+    </div>
+
+    <div class="pseudocode">
+        {{ 'exact-algorithms.branch-and-bound.pseudocode.pseudocode-branch-and-bound' | translate }}
+    </div>
+    <p>{{ 'exact-algorithms.branch-and-bound.construction.text' | translate }}</p>
+    <div class="theorem">
+        <ul>
+            <li *ngFor="let i of [0,1,2]"> 
+                {{ 'exact-algorithms.branch-and-bound.construction.steps.' + i | translate }}
+            </li>
+            <li> 
+                {{ 'exact-algorithms.branch-and-bound.construction.steps.3' | translate }}
+                <p class="formula"> {{ 'exact-algorithms.branch-and-bound.construction.steps.3-formula' | translate }}</p>
+            </li>
+        </ul>
+    </div>
+    <p>{{ 'exact-algorithms.branch-and-bound.construction.solution.text' | translate }} </p>
+    <p class="formula">{{ 'exact-algorithms.branch-and-bound.construction.solution.formula' | translate }} </p>
+
+    <app-example-component [example]="'branch-and-bound'"></app-example-component>
+    <app-code-section [currentSubsection]=branchAndBound></app-code-section>
+    <app-input-output-section [currentSubsection]=branchAndBound></app-input-output-section>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <p>{{ 'exact-algorithms.branch-and-bound.complexity.text' | translate }}</p>
+ </div>

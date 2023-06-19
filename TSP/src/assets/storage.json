@@ -1,0 +1,216 @@
+{
+    "variations": {
+        "asimetric": [
+            {
+                "image": "assets/images/atsp.png",
+                "thumbImage": "assets/images/atsp.png",
+                "order": 1
+            }, {
+                "image": "assets/images/atsp-to-stsp-1.png",
+                "thumbImage": "assets/images/atsp-to-stsp-1.png",
+                "order": 2
+            }, {
+                "image": "assets/images/atsp-to-stsp-2.png",
+                "thumbImage": "assets/images/atsp-to-stsp-2.png",
+                "order": 3
+            }, {
+                "image": "assets/images/atsp-to-stsp-3.png",
+                "thumbImage": "assets/images/atsp-to-stsp-3.png",
+                "order": 4
+            }
+        ],
+        "vizitari_multiple": [
+            {
+                "image": "assets/images/stsp-bigger.png",
+                "thumbImage": "assets/images/stsp-bigger.png",
+                "order": 1
+            }, {
+                "image": "assets/images/multiple-visits.png", 
+                "thumbImage": "assets/images/multiple-visits.png", 
+                "order": 2
+            }
+        ], 
+        "metric": [
+            {
+                "image": "assets/images/TSP.png",
+                "thumbImage": "assets/images/TSP.png",
+                "order": 1       
+            }, {
+                "image": "assets/images/TSP-metric.png", 
+                "thumbImage": "assets/images/TSP-metric.png",
+                "order": 2
+            }
+        ], 
+        "max": [
+            {
+                "image": "assets/images/stsp-bigger.png",
+                "thumbImage": "assets/images/stsp-bigger.png",
+                "order": 1       
+            }, {
+                "image": "assets/images/max-1.png", 
+                "thumbImage": "assets/images/max-1.png",
+                "order": 2
+            }, {
+                "image": "assets/images/max-2.png", 
+                "thumbImage": "assets/images/max-2.png", 
+                "order": 3
+            }, {
+                "image": "assets/images/max-3.png", 
+                "thumbImage": "assets/images/max-3.png", 
+                "order": 4
+            }
+        ]
+    }, 
+    "approximation-algorithms": {
+        "dfs_images": [ {
+            "thumbImage": "assets/images/double_tree/dfs/dfs_1.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_2.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_3.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_4.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_5.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_6.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_7.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_8.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_9.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_10.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_11.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_12.png"
+          },{
+            "thumbImage": "assets/images/double_tree/dfs/dfs_13.png"
+          }
+        ]
+    }, 
+    "navbar": [   
+      {
+        "index": "general",
+        "isActive": false,
+        "isShown": true, 
+        "subsectionTo": ""
+      },
+      {
+        "index": "variations",
+        "isActive": false,
+        "isShown": true,
+        "subsectionTo": ""
+      },
+      {
+        "index": "asymmetric-tsp",
+        "isActive": false,
+        "isShown": false,
+        "subsectionTo": "variations"
+      },
+      {
+        "index": "multiple-visits-tsp",
+        "isActive": false,
+        "isShown": false,
+        "subsectionTo": "variations"
+      },
+      {
+        "index": "max-tsp",
+        "isActive": false,
+        "isShown": false,
+        "subsectionTo": "variations" 
+      },
+      {
+        "index": "metric-tsp",
+        "isActive": false,
+        "isShown": false,
+        "subsectionTo":"variations"
+      }, 
+      {
+        "index": "exact-algorithms",
+        "isActive": false,
+        "isShown": true,
+        "subsectionTo": ""
+      },
+      {
+        "index": "dynamic-programming",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "exact-algorithms"
+      },
+      {
+        "index": "branch-and-bound",
+        "isActive": false,
+        "isShown": false,
+        "subsectionTo": "exact-algorithms"
+      },
+      {
+        "index":"approximation-algorithms",
+        "isActive": false,
+        "isShown": true, 
+        "subsectionTo": ""
+      },
+      {
+        "index": "double-tree-algorithm",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "approximation-algorithms"
+      },
+      {
+        "index": "chistofides-algorithm",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "approximation-algorithms"
+      },
+      {
+        "index": "heuristic-algorithms",
+        "isActive": false,
+        "isShown": true, 
+        "subsectionTo": ""
+      },
+      {
+        "index": "farthest-insertion",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index":  "nearest-insertion",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index": "cheapest-insertion",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index": "nearest-neighbor",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index":  "2-opt",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index": "3-opt",
+        "isActive": false,
+        "isShown": false, 
+        "subsectionTo": "heuristic-algorithms"
+      },
+      {
+        "index": "input-class",
+        "isActive": false,
+        "isShown": true, 
+        "subsectionTo": ""
+      }
+  ]
+}

@@ -1,0 +1,28 @@
+div {
+  color: #000;
+  white-space: pre-wrap;
+}
+
+#up {
+  padding-top: 40px;
+}
+
+.display-image {
+  width: 480px;
+  border-radius: 5px;
+  display: flex;
+  margin: auto;
+}
+
+span {
+  text-align: center;
+}
+
+#image-with-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pseudocode {
+  color:#f6f6f2;
+}

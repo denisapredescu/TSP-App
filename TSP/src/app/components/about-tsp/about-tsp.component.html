@@ -1,0 +1,111 @@
+<div id="up">
+    <div class="header">
+        <p>
+            <label class="italic-text">{{ 'about-tsp.header-name-problem' | translate }}</label>
+            {{ 'about-tsp.header' | translate }}
+        </p>
+    </div>
+    
+    <div class="title">
+        <h3>{{ 'about-tsp.title' | translate }}</h3>
+    </div>
+
+    <p>{{ 'about-tsp.problem-explication' | translate }}</p>
+
+    <div class="theorem">
+        <p class="highlight">{{ 'general.construction' | translate }}</p>
+        <p>{{ 'about-tsp.definition-graph' | translate }}</p>
+        <p>{{ 'about-tsp.definition-matrix' | translate }}</p>
+    </div>
+
+    <div>
+        <h5>{{ 'about-tsp.hamiltonain-cycle.title' | translate }}</h5>
+        <ul>
+            <li>{{ 'about-tsp.hamiltonain-cycle.cycle' | translate }}</li>
+            <li>{{ 'about-tsp.hamiltonain-cycle.minimum-cycle' | translate }}</li>
+        </ul>
+        <p class="formula">{{ 'about-tsp.hamiltonain-cycle.cycle-length' | translate }}</p>
+        <p>{{ 'about-tsp.hamiltonain-cycle.analogy-reference' | translate }}
+            <label  class="italic-text">{{ 'about-tsp.hamiltonain-cycle.analogy-definition' | translate }}</label>
+            {{ 'about-tsp.hamiltonain-cycle.general-tsp' | translate }}
+        </p>
+        <p>{{ 'about-tsp.hamiltonain-cycle.connectin-with-variations.text'  | translate }} 
+            <a type="link" (click)="goToVariations()">{{  'about-tsp.hamiltonain-cycle.connectin-with-variations.linkText' | translate }}</a>.
+        </p>
+    </div>
+
+    <div>
+        <h5>{{ 'about-tsp.general-tsp.title' | translate }}</h5>
+        <p>{{ 'about-tsp.general-tsp.definition-symmetric-matrix' | translate }}</p>
+
+        <div class="example">
+            <div class="img-stsp">
+                <img src="./assets/images/stsp.png" alt="Display stsp graph example" />
+            </div>
+
+            <div class="example-info">
+                <div>
+                    <p>{{ 'about-tsp.general-tsp.matrix' | translate }}</p>
+                </div>
+                
+                <div>
+                    <table class="table-matrix-stsp">
+                        <tr> 
+                            <th *ngFor="let header of [' ', 0, 1, 2, 3]">{{ header }}</th>
+                        </tr>
+                        <tr *ngFor="let row of [[0, 1, 2, 1], [1, 0, 1, 5], [2, 1, 0, 5], [1, 5, 5, 0]]; let columnIndex = index">
+                            <th>{{columnIndex}}</th>
+                            <td *ngFor="let i of [0,1,2,3]">{{row[i]}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <p>{{ 'about-tsp.general-tsp.solution' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="title">
+        <h3>{{ 'about-tsp.np-completeness.title' | translate }}</h3>
+    </div>
+  
+    <div class="theorem">
+        <p class="highlight">{{ 'general.definitions' | translate }} </p>
+        <p>
+            {{ 'about-tsp.np-completeness.definition-1.part-1' | translate }}
+            <label class="italic-text">{{ 'about-tsp.np-completeness.definition-1.part-2' | translate }}</label>
+            {{ 'about-tsp.np-completeness.definition-1.part-3' | translate }}
+        </p>
+
+        <p>
+            {{ 'about-tsp.np-completeness.definition-2.part-1' | translate }}
+            <label class="italic-text">{{ 'about-tsp.np-completeness.definition-2.part-2' | translate }}</label>
+            {{ 'about-tsp.np-completeness.definition-2.part-3' | translate }}
+            <label class="italic-text">{{ 'about-tsp.np-completeness.definition-2.part-4' | translate }}</label>
+            {{ 'about-tsp.np-completeness.definition-2.part-5' | translate }}
+        </p>
+
+        <p>
+            {{ 'about-tsp.np-completeness.definition-3.part-1' | translate }}
+            <label class="italic-text">{{ 'about-tsp.np-completeness.definition-3.part-2' | translate }}</label>
+            {{ 'about-tsp.np-completeness.definition-3.part-3' | translate }}
+        </p>
+    </div>
+
+    <div>
+        <h5>{{ 'about-tsp.np-completeness.tsp-is-np.title' | translate }}</h5>
+        <p>{{ 'about-tsp.np-completeness.tsp-is-np.demonstration' | translate }}:</p>
+        <p>{{ 'about-tsp.np-completeness.tsp-is-np.text' | translate }}</p>
+    </div>
+
+    <div>
+        <h5>{{ 'about-tsp.np-completeness.tsp-is-np-complete.title' | translate }}</h5>
+        <p>{{ 'about-tsp.np-completeness.tsp-is-np-complete.demonstration' | translate }}:</p>
+        <p>{{ 'about-tsp.np-completeness.tsp-is-np-complete.text' | translate }}</p>
+    </div>
+
+    <p class="italic-text">{{ 'about-tsp.np-completeness.conclusion' | translate }}</p>
+
+</div>

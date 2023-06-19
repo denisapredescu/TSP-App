@@ -1,0 +1,33 @@
+.is-active {
+    background-color: #1a4953;
+}
+
+.is-not-active {
+    background-color:transparent; 
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+a, i {
+    color: rgb(255, 255, 255)!important;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.subsection-in-sidenav {
+    margin-left: 10px;
+    font-size: small;
+    color: white;
+}
+
+.section-in-sidenav {   
+    margin-left: 0px;
+    font-size: medium;
+    font-weight: 400;
+    color: white;
+}

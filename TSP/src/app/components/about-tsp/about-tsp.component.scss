@@ -1,0 +1,41 @@
+div, p {
+    color: #000;
+    white-space: pre-wrap;
+}
+
+#up {
+    padding-top: 40px;
+}
+
+.example {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.img-stsp {
+    margin: auto;
+}
+
+img {
+    width: 500px;
+    border-radius: 5px;
+}
+
+.example-info {
+    display: grid;
+    grid-template-rows: 15% 70% 15%;
+    justify-content: start;
+    justify-items: center;
+}
+
+.table-matrix-stsp {
+    border: 1px solid #000;
+    width: 370px;
+    height: 200px;
+
+    td, th {
+        text-align: center;
+        border: 1px solid black;
+        background-color: #aff2f2;
+    }
+}

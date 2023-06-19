@@ -1,0 +1,253 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital@1&family=Merriweather:ital,wght@0,900;1,300;1,700&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size:18px; }
+
+
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption{
+    color: black !important;
+    background-image: none !important;
+}
+
+.ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev{
+    text-decoration: none !important;
+}
+
+.ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev{
+    text-decoration: none !important;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(223, 223, 223);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6E6E6E;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    border-radius: 15px;
+    background-clip: padding-box;  
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+// .formula {
+//     font-size:large;
+//     font-style: italic;
+//     font-weight: 450;
+//     margin: 15px;
+//     text-align: center;
+// }
+
+.formula {
+    font-size:large;
+    font-weight: 450;
+    margin: 15px;
+    text-align: center;
+    font-family: 'Noto Sans Math', sans-serif;
+    font-weight: 600;
+}
+
+.pseudocode {
+    background-color: #1e1e1e;
+    color:white;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    white-space: pre-wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: Consolas,monaco,monospace; 
+}
+
+// .theorem {
+//     background-color: #abd0d8;
+//     border-radius: 5px;
+//     padding: 10px;
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+// }
+
+.theorem {
+    background-color: #cbb281;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    font-family: 'Merriweather', serif;
+    font-weight: bolder;
+    font-size: 17px;
+}
+
+.highlight {
+    // font-size: 22px;
+    font-size: 20px;
+    // font-style: italic;
+    font-weight:500;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+// .italic-text {
+//     font-style: italic;
+//     font-weight: 500;
+// }
+  
+h3 {
+    // margin-left: 33px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-family: 'Abril Fatface', cursive;
+}
+
+h4{
+    // margin-left: 33px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    // font-style: italic;
+    font-family: 'Abril Fatface', cursive;
+    // text-decoration: underline;
+}
+
+h5 {
+   font-style: italic;
+   margin-left: 33px;
+}
+
+.section-box {
+    padding: 20px;
+}
+
+.title{
+    display: grid;
+    justify-content: center;
+    margin-bottom: 20px;
+    // font-style: italic;
+    font-family: 'Abril Fatface', cursive;
+}
+
+a, label:hover{
+    cursor: pointer;
+}
+
+p, h2, h3, h4, h5, li, ol, ul:hover{
+    cursor:default;
+}
+
+
+/* Run button for code */
+.run-button {
+  position: relative;
+  overflow: hidden;
+  border: 0px solid transparent;
+  border-radius:  5px;
+  color: #18181a;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 10px 10px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #f6f6f2;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.run-button span:first-child {
+  position: relative;
+  transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 10;
+}
+
+.run-button span:last-child {
+  color: white;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 100;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translateY(225%) translateX(-50%);
+  height: 14px;
+  line-height: 13px;
+}
+
+.run-button:after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1e1e1e;
+  transform-origin: bottom center;
+  transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  transform: skewY(9.3deg) scaleY(0);
+  z-index: 50;
+}
+
+.run-button:hover:after {
+  transform-origin: bottom center;
+  transform: skewY(9.3deg) scaleY(2);
+}
+
+.run-button:hover span:last-child {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 1;
+  transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.text-blue{
+    font-weight: 500;
+    font-size: large;
+    font-style: italic;
+    color: #214a4e;
+}
+
+a {
+    color:rgb(124 69 237)!important;
+    text-decoration: underline!important;
+    font-weight: bold;
+}
+
+.icons-h4 {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 24px;
+    height: 35px;
+  }
+  
+.icon-theorem {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+.steps {
+    // font-weight: bolder;
+    font-size: 19px;
+    margin-bottom: 0;
+    // font-family: "Cormorant Garamond", serif;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 3px;
+}
+
+.header {
+    font-family: 'Fraunces', serif;
+    font-weight: bold;
+}

@@ -1,0 +1,17 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
+<div *ngFor="let section of sections; let sectionIndex = index">
+    <button 
+        mat-button 
+        class="menu-button"
+        [ngClass]="section.isActive === true ? 'is-active' : 'is-not-active'"
+        *ngIf="section.isShown === true"
+        (click)="buttonClick(sectionIndex)">
+      <i *ngIf="section.subsectionTo !== ''"  class="fa fa-arrow-right" aria-hidden="true"></i>
+      <label [ngClass]="section.subsectionTo !== '' ? 'subsection-in-sidenav' : 'section-in-sidenav' " >
+        {{ "sidenav." + section.index | translate }}
+      </label>
+      
+    </button>
+</div>

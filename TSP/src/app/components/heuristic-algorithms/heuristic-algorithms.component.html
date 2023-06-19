@@ -1,0 +1,379 @@
+<div id="up" (mouseover)="getSection('')" class="section-box">
+    <p class="header">{{ 'heuristic-algorithms.header' | translate }}</p>
+
+    <h3>{{ 'heuristic-algorithms.build-cycle.title' | translate }}</h3>  
+    <p>{{ 'heuristic-algorithms.build-cycle.header' | translate }}</p>
+</div>
+
+<div id="farthest-insertion" (mouseover)="getSection('farthest-insertion')" class="section-box">
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.title' | translate }}</h2> 
+    </div>
+
+    <p>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.header' | translate }}</p>
+
+    <p class="highlight">{{ 'heuristic-algorithms.build-cycle.farthest-insertion.worst-case.title' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.worst-case.text' | translate }}</p>
+    <div class="formula">{{ 'heuristic-algorithms.build-cycle.farthest-insertion.worst-case.formula' | translate }}</div>
+ 
+    <div style="display: flex"> 
+        <img src="./assets/images/steps.png" class="icon-theorem">
+        <p class="steps">{{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.0' | translate }}</p>
+    </div>
+    <ol> 
+       <li> 
+            {{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.1' | translate }}
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.2' | translate }}
+           <strong>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.2-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.3' | translate }}
+            <strong>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.3-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.algorithm.4' | translate }}
+        </li>
+    </ol>
+
+    <div class="pseudocode">
+        {{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.pseudocode' | translate }}
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/explication.png" class="icons-h4">
+        <h4>{{ 'general.explications' | translate }}</h4> 
+    </div>
+    <p>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.pseudocode.explications.text' | translate }}</p> 
+    
+    <app-example-component [example]="'farthest-insertion'"></app-example-component>
+    <app-code-section [currentSubsection]=farthestInsertion></app-code-section>
+    <app-input-output-section [currentSubsection]=farthestInsertion></app-input-output-section>
+    
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'heuristic-algorithms.build-cycle.farthest-insertion.complexity.theorem' | translate }}</p>
+    </div>
+
+</div>
+
+<div id="nearest-insertion" (mouseover)="getSection('nearest-insertion')" class="section-box">
+
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.title' | translate }}</h2>  
+    </div>
+
+    <p>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.header' | translate }}</p>
+
+    <p class="highlight">{{ 'heuristic-algorithms.build-cycle.nearest-insertion.worst-case.title' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.worst-case.text' | translate }}</p>
+    <div class="formula">{{ 'heuristic-algorithms.build-cycle.nearest-insertion.worst-case.formula' | translate }}</div>
+ 
+    <div style="display: flex"> 
+        <img src="./assets/images/steps.png" class="icon-theorem">
+        <p class="steps">{{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.0' | translate }}</p>
+    </div>
+    <ol> 
+       <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.1' | translate }}
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.2' | translate }}
+           <strong>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.2-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.3' | translate }}
+            <strong>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.3-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.algorithm.4' | translate }}
+        </li>
+    </ol>
+
+    <div class="pseudocode">
+        {{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.pseudocode' | translate }}
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/explication.png" class="icons-h4">
+        <h4>{{ 'general.explications' | translate }}</h4> 
+    </div>
+    <p>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.pseudocode.explications.text' | translate }}</p> 
+    
+   
+    <app-example-component [example]="'nearest-insertion'"></app-example-component>
+    <app-code-section [currentSubsection]=nearestInsertion></app-code-section>
+    <app-input-output-section [currentSubsection]=nearestInsertion></app-input-output-section>
+    
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'heuristic-algorithms.build-cycle.nearest-insertion.complexity.theorem' | translate }}</p>
+    </div>
+
+</div>
+
+<div id="cheapest-insertion" (mouseover)="getSection('cheapest-insertion')" class="section-box">
+
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.title' | translate }}</h2>  
+    </div>
+
+    <p>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.header' | translate }}</p>
+
+    <p class="highlight">{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.worst-case.title' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.worst-case.text' | translate }}</p>
+    <div class="formula">{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.worst-case.formula' | translate }}</div>
+ 
+    <div style="display: flex"> 
+        <img src="./assets/images/steps.png" class="icon-theorem">
+        <p class="steps">{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.0' | translate }}</p>
+    </div>
+    <ol>  
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.1' | translate }}
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.2' | translate }}
+           <strong>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.2-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.3' | translate }}
+            <strong>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.3-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.algorithm.4' | translate }}
+        </li>
+    </ol>
+
+    <div class="pseudocode">
+        {{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.pseudocode' | translate }}
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/explication.png" class="icons-h4">
+        <h4>{{ 'general.explications' | translate }}</h4> 
+    </div>
+    <p>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.pseudocode.explications.text' | translate }}</p> 
+    
+    <app-example-component [example]="'cheapest-insertion'"></app-example-component>
+    <app-code-section [currentSubsection]=cheapestInsertion></app-code-section>
+    <app-input-output-section [currentSubsection]=cheapestInsertion></app-input-output-section>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'heuristic-algorithms.build-cycle.cheapest-insertion.complexity.theorem' | translate }}</p>
+    </div>
+
+</div>
+
+<div id="nearest-neighbor" (mouseover)="getSection('nearest-neighbor')" class="section-box">
+
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.title' | translate }}</h2>  
+    </div>
+    
+    <p>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.header' | translate }}</p>
+
+    <p class="highlight">{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.worst-case.title' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.worst-case.text' | translate }}</p>
+    <div class="formula">{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.worst-case.formula' | translate }}</div>
+ 
+    <div style="display: flex"> 
+        <img src="./assets/images/steps.png" class="icon-theorem">
+        <p class="steps">{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.0' | translate }}</p>
+    </div>
+    <ol> 
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.1' | translate }}
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.2' | translate }}
+           <strong>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.2-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.3' | translate }}
+            <strong>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.3-formula' | translate }}</strong>
+        </li>
+        <li> 
+            {{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.algorithm.4' | translate }}
+        </li>
+    </ol>
+
+    <div class="pseudocode">
+        {{ 'heuristic-algorithms.build-cycle.nearest-neighbor.pseudocode.pseudocode' | translate }}
+    </div>
+    
+    <app-example-component [example]="'nearest-neighbor'"></app-example-component>
+    <app-code-section [currentSubsection]=nearestNeighbor></app-code-section>
+    <app-input-output-section [currentSubsection]=nearestNeighbor></app-input-output-section>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <div class="theorem">
+        <div style="display: flex"> 
+            <img src="./assets/images/theorem.png" class="icon-theorem">
+            <p class="highlight">{{ 'general.theorem' | translate }}</p>
+        </div>
+        <p>{{ 'heuristic-algorithms.build-cycle.nearest-neighbor.complexity.theorem' | translate }}</p>
+    </div>
+
+</div>
+
+<div class="section-box">
+    <h3>{{ 'heuristic-algorithms.cycle-improvement.title' | translate }}</h3>
+
+    <p>{{ 'heuristic-algorithms.cycle-improvement.header' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.definition-k-change-neighborhood' | translate }}</p>
+
+    <div class="pseudocode">
+        {{ 'heuristic-algorithms.cycle-improvement.pseudocode' | translate }}
+    </div>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/explication.png" class="icons-h4">
+        <h4>{{ 'general.explications' | translate }}</h4> 
+    </div>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.explications.text' | translate }}</p>
+
+    <div style="display: flex"> 
+        <img src="./assets/images/complexity.png" class="icons-h4">
+        <h4>{{ 'general.complexity' | translate }}</h4>
+    </div>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.complexity.theorem' | translate }}</p>
+</div>
+
+
+<div id="2-opt" (mouseover)="getSection('2-opt')" class="section-box">
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.cycle-improvement.2-opt.title' | translate }}</h2>  
+    </div>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.header' | translate }}</p> 
+
+    <div style="display: grid; justify-content: center; margin: 50px;">
+        <img src="../../../assets/images/2-opt/2-opt-cycles.png" height="150px" alt="f-cycle and g-cycle">
+    </div>
+
+    <p class="highlight">{{ 'heuristic-algorithms.cycle-improvement.2-opt.advantage.title' | translate }}</p>
+    <p class="formula">{{ 'heuristic-algorithms.cycle-improvement.2-opt.advantage.formula' | translate }}</p>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.advantage.explication' | translate }}</p>
+
+    <div class="opt-2-picture-container">
+        <img src="../../../assets/images/2-opt/initial-cycle.png" alt="Inicial cycle" style="object-fit: contain; margin: auto; height: 200px;">
+        <img src="../../../assets/images/2-opt/2-opt-move.png" alt="2-OPT move" style="object-fit: contain; margin: auto; height: 400px;">
+    </div>
+
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-advantage.text' | translate }}</p>
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-advantage.pseudocode' | translate }}</p>
+    </div>
+
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-2-change.text' | translate }}</p>
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-2-change.pseudocode' | translate }}</p>
+    </div>
+
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-2-opt.text' | translate }}</p>
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-2-opt.pseudocode' | translate }}</p>
+    </div>
+
+    <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-bind.text' | translate }}</p>
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.2-opt.pseudocode-bind.pseudocode' | translate }}</p>
+    </div>
+
+    <app-code-section [currentSubsection]=twoOpt></app-code-section>
+    <app-input-output-section [currentSubsection]=twoOpt></app-input-output-section>
+
+</div>
+
+<div id="3-opt" (mouseover)="getSection('3-opt')" class="section-box">
+    <div class="title">
+        <h2>{{ 'heuristic-algorithms.cycle-improvement.3-opt.title' | translate }}</h2>  
+    </div>
+    <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.header' | translate }}</p> 
+
+    <ul> <p class="highlight">{{ 'heuristic-algorithms.cycle-improvement.3-opt.cycles-created-with-3-change.0' | translate }}</p>
+        <li *ngFor="let i of [1, 2, 3]"> 
+            {{ 'heuristic-algorithms.cycle-improvement.3-opt.cycles-created-with-3-change.' + i | translate }}
+        </li>
+    </ul>
+
+    <div class="opt-3-picture-container">
+        <img src="../../../assets/images/3-opt/initial_cycle_2.png" alt="Initial cycle" >
+        <img src="../../../assets/images/3-opt/one_2_opt_move.png" alt="One 2-OPT move">
+        <img src="../../../assets/images/3-opt/two_2_opt_move.png" alt="Two 2-OPT move">
+        <img src="../../../assets/images/3-opt/three_2_opt_move.png" alt="Three 2-OPT move">
+    </div>
+
+    <h5>{{ 'general.example' | translate }}</h5>
+    <ul> {{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-1-part-1'| translate }}
+        <strong>{{ 'heuristic-algorithms.cycle-improvement.3-opt.example.cycle-1'| translate }}</strong>
+        {{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-1-part-2'| translate }}
+
+        <li> 
+            {{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-2-part-1'| translate }}
+            <strong>{{ 'heuristic-algorithms.cycle-improvement.3-opt.example.cycle-2'| translate }}</strong>
+            {{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-2-part-2'| translate }}
+        </li>
+
+        <li> 
+            {{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-3'| translate }}
+            <strong>{{ 'heuristic-algorithms.cycle-improvement.3-opt.example.cycle-3'| translate }}</strong>
+        </li>
+
+        <li>
+            <strong>{{ 'heuristic-algorithms.cycle-improvement.3-opt.example.step-4'| translate }}</strong>
+        </li>
+    </ul>
+
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-advantage' | translate }}</p>
+    </div>
+
+    <div>
+        <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-3-change.initial-text' | translate }}</p> 
+        <div class="pseudocode">
+            <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-3-change.pseudocode' | translate }}</p>
+        </div>
+        <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-3-change.final-text' | translate }}</p> 
+    </div>
+
+    <div class="pseudocode">
+        <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-3-opt' | translate }}</p>
+    </div>
+
+    <div>
+        <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-bind.text' | translate }}</p> 
+        <div class="pseudocode">
+            <p>{{ 'heuristic-algorithms.cycle-improvement.3-opt.pseudocode-bind.pseudocode' | translate }}</p>
+        </div>
+    </div>
+
+    <app-code-section [currentSubsection]=threeOpt></app-code-section>
+    <app-input-output-section [currentSubsection]=threeOpt></app-input-output-section>
+</div>

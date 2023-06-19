@@ -1,0 +1,55 @@
+<div class="section-box">
+    
+    <p>{{'input-class.header' | translate}}</p>
+
+    <app-code-section [currentSubsection]=inputClass></app-code-section>
+
+    <div class="errors">
+        <h5>{{'input-class.rules-title' | translate}}</h5>
+        <ul>
+            <li>  
+                <label class="highlight">{{'input-class.rules.general.title' | translate}}</label>
+                <ul>
+                   
+                    <li *ngFor="let i of [0, 1, 2]">
+                        <strong>{{'input-class.rules.general.' + i + '.error'| translate}}</strong>:
+                        {{'input-class.rules.general.' + i + '.explication'| translate}}
+                    </li>
+                </ul>
+            </li>
+
+            <li> 
+                <label class="highlight">{{'input-class.rules.oriented-graph.title' | translate}}</label>
+                <ul>
+                   
+                    <li *ngFor="let i of [0, 1]">
+                        <strong>{{'input-class.rules.oriented-graph.' + i + '.error'| translate}}</strong>:
+                        {{'input-class.rules.oriented-graph.' + i + '.explication'| translate}}
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <label class="highlight"> {{'input-class.rules.neoriented-graph.title' | translate}} </label>
+                <ul>
+                    
+                    <li *ngFor="let i of [0, 1,2,3]">
+                        <strong>{{'input-class.rules.neoriented-graph.' + i + '.error'| translate}}</strong>:
+                        {{'input-class.rules.neoriented-graph.' + i + '.explication'| translate}}
+                    </li>
+                </ul>
+            </li>
+
+            <li>  
+                <label class="highlight">{{'input-class.rules.euclidean-distances.title' | translate}}</label>
+                <ul>
+                  
+                    <li *ngFor="let i of [0, 1, 2 ,3, 4]">
+                        <strong>{{'input-class.rules.euclidean-distances.' + i + '.error'| translate}}</strong>:
+                        {{'input-class.rules.euclidean-distances.' + i + '.explication'| translate}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<mat-toolbar class="toolbar">
+  <div class="toolbar-inner">
+    <div>
+      <button (click)="doStuff()" class="btn-menu">
+        <mat-icon class="burger-menu"> menu </mat-icon>
+      </button>
+   </div>
+
+    <div class="language-selector">
+      <form class="form-language">
+        <mat-select [(value)]="selectedLang">
+          <mat-option (click)="switchLanguage('ro')" value="ro"> Română </mat-option>
+          <mat-option (click)="switchLanguage('en')" value="en"> English </mat-option>
+        </mat-select>
+      </form>
+    </div>
+
+    <div class="page-title">
+      {{ 'sidenav.' + section.section | translate }}
+    </div>
+    
+    <div class="site-title">
+      {{'general.title' | translate}}
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container [hasBackdrop]="false" class="page-container">
+  <mat-sidenav 
+    id="sidenav" 
+    class="sidenav" 
+    #sidenav 
+    disableClose 
+    opened="true" 
+    [ngClass]="sidenavState === 'visible' ? 'visible' : 'hidden'"
+    >  
+    <app-navbar [currentElement] = "section" (sectionSelected) = "changeSection($event)"></app-navbar>
+  </mat-sidenav>
+
+  <mat-sidenav-content
+   class="page-content"
+   [ngClass]="sidenavState === 'visible'? 'side-coontent': 'middle-content'"
+   >
+   <div *ngIf="fromSection(['general'])">
+    <app-about-tsp [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-about-tsp>
+   </div> 
+   
+   <div *ngIf="fromSection(['variations', 'asymmetric-tsp', 'multiple-cisits-tsp', 'max-tsp', 'metric-tsp'])">
+      <app-variations [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-variations>
+    </div>
+    
+    <div *ngIf="fromSection(['exact-algorithms', 'dynamic-programming', 'branch-and-bound'])">
+      <app-exact-algorithms [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-exact-algorithms>
+    </div>
+
+    <div *ngIf="fromSection(['approximation-algorithms', 'chistofides-algorithm'])">
+        <app-approximation-algorithms [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-approximation-algorithms>
+    </div>
+
+    <div *ngIf="fromSection(['heuristic-algorithms', 'farthest-insertion', 'nearest-insertion', 'cheapest-insertion', 'nearest-neighbor', '2-opt', '3-opt'])">
+        <app-heuristic-algorithms [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-heuristic-algorithms>
+    </div>
+
+    <div *ngIf="fromSection(['input-class'])">
+      <app-input-class [currentSubsection] = "section" (changeSection) = "changeSection($event)"></app-input-class>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

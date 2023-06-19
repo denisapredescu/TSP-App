@@ -1,0 +1,104 @@
+div {
+    color: #000;
+    white-space: pre-wrap;
+}
+
+#up {
+    padding-top: 40px;
+}
+
+a {
+    color:rgb(56, 128, 128)!important;
+    text-decoration: underline!important;
+    font-weight: bold;
+}
+
+.mat-mdc-table {
+    background: #f9f9f9;
+    table-layout: fixed;
+    white-space: normal;   
+}  
+
+th, td {
+    color: rgb(0, 0, 0)!important;
+    border: 3px solid rgb(226, 225, 225);
+    text-align: center;
+}
+
+td {
+    width: 100px;
+}
+
+.mdc-data-table__table {
+    min-width: 0;
+    margin: auto;
+}
+
+.graph-table-side-by-side{
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: auto 50%;
+}
+
+.table-variations{
+    display:grid;
+    justify-content: center;
+    height: 100%;
+}
+
+.text-image-side{
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-gap: 40px;
+}
+
+.image-text-side{
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: auto 50%;
+}
+
+.text-half-size{
+    display: grid;
+    padding-right: 70px;
+    padding-left: 70px;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+// .display-solution-text {
+//     margin-top: 25px;
+// }
+
+.look-like-a-slider {
+    background-color: white;
+    display: grid;
+    height: 427px;
+    width: 652px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.metric-tsp-img {
+    border-radius: 5px;
+    width: 652px;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.table-matrix-stsp {
+    border: 1px solid #000;
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    
+    td, th {
+        text-align: center;
+        border: 1px solid black;
+        background-color: #aff2f2;
+    }
+}

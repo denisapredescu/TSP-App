@@ -1,0 +1,390 @@
+.example-section {
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid #388087;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.example-images {
+
+}
+
+.image-info-side {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+}
+
+.tabel-nodes-neighborhood {
+    border: 1px solid black;
+    width: 300px;
+    margin-left: 60px;
+
+    td{
+        border: 1px solid black;
+        min-width: 10px;
+        padding-top: 5px;
+        height: 35px;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        min-width: 20px;
+        height: 35px;
+        padding-top: 5px;
+        text-align: center;
+        background-color: rgb(175, 175, 175);
+    } 
+
+    tr{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+}
+
+.info-side {
+    margin: 50px 0px 50px 200px;
+}
+
+.button-container{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.prev-next-container{
+    display: grid;
+    grid-template-columns: 140px auto;
+}
+
+.reset-container{
+    display: grid;
+    justify-content: end;
+    margin-right: 50px;
+}
+
+.prev-button{
+    width: 120px;
+    margin: 80px 20px 20px 0px;
+    background-color: #388087;
+    color: white;
+    border-radius: 5px;
+    height: 40px;
+    border-color: transparent;
+}
+
+.prev-button:hover{
+    background-color: #1e4246 !important;
+}
+
+.prev-button-deactiveted {
+    width: 120px;
+    margin: 80px 20px 20px 0px;
+    background-color: darkgray;
+    color: black;
+    border-radius: 5px;
+    height: 40px;
+    border-color: transparent;
+    cursor: default;
+}
+
+.next-button{
+    margin: 80px 20px 20px 0px;
+    width: 120px;
+    background-color: #388087;
+    color: white;
+    border-radius: 5px;
+    height: 40px;
+    border-color: transparent;
+}
+
+.next-button:hover{
+    background-color: #1e4246 !important;
+}
+
+.next-button-deactiveted {
+    width: 120px;
+    margin: 80px 20px 20px 0px;
+    background-color: darkgray;
+    color: black;
+    border-radius: 5px;
+    height: 40px;
+    border-color: transparent;
+    cursor: default;
+}
+
+.reset-button{
+    margin: 80px 0px 20px 0px;
+    width: 120px;
+    background-color: white;
+    color: #388087;
+    border-radius: 5px;
+    height: 40px;
+    border-color: #388087;
+    border-style: solid;
+}
+
+.reset-button:hover{
+    background-color: #388087;
+    color: white;
+    border-color: #388087;
+    border-style: solid;
+}
+
+.reset-button-deactiveted {
+    margin: 80px 0px 20px 0px;
+    width: 120px;
+    background-color:darkgray;
+    color: black;
+    border-radius: 5px;
+    height: 40px;
+    border-color:darkgray;
+    border-style: solid;
+    cursor: default;
+}
+
+.top-text-info{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 20px;
+    font-weight: 500;
+    font-size: large;
+    font-style: italic;
+    color: #214a4e;
+    margin-bottom: 20px;
+}
+
+.title-container{
+    display: grid;
+    justify-content: start;
+    margin-bottom: 60px;
+    color: #214a4e;
+    text-decoration: underline;
+}
+
+.icon-text{
+    display: inline-flex;
+}
+
+// Branch & Bound
+
+.bb-container{
+    display: grid;
+    grid-template-rows: 100px 800px;
+    height: 900px;
+}
+
+.bb-example-images{
+    margin: 0px 0px 0px 200px;
+}
+
+.bb-example-content{
+
+}
+
+.bb-button-container{
+    p{
+        font-weight: 500;
+        font-size: large;
+        font-style: italic;
+        color: #214a4e;
+    }
+
+    display: grid;
+    grid-template-columns: 400px 150px;
+    margin: -30px 50px 0px 230px;
+}
+
+.bb-top-half{
+    display: grid;
+    grid-template-columns: 1000px auto;
+}
+
+.bb-carousel-and-buttons{
+    display: grid;
+    grid-template-rows: 330px 100px;
+}
+
+.bb-parent-matrix{
+
+}
+
+.bb-parent-table{
+    
+    td{
+        border: 1px solid black;
+        min-width: 30px;
+        padding-top: 5px;
+        height: 35px;
+        text-align: center;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        min-width: 10px;
+        padding-top: 5px;
+        height: 35px;
+        width: 7ch;
+        text-align: center;
+        background-color: rgb(122, 122, 122);
+    }
+}
+
+.bb-children-list{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    grid-gap: 60px;
+}
+
+.bb-child-table{
+    
+    td{
+        border: 1px solid black;
+        min-width: 30px;
+        padding-top: 5px;
+        height: 35px;
+        text-align: center;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        min-width: 10px;
+        padding-top: 5px;
+        height: 35px;
+        width: 5ch;
+        text-align: center;
+        background-color: rgb(122, 122, 122);
+    }
+}
+
+// Farthest Insertion
+
+.fi-example-container{
+    display: grid;
+    grid-template-rows: 100px 800px;
+    height: 900px;
+}
+
+.fi-title-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+.fi-info-side{
+    margin: 30px 0px 50px 200px;
+}
+
+.fi-content-container{
+    display: grid;
+    grid-template-columns: 500px auto;
+}
+
+.fi-carousel-and-buttons{
+    margin: 50px;
+}
+
+.fi-button-container{
+    display: grid;
+    grid-template-columns: 350px 100px;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.fi-top-text-info{
+    width:90%;
+}
+
+.fi-dist-min-table{
+     
+    td{
+        border: 1px solid black;
+        min-width: 30px;
+        padding-top: 5px;
+        height: 35px;
+        text-align: center;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        padding-top: 5px;
+        height: 35px;
+        width: 150px;
+        text-align: center;
+        background-color: rgb(122, 122, 122);
+    }
+}
+
+.fi-positions-table{
+    td{
+        border: 1px solid black;
+        min-width: 30px;
+        padding-top: 5px;
+        height: 35px;
+        text-align: center;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        padding-top: 5px;
+        height: 35px;
+        width: 100px;
+        text-align: center;
+        background-color: rgb(122, 122, 122);
+    }
+}
+
+.fi-side-by-side{
+    display: grid;
+    grid-template-columns: auto 350px;
+    grid-gap: 30px;
+}
+
+// Cheapest Insertion
+
+.ci-example-container{
+    display: grid;
+    grid-template-rows: 100px 600px;
+    height: 800px;
+}
+
+.ci-button-container{
+    display: grid;
+    grid-template-columns: 350px 100px;
+    margin-left: 40px;
+}
+
+.ci-info-side{
+    margin: auto 0px auto 250px;
+}
+
+.ci-top-text-info{
+    margin-top: -200px;
+}
+
+.ci-table{
+    td{
+        border: 1px solid black;
+        min-width: 30px;
+        padding-top: 5px;
+        height: 35px;
+        text-align: center;
+        background-color: lightgrey;
+    }
+
+    th{
+        border: 1px solid black;
+        padding-top: 5px;
+        height: 35px;
+        width: 150px;
+        text-align: center;
+        background-color: rgb(122, 122, 122);
+    }
+}
