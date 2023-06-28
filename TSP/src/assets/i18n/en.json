@@ -154,8 +154,8 @@
             ,"analogy-to-tsp": {
                 "subproblem": {
                     "title": "How is the subproblem determined?"
-                    , "text": "\t For TSP a subproblem corresponds to the beginning part of the path. It is considered that the journey starts from city 1 and arrives at city j after several cities have been visited. At each step, to extend the beginning of the road, it is necessary to know the city j because it is desired to find the cities to visit after passing through j. To know that the TSP rule of visiting each city only once is obeyed, one also needs to know the identity of the nodes visited in the partial path in order not to go through them again, therefore:"
-                    , "formula": "a subproblem corresponds to a shape pair (node subset, road start)"
+                    , "text": "\t For TSP a subproblem corresponds to the beginning part of the path. It is considered that the journey starts from city 1 and arrives at city j after several cities have been visited. At each step, to extend the beginning of the path, it is necessary to know the city j because it is desired to find the cities to visit after passing through j. To know that the TSP rule of visiting each city only once is obeyed, one also needs to know the identity of the nodes visited in the partial path in order not to go through them again, therefore:"
+                    , "formula": "a subproblem corresponds to a shape pair (node subset, final node from path)"
                 } 
                 , "final-step": {
                     "title": "The last step"

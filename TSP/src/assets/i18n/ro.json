@@ -156,14 +156,14 @@
             ,"analogy-to-tsp": {
                 "subproblem": {
                     "title": "Cum se stabilește subproblema?"
-                    , "text": "\t Pentru TSP o subproblemă corespunde părții de început a drumului. Se consideră că se pornește parcurgerea din orașul 1 și se ajunge în orașul j după ce au fost vizitate câteva orașe. La fiecare pas, pentru a extinde începutul de drum, este necesar să se cunoască orașul j pentru că se dorește găsirea orașelor care de vizitat după ce s-a trecut prin j. Pentru a ști că se respectă regula TSP de a vizita fiecare oraș o singură dată, trebuie să se cunoască și identitatea nodurilor vizitate în drumul parțial pentru a nu le parcurge din nou, de aceea:"
-                    , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, început de drum)"
+                    , "text": "\t Pentru TSP o subproblemă corespunde părții de început a drumului. Se consideră că se pornește parcurgerea din orașul 1 și se ajunge în orașul j după ce au fost vizitate câteva orașe. La fiecare pas, pentru a extinde începutul de drum, este necesar să se cunoască orașul j pentru că se dorește găsirea orașelor de vizitat după ce s-a trecut prin j. Pentru a ști că se respectă regula TSP de a vizita fiecare oraș o singură dată, trebuie să se cunoască și identitatea nodurilor vizitate în drumul parțial pentru a nu le parcurge din nou, de aceea:"
+                    , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, ultimul nod din drum)"
                     
                 } 
                 , "final-step": {
                     "title": "Ultimul pas"
                     , "text": "\t Soluția optimă reprezintă întregirea ciclului prin aducerea nodului j înapoi la nodul de start 1. La acest pas se știu toate drumurile din 1 și ajuns în j ∈ {2,…,n}, deci există n-1 candidați la soluția optimă a problemei. Soluția este stabilită prin obținerea sumei minime dintre fiecare drum care se oprește în j și ponderea muchiei (j,1)."
-                    , "formula": "soluția optimă = min ( (drumul cel mai scurt de la 1 la j continând toate nodurile din V) + d(j,1) )"
+                    , "formula": "soluția optimă = min ( (drumul cel mai scurt de la 1 la j conținând toate nodurile din V) + d(j,1) )"
                 }
                 , "intermediar-step": {
                     "title": "Pas intermediar - Relațiile de recurentă"
