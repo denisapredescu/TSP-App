@@ -22,4 +22,17 @@ export class AboutTspComponent {
     });
   }
 
+  ngOnChanges(): void {
+    this.scroll();
+  }
+
+  scroll(): void {
+    try {
+      if (this.currentSubsection.activate) {
+        (document.getElementById("up") as HTMLElement).scrollIntoView(); 
+      }
+    }
+    catch {}
+  }
+
 }

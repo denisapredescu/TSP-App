@@ -50,6 +50,7 @@ export class LayoutComponent {
     localStorage.setItem('language', language);
     localStorage.setItem('section', this.section.section);
     localStorage.setItem('subsection', this.section.subsection);
+    console.log(this.section.subsection);
     window.location.reload();
   }
 

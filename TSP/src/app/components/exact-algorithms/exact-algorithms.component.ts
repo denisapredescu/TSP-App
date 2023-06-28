@@ -43,7 +43,7 @@ export class ExactAlgorithmsComponent {
         } else {
           nameId = this.currentSubsection.subsection + '';
         }
-        (document.getElementById(nameId) as HTMLElement).scrollIntoView();  //.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); 
+        (document.getElementById(nameId) as HTMLElement).scrollIntoView(); 
       }
     }
     catch {}

@@ -52,7 +52,7 @@ export class ApproximationAlgorithmsComponent {
         } else {
           nameId = this.currentSubsection.subsection + '';
         }
-        (document.getElementById(nameId) as HTMLElement).scrollIntoView(); //.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); 
+        (document.getElementById(nameId) as HTMLElement).scrollIntoView(); 
       }
     }
     catch {}
@@ -75,8 +75,6 @@ export class ApproximationAlgorithmsComponent {
 
   goToNewTab(){
     const link = "https://sci-hub.ru/10.1007/978-3-540-71844-4";
-    // this.router.navigate([]).then(result => {  window.open(link, '_blank'); });
-    console.log("ajunge");
     window.open(link, '_blank'); 
   }
 }
