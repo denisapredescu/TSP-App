@@ -641,9 +641,9 @@
     }
     , "code-section": {
         "title": "Testează codul"
-        , "explications-nodes-with-distance-symmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following enter m lines with triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a completely undirected graph."
-        , "explications-nodes-with-distance-asymmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following enter m lines with triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a directed graph."
-        , "explications-euclidian-distance": "Euclidian distances mean that the number of nodes is specified on the first line (the nodes are numbered starting from 0) and the rest of the triplet lines of the type node X coordinate Y coordinate. A complete graph is built in which the weights edges are the distances between the respective points."
+        , "explications-nodes-with-distance-symmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following m lines enter triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a completely undirected graph."
+        , "explications-nodes-with-distance-asymmetrical": "On the first line enter n = the number of nodes and m = the number of edges \n On the following m lines enter triplets of the type: node 1 node 2 distance (node counting starts from 0) corresponding to a directed graph."
+        , "explications-euclidian-distance": "Specify on the first line the number of nodes and on the rest of the lines there are triplets of the type node X coordinate Y coordinate (the nodes are numbered starting from 0). A complete graph is built in which the weights edges are the distances between the respective points."
         , "placeholder": "Enter data here..."
         , "solution": {
             "name": "Solution"

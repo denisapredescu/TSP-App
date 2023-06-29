@@ -645,9 +645,9 @@
     }
     , "code-section": {
         "title": "Testează codul"
-        , "explications-nodes-with-distance-symmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele introdu m linii cu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf neorientat complet."
-        , "explications-nodes-with-distance-asymmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele introdu m linii cu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf orientat."
-        , "explications-euclidian-distance": "Distanțe euclidiene înseamnă că se precizează pe prima linie numărul de noduri (nodurile se numerotează începând cu 0) și restul liniilor triplete de tipul nod coordonata X coordonata Y. Se construiește un graf complet în care ponderile muchiilor sunt distanțele dintre punctele respective."
+        , "explications-nodes-with-distance-symmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele m linii introdu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf neorientat complet."
+        , "explications-nodes-with-distance-asymmetrical": "Pe prima linie introdu n = numărul de noduri și m = numărul de muchii \n Pe următoarele m linii introdu triplete de tipul: nod 1 nod 2 distanță (numărătoarea nodurilor începe de la 0) corespunzătoare unui graf orientat."
+        , "explications-euclidian-distance": "Se precizează pe prima linie numărul de noduri și pe restul liniilor se găsesc triplete de tipul nod coordonata X coordonata Y (nodurile se numerotează începând cu 0). Se construiește un graf complet în care ponderile muchiilor sunt distanțele dintre punctele respective."
         , "placeholder": "Introdu datele aici..."
         , "solution": {
             "name": "Soluție"

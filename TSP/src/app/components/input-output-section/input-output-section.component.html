@@ -1,5 +1,4 @@
-
-<div class="butoane-cod-center">
+<div class="buttons-code-center">
     <button class="run-button" role="button" (click)="showInputBox()">
         <span *ngIf="!isShown()" class="text"> {{'code-section.buttons.show-input-area' | translate}} </span>
         <span *ngIf="isShown()" class="text"> {{'code-section.buttons.hide-input-area' | translate}} </span>
@@ -8,332 +7,332 @@
     </button>
 </div>
 
-    <div id="testare" *ngIf="isShownInput === true">
-        <h4> {{'code-section.title' | translate}}</h4>
+<div id="input-output-boxes" *ngIf="isShownInput === true">
+    <h4> {{'code-section.title' | translate}}</h4>
 
-        <div id="testare-box">
-            <div class="input-type-selector">
-                <div class="first-dropdown">
-                    <form class="form-input-type">
-                    <mat-select [(value)]="inputType">
-                        <mat-option (click)="chooseInputType(input)" value="1"> 
-                            {{'code-section.buttons.choose-distance-between-symmetric-graph' | translate}} 
-                        </mat-option>
-                        <mat-option *ngIf="currentSubsection===dynamicProgramming || currentSubsection===branchAndBound" (click)="chooseInputType(input)" value="2"> 
-                            {{'code-section.buttons.choose-distance-between-asymmetric-graph' | translate}} 
-                        </mat-option>
-                        <mat-option (click)="chooseInputType(input)" value="3"> 
-                            {{'code-section.buttons.choose-euclidian' | translate}} 
-                        </mat-option>
-                        </mat-select>
-                    </form>
-                </div>  
-
-                <div class="optional-greedy-selector" *ngIf="currentSubsection === christofidesAlgorithm">
-                    <form class="form-input-type">
-                        <mat-select [(value)]="chooseAlgorithm">
-                            <mat-option value="greedy-matching"> Greedy </mat-option>
-                            <mat-option  value="min-perfect-matching"> Minim perfect matching </mat-option>
-                        </mat-select>
-                    </form>
-                </div>
-
-                <div class="form-outline" *ngIf="chooseAlgorithm==='greedy-matching' && currentSubsection === christofidesAlgorithm">
-                    <label class="form-label" for="typeNumber"> {{'code-section.number-repetitions' | translate}} </label>
-                    <input [(ngModel)]="repetitions" min="1" type="number" id="typeNumber" class="form-control" />
-                </div>
-
-                <div class="optional-greedy-selector" *ngIf="currentSubsection === twoOpt || currentSubsection === threeOpt">
-                    <form class="form-input-type">
-                        <mat-select [(value)]="chooseAlgorithm">
-                            <mat-option  value={{farthestInsertion}}> 
-                                {{farthestInsertion}}
-                            </mat-option>
-                            <mat-option  value={{nearestInsertion}}> 
-                                {{nearestInsertion}}
-                            </mat-option>
-                            <mat-option  value={{cheapestInsertion}}> 
-                                {{cheapestInsertion}}
-                            </mat-option>
-                            <mat-option  value={{nearestNeighbor}}> 
-                                {{nearestNeighbor}}
-                            </mat-option>
-                        </mat-select>
-                    </form>
-                </div>
-
-                <div class="form-outline" *ngIf="currentSubsection === twoOpt || currentSubsection === threeOpt">
-                    <label class="form-label" for="typeNumber"> {{'code-section.number-repetitions' | translate}} </label>
-                    <input [(ngModel)]="repetitions" min="1" type="number" id="typeNumber" class="form-control" />
-                </div>
-            </div>
-
-            <div>
-                <div *ngIf="inputType === '1'">
-                    {{'code-section.explications-nodes-with-distance-symmetrical' | translate}}
-                </div>
-
-                <div *ngIf="inputType === '2'">
-                    {{'code-section.explications-nodes-with-distance-asymmetrical' | translate}}
-                </div>
-
-                <div *ngIf="inputType === '3'">
-                    {{'code-section.explications-euclidian-distance' | translate}}
-                </div>
-            </div>
-
-            <div class="input-output-area">
-                <form>
-                    <textarea #input placeholder="{{'code-section.placeholder' | translate}}"></textarea>
+    <div id="input-box">
+        <div class="input-type-selector">
+            <div class="first-dropdown">
+                <form class="form-input-type">
+                <mat-select [(value)]="inputType">
+                    <mat-option (click)="chooseInputType(input)" value="1"> 
+                        {{'code-section.buttons.choose-distance-between-symmetric-graph' | translate}} 
+                    </mat-option>
+                    <mat-option *ngIf="currentSubsection===dynamicProgramming || currentSubsection===branchAndBound" (click)="chooseInputType(input)" value="2"> 
+                        {{'code-section.buttons.choose-distance-between-asymmetric-graph' | translate}} 
+                    </mat-option>
+                    <mat-option (click)="chooseInputType(input)" value="3"> 
+                        {{'code-section.buttons.choose-euclidian' | translate}} 
+                    </mat-option>
+                    </mat-select>
                 </form>
+            </div>  
 
-                <div id = "raspuns" style="white-space: pre-wrap;">
-                    <div *ngIf="hasResponse">
-                        <div *ngIf="solution === -1">{{'code-section.solution.wait' | translate}}</div>
-                        
-                        <div *ngIf="solution !== -1">
-                            {{'code-section.solution.name' | translate}}: {{solution}}
-                        </div>
+            <div class="optional-greedy-selector" *ngIf="currentSubsection === christofidesAlgorithm">
+                <form class="form-input-type">
+                    <mat-select [(value)]="chooseAlgorithm">
+                        <mat-option value="greedy-matching"> Greedy </mat-option>
+                        <mat-option  value="min-perfect-matching"> Minim perfect matching </mat-option>
+                    </mat-select>
+                </form>
+            </div>
+
+            <div class="form-outline" *ngIf="chooseAlgorithm==='greedy-matching' && currentSubsection === christofidesAlgorithm">
+                <label class="form-label" for="typeNumber"> {{'code-section.number-repetitions' | translate}} </label>
+                <input [(ngModel)]="repetitions" min="1" type="number" id="typeNumber" class="form-control" />
+            </div>
+
+            <div class="optional-greedy-selector" *ngIf="currentSubsection === twoOpt || currentSubsection === threeOpt">
+                <form class="form-input-type">
+                    <mat-select [(value)]="chooseAlgorithm">
+                        <mat-option  value={{farthestInsertion}}> 
+                            {{farthestInsertion}}
+                        </mat-option>
+                        <mat-option  value={{nearestInsertion}}> 
+                            {{nearestInsertion}}
+                        </mat-option>
+                        <mat-option  value={{cheapestInsertion}}> 
+                            {{cheapestInsertion}}
+                        </mat-option>
+                        <mat-option  value={{nearestNeighbor}}> 
+                            {{nearestNeighbor}}
+                        </mat-option>
+                    </mat-select>
+                </form>
+            </div>
+
+            <div class="form-outline" *ngIf="currentSubsection === twoOpt || currentSubsection === threeOpt">
+                <label class="form-label" for="typeNumber"> {{'code-section.number-repetitions' | translate}} </label>
+                <input [(ngModel)]="repetitions" min="1" type="number" id="typeNumber" class="form-control" />
+            </div>
+        </div>
+
+        <div>
+            <div *ngIf="inputType === '1'">
+                {{'code-section.explications-nodes-with-distance-symmetrical' | translate}}
+            </div>
+
+            <div *ngIf="inputType === '2'">
+                {{'code-section.explications-nodes-with-distance-asymmetrical' | translate}}
+            </div>
+
+            <div *ngIf="inputType === '3'">
+                {{'code-section.explications-euclidian-distance' | translate}}
+            </div>
+        </div>
+
+        <div class="input-output-area">
+            <form>
+                <textarea #input placeholder="{{'code-section.placeholder' | translate}}"></textarea>
+            </form>
+
+            <div id = "output-box" style="white-space: pre-wrap;">
+                <div *ngIf="hasResponse">
+                    <div *ngIf="solution === -1">{{'code-section.solution.wait' | translate}}</div>
                     
-                        <div *ngIf="currentSubsection === dynamicProgramming ">
-                            <div *ngIf="responseDP.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseDP.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph" class="cont"></div>
+                    <div *ngIf="solution !== -1">
+                        {{'code-section.solution.name' | translate}}: {{solution}}
+                    </div>
+                
+                    <div *ngIf="currentSubsection === dynamicProgramming ">
+                        <div *ngIf="responseDP.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseDP.cycle.join(" -> ")}}
                         </div>
-
-                        <div *ngIf="currentSubsection === branchAndBound">
-                            <div *ngIf="responseBB.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseBB.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-bb" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === christofidesAlgorithm">
-                            <div *ngIf="responseChistofides.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseChistofides.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-christofides" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === doubleTreeAlgorithm">
-                            <div *ngIf="responseDoubleTree.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseDoubleTree.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-double-tree" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === farthestInsertion">
-                            <div *ngIf="responseHeuristics.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-farthest-insertion" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === nearestInsertion">
-                            <div *ngIf="responseHeuristics.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-nearest-insertion" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === cheapestInsertion">
-                            <div *ngIf="responseHeuristics.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-cheapest-insertion" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === nearestNeighbor">
-                            <div *ngIf="responseHeuristics.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-nearest-neighbor" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === twoOpt">
-                            <div *ngIf="responseOptimizationAlgorithm.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseOptimizationAlgorithm.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-2-opt" class="cont"></div>
-                        </div>
-
-                        <div *ngIf="currentSubsection === threeOpt">
-                            <div *ngIf="responseOptimizationAlgorithm.solution !== -1">
-                                {{'code-section.hamiltonian-cycle' | translate}}: {{responseOptimizationAlgorithm.cycle.join(" -> ")}}
-                            </div>
-                            <div id="graph-3-opt" class="cont"></div>
-                        </div>
+                        <div id="graph" class="cont"></div>
                     </div>
 
-                    <div *ngIf="!hasResponse">
-                        <label *ngIf="error && solution !== 'insert-data'" style="color:red">
-                            {{solution}}
-                        </label>
+                    <div *ngIf="currentSubsection === branchAndBound">
+                        <div *ngIf="responseBB.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseBB.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-bb" class="cont"></div>
+                    </div>
 
-                        <label *ngIf="error && solution === 'insert-data'" style="color:red">
-                            {{'code-section.solution.' + solution | translate}}
-                        </label>
+                    <div *ngIf="currentSubsection === christofidesAlgorithm">
+                        <div *ngIf="responseChistofides.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseChistofides.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-christofides" class="cont"></div>
+                    </div>
 
-                        <label *ngIf="!error">
-                            {{'code-section.solution.' + solution | translate}}
-                        </label>
+                    <div *ngIf="currentSubsection === doubleTreeAlgorithm">
+                        <div *ngIf="responseDoubleTree.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseDoubleTree.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-double-tree" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === farthestInsertion">
+                        <div *ngIf="responseHeuristics.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-farthest-insertion" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === nearestInsertion">
+                        <div *ngIf="responseHeuristics.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-nearest-insertion" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === cheapestInsertion">
+                        <div *ngIf="responseHeuristics.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-cheapest-insertion" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === nearestNeighbor">
+                        <div *ngIf="responseHeuristics.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseHeuristics.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-nearest-neighbor" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === twoOpt">
+                        <div *ngIf="responseOptimizationAlgorithm.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseOptimizationAlgorithm.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-2-opt" class="cont"></div>
+                    </div>
+
+                    <div *ngIf="currentSubsection === threeOpt">
+                        <div *ngIf="responseOptimizationAlgorithm.solution !== -1">
+                            {{'code-section.hamiltonian-cycle' | translate}}: {{responseOptimizationAlgorithm.cycle.join(" -> ")}}
+                        </div>
+                        <div id="graph-3-opt" class="cont"></div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="butoane-cod-left">
-            <button class="run-button" role="button" (click)="runCode(input.value)">
-                <span class="text"> {{'code-section.buttons.run-code' | translate}} </span>
-                <span> <mat-icon> play_arrow </mat-icon> </span>
-            </button>
+                <div *ngIf="!hasResponse">
+                    <label *ngIf="error && solution !== 'insert-data'" style="color:red">
+                        {{solution}}
+                    </label>
+
+                    <label *ngIf="error && solution === 'insert-data'" style="color:red">
+                        {{'code-section.solution.' + solution | translate}}
+                    </label>
+
+                    <label *ngIf="!error">
+                        {{'code-section.solution.' + solution | translate}}
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div *ngIf="hasResponse && isShownInput">
+    <div class="buttons-code-left">
+        <button class="run-button" role="button" (click)="runCode(input.value)">
+            <span class="text"> {{'code-section.buttons.run-code' | translate}} </span>
+            <span> <mat-icon> play_arrow </mat-icon> </span>
+        </button>
+    </div>
+</div>
 
-        <div *ngIf="currentSubsection === dynamicProgramming && responseDP.solution !== -1">
-            <div class="mat-table-box"> 
-                
-                <div class="carousel-text">
-                    {{'code-section.dynamic-programming' | translate}}
-                </div>
+<div *ngIf="hasResponse && isShownInput">
 
-                <mat-table [dataSource]="dataMatTableWithPagination" class="mat-elevation-z8 matTable">
-                    <ng-container *ngFor="let column of columns; let colIndex = index"  matColumnDef="{{column}}">
-                        <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index; " > 
-                            <div *ngIf="element[column] === -1">∞</div>
-                            <div *ngIf="element[column] !== -1">{{element[column] ?? i +  paginator.pageIndex * paginator.pageSize}}</div>
-                        </mat-cell>
-                    </ng-container>
-        
-                    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: columns;  let i = index;"></mat-row>
-                </mat-table>
+    <div *ngIf="currentSubsection === dynamicProgramming && responseDP.solution !== -1">
+        <div class="mat-table-box"> 
+            
+            <div class="carousel-text">
+                {{'code-section.dynamic-programming' | translate}}
             </div>
 
+            <mat-table [dataSource]="dataMatTableWithPagination" class="mat-elevation-z8 matTable">
+                <ng-container *ngFor="let column of columns; let colIndex = index"  matColumnDef="{{column}}">
+                    <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
+                    <mat-cell *matCellDef="let element; let i = index; " > 
+                        <div *ngIf="element[column] === -1">∞</div>
+                        <div *ngIf="element[column] !== -1">{{element[column] ?? i +  paginator.pageIndex * paginator.pageSize}}</div>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: columns;  let i = index;"></mat-row>
+            </mat-table>
         </div>
-        <mat-paginator 
-            [hidden]="! (currentSubsection === dynamicProgramming && responseDP.solution !== -1)"
-            #paginator 
-            [pageSize]="10"
-            [pageSizeOptions]="[5, 10, 20, 30]"
-            showFirstLastButtons
-            class="mat-pagionator-styling">
-        </mat-paginator>
-        
-        <div *ngIf="currentSubsection === branchAndBound">
 
-            <ngb-carousel id="carousel" [interval]="0">
-                <ng-template ngbSlide *ngFor="let step of responseBB.steps; let i = index">  
-                    <div class="carousel-box"> 
-                        
-                        <div class="carousel-text">
-                            <div *ngIf="step[0] === -1"> 
-                                {{'code-section.branch-and-bound.initial-matrix' | translate}} {{step[1]}}.  
-                            </div>
-                            <div *ngIf="step[0] === responseBB.cycle[0]"> 
-                                {{'code-section.branch-and-bound.first-step-matrix.0' | translate}} {{step[0]}} {{'code-section.branch-and-bound.first-step-matrix.1' | translate}} {{step[1]}}.  
-                            </div>
-                            <div *ngIf="step[0] !== responseBB.cycle[0] && step[0] !== -1"> 
-                                {{'code-section.branch-and-bound.second-step-matrix.0' | translate}} {{step[0]}} {{'code-section.branch-and-bound.second-step-matrix.1' | translate}} {{responseBB.cycle[0]}} {{'code-section.branch-and-bound.second-step-matrix.2' | translate}} {{step[1]}}.  
-                            </div>
+    </div>
+    <mat-paginator 
+        [hidden]="! (currentSubsection === dynamicProgramming && responseDP.solution !== -1)"
+        #paginator 
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20, 30]"
+        showFirstLastButtons
+        class="mat-pagionator-styling">
+    </mat-paginator>
+    
+    <div *ngIf="currentSubsection === branchAndBound">
+
+        <ngb-carousel id="carousel" [interval]="0">
+            <ng-template ngbSlide *ngFor="let step of responseBB.steps; let i = index">  
+                <div class="carousel-box"> 
+                    
+                    <div class="carousel-text">
+                        <div *ngIf="step[0] === -1"> 
+                            {{'code-section.branch-and-bound.initial-matrix' | translate}} {{step[1]}}.  
                         </div>
-
-                        <mat-table [dataSource]="step[2]" class="mat-elevation-z8">
-                            <ng-container *ngFor="let column of columns; let colIndex = index"  matColumnDef="{{column}}">
-                                <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
-                                <mat-cell *matCellDef="let element; let i = index; " > 
-                                   <div *ngIf="element[column] === -1">∞</div>
-                                   <div *ngIf="element[column] !== -1">{{element[column] ?? i}}</div>
-                                </mat-cell>
-                            </ng-container>
-                
-                            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: columns;  let i = index;"></mat-row>
-                        </mat-table>
-        
+                        <div *ngIf="step[0] === responseBB.cycle[0]"> 
+                            {{'code-section.branch-and-bound.first-step-matrix.0' | translate}} {{step[0]}} {{'code-section.branch-and-bound.first-step-matrix.1' | translate}} {{step[1]}}.  
+                        </div>
+                        <div *ngIf="step[0] !== responseBB.cycle[0] && step[0] !== -1"> 
+                            {{'code-section.branch-and-bound.second-step-matrix.0' | translate}} {{step[0]}} {{'code-section.branch-and-bound.second-step-matrix.1' | translate}} {{responseBB.cycle[0]}} {{'code-section.branch-and-bound.second-step-matrix.2' | translate}} {{step[1]}}.  
+                        </div>
                     </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
 
-        <div *ngIf="currentSubsection === christofidesAlgorithm">
-            <div class="steps-christofides-graphs">
-                <div class="step first">
-                    <label class="carousel-text">{{'code-section.chistofides-algorithm.tree' | translate}}</label>
-                    <div id="graph-tree" class="christofides-graph"></div>
+                    <mat-table [dataSource]="step[2]" class="mat-elevation-z8">
+                        <ng-container *ngFor="let column of columns; let colIndex = index"  matColumnDef="{{column}}">
+                            <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
+                            <mat-cell *matCellDef="let element; let i = index; " > 
+                                <div *ngIf="element[column] === -1">∞</div>
+                                <div *ngIf="element[column] !== -1">{{element[column] ?? i}}</div>
+                            </mat-cell>
+                        </ng-container>
+            
+                        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: columns;  let i = index;"></mat-row>
+                    </mat-table>
+    
                 </div>
-                <div class="step second">
-                    <label class="carousel-text">{{'code-section.chistofides-algorithm.odd-nodes' | translate}}</label>
-                    <div id="graph-odd-nodes" class="christofides-graph"></div>
-                </div>
-                <div class="step third">
-                    <label class="carousel-text">{{'code-section.chistofides-algorithm.matching' | translate}}</label>
-                    <div id="graph-matching" class="christofides-graph"></div>
-                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <div *ngIf="currentSubsection === christofidesAlgorithm">
+        <div class="steps-christofides-graphs">
+            <div class="step first">
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.chistofides-algorithm.tree' | translate}}</label>
+                <div id="graph-tree" class="christofides-graph"></div>
+            </div>
+            <div class="step second">
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.chistofides-algorithm.odd-nodes' | translate}}</label>
+                <div id="graph-odd-nodes" class="christofides-graph"></div>
+            </div>
+            <div class="step third">
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.chistofides-algorithm.matching' | translate}}</label>
+                <div id="graph-matching" class="christofides-graph"></div>
             </div>
         </div>
+    </div>
 
-        <div *ngIf="currentSubsection === doubleTreeAlgorithm">
-            <div class="steps-approx-graphs">
-                <div class="step">
-                    <label class="carousel-text">{{'code-section.chistofides-algorithm.tree' | translate}}</label>
-                    <div id="graph-double-tree-prim" class="christofides-graph"></div>
-                </div>
+    <div *ngIf="currentSubsection === doubleTreeAlgorithm">
+        <div class="steps-approx-graphs">
+            <div class="step">
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.chistofides-algorithm.tree' | translate}}</label>
+                <div id="graph-double-tree-prim" class="christofides-graph"></div>
             </div>
         </div>
+    </div>
 
-        <div *ngIf="currentSubsection === twoOpt">
-            <div class="steps-approx-graphs">
-                <div class="approx-step" >
-                    <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.optimization-algorithm.build-cycle.0' | translate}} {{responseOptimizationAlgorithm.steps[0][0].join(" -> ")}} {{'code-section.optimization-algorithm.build-cycle.1' | translate}} {{responseOptimizationAlgorithm.steps[0][1]}}</label>
-                    <div id="graph-cycle-2-opt" class="approx-graph"></div>
-                </div>
-                
-                <div class="approx-step">
-                    <label class="carousel-text" *ngIf="responseOptimizationAlgorithm.steps.length === 1 && solution !== -1">
-                        {{'code-section.optimization-algorithm.optimize-cycle.no' | translate}}
-                    </label>
-                
-                    <label class="carousel-text"  *ngIf="responseOptimizationAlgorithm.steps.length >= 2 && solution !== -1">
+    <div *ngIf="currentSubsection === twoOpt">
+        <div class="steps-approx-graphs">
+            <div class="approx-step" >
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.optimization-algorithm.build-cycle.0' | translate}} {{responseOptimizationAlgorithm.steps[0][0].join(" -> ")}} {{'code-section.optimization-algorithm.build-cycle.1' | translate}} {{responseOptimizationAlgorithm.steps[0][1]}}</label>
+                <div id="graph-cycle-2-opt" class="approx-graph"></div>
+            </div>
+            
+            <div class="approx-step">
+                <label class="carousel-text" *ngIf="responseOptimizationAlgorithm.steps.length === 1 && solution !== -1">
+                    {{'code-section.optimization-algorithm.optimize-cycle.no' | translate}}
+                </label>
+            
+                <label class="carousel-text"  *ngIf="responseOptimizationAlgorithm.steps.length >= 2 && solution !== -1">
+                    {{'code-section.optimization-algorithm.optimize-cycle.yes.0' | translate}} 
+                    ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2]]}}) {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3]]}})
+                    {{'code-section.optimization-algorithm.optimize-cycle.yes.2' | translate}} 
+                    ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3]]}}).
+                    {{'code-section.optimization-algorithm.optimize-cycle.yes.3' | translate}}{{responseOptimizationAlgorithm.steps[1][0].join(" -> ")}} {{'code-section.optimization-algorithm.optimize-cycle.yes.4' | translate}} {{responseOptimizationAlgorithm.steps[1][1]}}.
+                </label>
+                <div id="graph-first-optimization-2-opt" class="approx-graph"></div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="currentSubsection === threeOpt">
+        <div class="steps-approx-graphs">
+            <div class="approx-step" *ngIf="responseOptimizationAlgorithm.steps.length !== 0" >
+                <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.optimization-algorithm.build-cycle.0' | translate}} {{responseOptimizationAlgorithm.steps[0][0].join(" -> ")}} {{'code-section.optimization-algorithm.build-cycle.1' | translate}} {{responseOptimizationAlgorithm.steps[0][1]}}.</label>
+                <div id="graph-cycle-3-opt" class="approx-graph"></div>
+            </div>
+            
+            <div class="approx-step">
+                <label class="carousel-text" *ngIf="responseOptimizationAlgorithm.steps.length === 1 && solution !== -1"> 
+                    {{'code-section.optimization-algorithm.optimize-cycle.no' | translate}}
+                </label>
+            
+                <label class="carousel-text"  *ngIf="responseOptimizationAlgorithm.steps.length >= 2 && solution !== -1">
                         {{'code-section.optimization-algorithm.optimize-cycle.yes.0' | translate}} 
-                        ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2]]}}) {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3]]}})
+                        ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2]]}}), ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][4] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][4]]}})
                         {{'code-section.optimization-algorithm.optimize-cycle.yes.2' | translate}} 
-                        ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3]]}}).
-                        {{'code-section.optimization-algorithm.optimize-cycle.yes.3' | translate}}{{responseOptimizationAlgorithm.steps[1][0].join(" -> ")}} {{'code-section.optimization-algorithm.optimize-cycle.yes.4' | translate}} {{responseOptimizationAlgorithm.steps[1][1]}}.
-                    </label>
-                    <div id="graph-first-optimization-2-opt" class="approx-graph"></div>
-                </div>
+                        ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2]]}}), ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][4] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][4]]}}).
+                        {{'code-section.optimization-algorithm.optimize-cycle.yes.3' | translate}} 
+                        {{responseOptimizationAlgorithm.steps[1][0].join(" -> ")}} 
+                        {{'code-section.optimization-algorithm.optimize-cycle.yes.4' | translate}}  {{responseOptimizationAlgorithm.steps[1][1]}}.
+                </label>
+                <div id="graph-first-optimization-3-opt" class="approx-graph"></div>
             </div>
         </div>
-
-        <div *ngIf="currentSubsection === threeOpt">
-            <div class="steps-approx-graphs">
-                <div class="approx-step" *ngIf="responseOptimizationAlgorithm.steps.length !== 0" >
-                    <label class="carousel-text" *ngIf="solution !== -1">{{'code-section.optimization-algorithm.build-cycle.0' | translate}} {{responseOptimizationAlgorithm.steps[0][0].join(" -> ")}} {{'code-section.optimization-algorithm.build-cycle.1' | translate}} {{responseOptimizationAlgorithm.steps[0][1]}}.</label>
-                    <div id="graph-cycle-3-opt" class="approx-graph"></div>
-                </div>
-                
-                <div class="approx-step">
-                    <label class="carousel-text" *ngIf="responseOptimizationAlgorithm.steps.length === 1 && solution !== -1"> 
-                        {{'code-section.optimization-algorithm.optimize-cycle.no' | translate}}
-                    </label>
-                
-                    <label class="carousel-text"  *ngIf="responseOptimizationAlgorithm.steps.length >= 2 && solution !== -1">
-                         {{'code-section.optimization-algorithm.optimize-cycle.yes.0' | translate}} 
-                         ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][2]]}}), ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][3]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][4] - 1]}}, {{responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.steps[1][4]]}})
-                         {{'code-section.optimization-algorithm.optimize-cycle.yes.2' | translate}} 
-                         ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2] - 1] ?? responseOptimizationAlgorithm.steps[0][0][responseOptimizationAlgorithm.cycle.length - 2]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][2]]}}), ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][3]]}})  {{'code-section.optimization-algorithm.optimize-cycle.yes.1' | translate}} ({{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][4] - 1]}}, {{responseOptimizationAlgorithm.steps[1][0][responseOptimizationAlgorithm.steps[1][4]]}}).
-                         {{'code-section.optimization-algorithm.optimize-cycle.yes.3' | translate}} 
-                         {{responseOptimizationAlgorithm.steps[1][0].join(" -> ")}} 
-                         {{'code-section.optimization-algorithm.optimize-cycle.yes.4' | translate}}  {{responseOptimizationAlgorithm.steps[1][1]}}.
-                    </label>
-                    <div id="graph-first-optimization-3-opt" class="approx-graph"></div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+</div>

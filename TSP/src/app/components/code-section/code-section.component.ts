@@ -29,7 +29,7 @@ export class CodeSectionComponent {
       '@ngstack/code-editor'
     ]
   };
-
+  
   readOnly: boolean = true;
   options = {
     lineNumbers: true,

@@ -3,14 +3,14 @@
     margin-bottom: 40px;
 }
 
-.butoane-cod-center {
+.buttons-code-center {
     margin: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.butoane-cod-left {
+.buttons-code-left {
     margin: 15px 0px;
     display: flex;
     width: 35%;
@@ -18,7 +18,7 @@
     justify-content: space-around;
 }
 
-#testare {
+#input-output-boxes {
     margin-top: 10px;
     color: black;
 
@@ -26,7 +26,7 @@
         margin-left: 25px;
     }
 
-    #testare-box 
+    #input-box
     {
         display: grid;
         width: 100%;
@@ -52,7 +52,7 @@
             } 
         }
 
-        #raspuns {
+        #output-box {
             color: black;
             padding: 25px;
             overflow: auto;
@@ -163,9 +163,6 @@ mat-header-cell, mat-cell {
         "first first second second"            
         ". third third .";
     margin-top: 20px;
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-around;
 }
 
 .step {
