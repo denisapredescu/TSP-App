@@ -157,7 +157,6 @@
             <img src="./assets/images/steps.png" class="icon-theorem">
             <p class="steps">{{ 'exact-algorithms.branch-and-bound.strategy.title' | translate }}</p>
         </div>
-        <!-- <h4>{{ 'exact-algorithms.branch-and-bound.strategy.title' | translate }}</h4> -->
         <ol> 
             <li *ngFor="let i of [0,1,2,3, 4]">
                 {{ 'exact-algorithms.branch-and-bound.strategy.steps.' + i | translate }}
@@ -198,6 +197,11 @@
                 </div>
             </li>
         </ul>
+    </div>
+
+    <h4 style="text-decoration:underline;">{{ 'exact-algorithms.branch-and-bound.construction.example-on-a-given-matrix' | translate }}</h4>
+    <div class="display-image-gallery">
+        <img src="../../../assets/images/example-reduction-matrix-bb.png" alt="Reduction algorithm ilustrated in a given matrix">
     </div>
     
     <div class="formula-container">

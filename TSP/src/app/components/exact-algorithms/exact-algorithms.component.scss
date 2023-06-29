@@ -26,3 +26,15 @@ span {
 .pseudocode {
   color:#f6f6f2;
 }
+
+.display-image-gallery {
+  padding: 30px;
+  display: grid;
+  margin: auto;
+  align-content: center;
+  justify-items: center;
+
+  img {
+      width: 85%;
+  }
+}
