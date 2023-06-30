@@ -40,7 +40,8 @@
             , "definition-symmetric-matrix": "\t The graph being undirected, d(i, j) = d(j, i) for any i, j ∈ V, and the matrix is symmetric (equal to its transpose). In analogy to real life, the problem can be seen as follows: nodes are destinations and edges are streets with the specification that there are no one-way streets (the distance is equal regardless of the direction of travel). The shortest path is wanted ."
             , "matrix": "The corresponding matrix of the graph"
             , "solution": "The optimal solution is 8 obtained by the path 0 -> 1 -> 2 -> 3 -> 0."
-        } , "np-completeness": {
+        } 
+        , "np-completeness": {
             "title": "NP-completeness of the TSP problem"
             , "definition-1": {
                 "part-1": "\t A problem is called "
@@ -98,7 +99,6 @@
                 , "2": "Thus, from a node i in a directed graph, 2 nodes i and (i + n) were created in the undirected graph: enter the nodes with index < n and leave those with index >= n"
                 , "3": "The solution of the initial aTSP is the same as that of the resulting sTSP except that the value -999 (M = 999) has been added n times to the latter. So aTSP = sTSP + n * M"
             }
-   
         }, 
         "multipleVisits": {
             "title":  "TSP with multiple visits",
@@ -505,7 +505,7 @@
             "title": "Hamiltonian cycle optimization: k-OPT"
             , "header": "\t One of the presented algorithms can be used to create the Hamiltonian cycle. Having cycled, the next step is to improve its cost until it can't. In the end, it cannot be guaranteed that the obtained cycle is minimal. Repeating the algorithm several times using possibly different cycles increases the probability of finding the minimum solution."
             , "definition-k-change-neighborhood": "\t Let F be the set of all Hamiltonian cycles. A neighborhood is a mapping N : F → 2^F where N maps every f ∈ F into the neighborhood N(f). Lin proposes the neighborhoods for a TSP on K_n. For f a cycle and k ∈ {2,...,n}, N(f) is the set of all Hamiltonian cycles g that are obtained from f by removing k edges and replacing them with k edges (not necessarily all added edges must be different from those removed). N(f) is called a k-change neighborhood, and any g whose distance is minimal among all other cycles in N(f) is called k-optimal."
-            , "pseudocode": "Pseudocode k-OPT(D) \n choose an initial cycle f \n while there exists g ∈ N(f) with d(g) < d(f) execute \n\t choose g ∈ N(f) with d( g) < d(f) \n\t f ← g"
+            , "pseudocode": "Pseudocode k-OPT(D) \n choose an initial cycle f \n while there exists g ∈ N(f) with d(g) < d(f) execute \n\t choose g ∈ N(f) with the smallest d(g) \n\t f ← g"
             , "explications": {
                 "text": "\t Consider a set of solutions N(f) that are neighbors to the current solution f and look for, from this set, the local optimum, the cycle g that brings the most significant improvement. The algorithm stops when no local optimum is found. So, if the current Hamiltonian cycle has no neighbors that offer a better solution, it is considered that it cannot be optimized anymore." 
             }

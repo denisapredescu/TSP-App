@@ -9,10 +9,10 @@ export class ImageSliderComponent {
   @Input() images: any = {};
   @Input() popup: boolean = true;
   @Input() isVerticle: boolean = false;
+  
   constructor() {}
 
   ngOnInit() {
-    console.log(this.images);
   }
 
   closeSidenav(){

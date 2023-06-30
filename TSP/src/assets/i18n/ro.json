@@ -18,7 +18,6 @@
     "about-tsp": {
         "header-name-problem": "\t Problema comis-voiajorului (prescurtat TSP)"
         ,"header": " este una dintre cele mai cunoscute probleme computaționale de optimizare, o problemă de interes datorită faptului că este întâlnită în practică sub diverse forme. Are o istorie lungă de încercări de a o rezolva, găsirea unui algoritm cât mai eficient chiar dacă vom vedea că este foarte posibil să nu se poată crea un algoritm care să ofere o soluție în timp polinomial, fiind demonstrat faptul că problema este NP-completă. "
-        
         ,"title": "Prezentarea problemei"
         , "problem-explication": "\t TSP presupune găsirea rutei optime prin care comis-voiajorul poate vizita n orașe, trecând prin fiecare o singură dată și întorcându-se la final în orașul de unde a plecat. Se poate considera ca ruta optimă distanța minimă sau costul minin al drumului (problema nu se schimbă)."
         , "definition-graph": "\t Fie G = (V,E) un graf neorientat pentru care V este mulțimea nodurilor (orașelor), E este mulțimea muchiilor între noduri (drumurilor dintre orașe) și fiecare muchie are propria lungime cu condiția ca ponderea să fie ne-negativă. Un graf neorientat ponderat poate fi privit ca fiind complet creând muchii fictive între nodurile neadiacente de lungime infinit." 
@@ -100,7 +99,6 @@
                 , "2": "Astfel dintr-un nod i dintr-un graf orientat s-au creat 2 noduri i și (i + n) în graful neorientat: se intră în nodurile cu indice < n și se iese din cele cu indice >= n"
                 , "3": "Soluția aTSP-ului inițial este aceeași cu a sTSP-ului rezultat excepție că la aceasta din urmă a fost adăugat de n ori valoarea -999 (M = 999). Deci aTSP = sTSP + n * M"
             }
-   
         }, 
         "multipleVisits": {
             "title":  "TSP cu vizitări multiple",
@@ -158,7 +156,6 @@
                     "title": "Cum se stabilește subproblema?"
                     , "text": "\t Pentru TSP o subproblemă corespunde părții de început a drumului. Se consideră că se pornește parcurgerea din orașul 1 și se ajunge în orașul j după ce au fost vizitate câteva orașe. La fiecare pas, pentru a extinde începutul de drum, este necesar să se cunoască orașul j pentru că se dorește găsirea orașelor de vizitat după ce s-a trecut prin j. Pentru a ști că se respectă regula TSP de a vizita fiecare oraș o singură dată, trebuie să se cunoască și identitatea nodurilor vizitate în drumul parțial pentru a nu le parcurge din nou, de aceea:"
                     , "formula": "o subproblemă corespunde unei perechi de forma (submulțime de noduri, ultimul nod din drum)"
-                    
                 } 
                 , "final-step": {
                     "title": "Ultimul pas"
@@ -508,7 +505,7 @@
             "title": "Optimizarea ciclului hamiltonian: k-OPT"
             , "header": "\t Pentru crearea ciclului hamiltonian se poate folosi unul dintre algoritmii prezentați. Având ciclul, următorul pas este îmbunătățirea costului lui până când nu se mai poate. La final nu se poate garanta că ciclul obținut este minim. Reluarea algoritmului de mai multe ori folosind cicluri posibil diferite duce la creșterea probabilității găsirii soluției minime."
             , "definition-k-change-neighborhood": "\t Fie F mulțimea tuturor ciclurilor hamiltoniane. O vecinătate este o mapare N : F → 2^F în care N mapează fiecare f ∈ F în vecinătatea N(f). Lin propune vecinătățile pentru un TSP pe K_n. Pentru f un ciclu și k ∈ {2,...,n}, N(f) este mulțimea tuturor ciclurilor hamiltoniene g care sunt obținute din f prin eliminarea a k muchii și înlocuirea lor cu k muchii (nu neapărat toate muchiile adăugate trebuie să fie diferite de cele eliminate). N(f) poartă numele de vecinătate k-schimburi (k-change neighborhood), iar oricare g a cărui distanță este minimă dintre toate celelalte cicluri din N(f) se numește k-optimal."
-            , "pseudocode": "Pseudocod k-OPT(D) \n alege un ciclu initial f \n cât timp există g ∈ N(f) cu d(g) < d(f) execută \n\t alege g ∈ N(f) cu d(g) < d(f) \n\t f ← g"
+            , "pseudocode": "Pseudocod k-OPT(D) \n alege un ciclu initial f \n cât timp există g ∈ N(f) cu d(g) < d(f) execută \n\t alege g ∈ N(f) cu d(g) cel mai mic \n\t f ← g"
             , "explications": {
                 "text": "\t Se consideră o mulțime de soluții N(f) care sunt vecine cu soluția curentă f și se caută, din această mulțime, optimul local, ciclul g care aduce cea mai însemnată îmbunătățire. Algoritmul se oprește când nu se mai găsește niciun optim local. Așadar, dacă ciclul hamiltonian curent nu are vecini care să ofere o soluție mai bună se consideră că nu se mai poate optimiza." 
             }
