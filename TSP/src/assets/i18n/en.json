@@ -243,6 +243,7 @@
                     , "3-formula": "f(j) = f(i) + Di(i,j) + α"
                 }
                 , "example-on-a-given-matrix": "Example reduction on a given matrix D"
+                , "example-on-a-given-reduced-matrix": "Example matrix reduction corresponding to node 1 starting from node 0 with the previously reduced matrix"
                 , "solution": {
                      "text": "\t The solution to the problem is:"
                     , "formula": " min {f(i) where i is leaf}"
@@ -690,7 +691,7 @@
                 , "yes": {
                     "0": "The first optimization found transforms the cycle like this. From the edges"
                     , "1": "and" 
-                    , "2": "two more edges are chosen"
+                    , "2": "other edges are chosen"
                     , "3": "Cycle becomes "
                     , "4": "and the solution becomes"
                 }
@@ -764,7 +765,6 @@
         , "bb-remove-subtrees": "On return subtrees are removed because they have the limit greater than "
         , "distances-matrix": "Distance matrix"
         , "start-matrix": "Parent matrix"
-
         , "example-eulerian-cycle": "Step-by-step example solving the problem of determining the Hamiltonian cycle based on determining the Eulerian cycle"
         , "example-branch-and-bound": "Example solution using the discussed strategy"
         , "example-farthest-insertion": "Step-by-step example based on the farthest insertion algorithm"

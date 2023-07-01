@@ -223,7 +223,7 @@
         class="mat-pagionator-styling">
     </mat-paginator>
     
-    <div *ngIf="currentSubsection === branchAndBound">
+    <div *ngIf="currentSubsection === branchAndBound && responseBB.solution !== -1">
 
         <ngb-carousel id="carousel" [interval]="0">
             <ng-template ngbSlide *ngFor="let step of responseBB.steps; let i = index">  

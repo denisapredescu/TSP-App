@@ -243,6 +243,7 @@
                     , "3-formula": "f(j) = f(i) + Di(i,j) + α"
                 }
                 , "example-on-a-given-matrix": "Exemplu reducere pe o matrice D dată"
+                , "example-on-a-given-reduced-matrix": "Exemplu reducere matrice corespunzătoare nodului 1 plecând din nodul 0 cu matricea redusă anterior"
                 , "solution": {
                      "text": "\t Soluția problemei este:"
                     , "formula": " min {f(i) unde i este frunză}"
@@ -691,7 +692,7 @@
                 , "yes": {
                     "0": "Prima optimizare găsită transformă ciclul astfel. Din muchiile"
                     , "1": "și" 
-                    , "2": "se aleg alte două muchii"
+                    , "2": "se aleg alte muchii"
                     , "3": "Ciclul devine "
                     , "4": "și soluția devine"
                 }
@@ -765,7 +766,6 @@
         , "bb-remove-subtrees": "La întoarcere sunt eliminați subarborii pentru că au limita mai mare decât "
         , "distances-matrix": "Matrice de distanțe"
         , "start-matrix": "Matrice părinte"
-
         , "example-eulerian-cycle": "Exemplu pas cu pas în care se rezolvă problema determinării ciclului hamiltonian pe baza determinării ciclului eulerian"
         , "example-branch-and-bound": "Exemplu de rezolvare folosind strategia discutată"
         , "example-farthest-insertion": "Exemplu pas cu pas pe baza algoritmului farthest insertion"

@@ -19,6 +19,15 @@ div {
     grid-gap: 40px;
 }
 
+.display-image-next-to-text {
+    width: 50%;
+    margin: auto;
+
+    img {
+        width: 100%;
+    }
+}
+
 .text-slider-side{
     display: grid;
     grid-template-columns: 60% auto;

@@ -132,12 +132,12 @@
 
                                 <table class="bb-parent-table">
                                     <tr>
-                                        <th *ngFor="let row of [' ', 1, 2, 3, 4]">
+                                        <th *ngFor="let row of [' ', 0, 1, 2, 3]">
                                             {{row}}
                                         </th>
                                     </tr>
                                     <tr *ngFor="let column of state.fromMatrix; index as indexC">
-                                        <th>{{indexC + 1}}</th>
+                                        <th>{{indexC}}</th>
                                         <td *ngFor="let elem of column">{{elem}}</td>
                                     </tr>
                                 </table>
@@ -279,8 +279,9 @@
                                         <p class="text-blue" style="margin-top: 5px">{{ 'carousel.start-node' | translate}}: 1 </p>
                                     </div>
 
-                                    <div *ngIf="i != 1">
-                                        <p class="text-blue">{{ 'carousel.farthest-node' | translate}}: {{state.chosen_node}} </p>
+                                    <div style="display: flex;" *ngIf="i != 1">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px">{{ 'carousel.farthest-node' | translate}}: {{state.chosen_node}} </p>
                                     </div>
                                     
                                     <div  class="text-blue" style="display: flex;">
@@ -417,8 +418,11 @@
                                 </div>
 
                                 <div *ngIf="i != 0">
-                                    <p class="text-blue"> {{'carousel.nearest-node' | translate}} : {{state.chosen_node}} </p>
-                                    
+                                    <div style="display: flex;">
+                                        <img src="./assets/images/nodes.png" height="40px" style="margin-right: 10px">
+                                        <p class="text-blue" style="margin-top: 5px"> {{'carousel.nearest-node' | translate}} : {{state.chosen_node}} </p>
+                                    </div>
+                                   
                                     <div class="text-blue" style="display: flex;">
                                         <img src="./assets/images/distance.png" height="30px">
                                         <p style="margin-top: 5px; margin-left: 5px;"> {{'carousel.distance-node-cycle' | translate}} : {{state.chosen_distance}} </p>
